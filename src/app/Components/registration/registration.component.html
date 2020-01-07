@@ -1,48 +1,46 @@
 
 <div  fxLayoutAlign="center center">       
-        <mat-card  >
+        <mat-card >
+                <form [formGroup]="registrationform" (ngSubmit)="onFormSubmit()">
           
-            <div>Fundoo</div>
-            <div>Create your  Google Account</div>
-            <div fxLayoutGap="10px">
+            <mat-card-title>Fundoo</mat-card-title>
+            
+            <mat-card-subtitle>Create your  Google Account</mat-card-subtitle>
+               
+            <div fxLayoutGap="15px">
                     <mat-form-field appearance="outline">
                             <mat-label>First name</mat-label>
-                            <input matInput placeholder="Enter First name Here">
-                            
-                           
+                            <input matInput placeholder="Enter First name Here" formControlName ="firstName">
+                            <!-- <formControlName>FirstName</formControlName> -->
                     </mat-form-field>
+
                     <mat-form-field appearance="outline">
                             <mat-label>Last name</mat-label>
-                            <input matInput placeholder="Enter Last name Here">
-                            
-                           
+                            <input matInput placeholder="Enter Last name Here" formControlName="lastName">
+                            <!-- <formControlName>LastName</formControlName> -->
                     </mat-form-field>
     
             </div>
             <div>
                     <mat-form-field appearance="outline">
                             <mat-label>User name</mat-label>
-                            <input matInput placeholder="Enter User name Here">
-                           
-                            
+                            <input matInput placeholder="Enter User name Here" formControlName=" userName">
                     </mat-form-field>
             </div>
-            <div fxLayoutGap="10px">
+            <div fxLayoutGap="15px">
                     <mat-form-field appearance="outline">
                             <mat-label>Password</mat-label>
-                            <input matInput placeholder="Enter Password Here">
-                            
-                            
+                            <input matInput placeholder="Enter Password Here" formControlName="password">
                     </mat-form-field>
+                    
                     <mat-form-field appearance="outline">
                             <mat-label>Confirm</mat-label>
-                            <input matInput placeholder="Confirm Password" >
-                            
-                            
+                            <input matInput placeholder="Confirm Password" formControlName=" confirmPassword">
                     </mat-form-field>
            </div>
                    
-            <button (click)="register()"></button>
-                
+             <button (click)="register()"></button> 
+        </form>
+         
         </mat-card>
 </div>

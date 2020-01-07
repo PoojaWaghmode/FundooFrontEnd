@@ -28,6 +28,11 @@ export class RegistrationComponent implements OnInit {
     });
     
   }
+   // convenience getter for easy access to form fields
+   get f() { return this.registrationform.controls; }
+  
+
+
   MustMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
         const control = formGroup.controls[controlName];
@@ -46,9 +51,20 @@ export class RegistrationComponent implements OnInit {
         }
     }
 }
+
   register(data){
     console.log(" data in ",);
     
   }
+  onSubmit() {
+    this.submitted = true;
 
+    // stop here if form is invalid
+    if (this.registrationform.invalid)
+     {
+          return;
+     }
+
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registrationform.value))
+    }
 }

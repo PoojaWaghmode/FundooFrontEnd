@@ -10,7 +10,7 @@ import { ForgetPasswordComponent } from './Components/forget-password/forget-pas
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 import { MaterialModule } from './app.material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,MatFormFieldModule,MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,  HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

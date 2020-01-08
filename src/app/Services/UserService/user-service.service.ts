@@ -10,4 +10,12 @@ export class UserServiceService {
   {
     return this.httpService.post('api/UserAccount/register',data)
   }
+  login(data)
+  {
+    return this.httpService.post('api/UserAccount/login',data)
+  }
+  forgetPassword(data)
+  {
+    return this.httpService.post('api/UserAccount/forgetPassword',data)
+  }
 }

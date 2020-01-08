@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatCardModule} from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Router} from '@angular/router';
+import {UserServiceService} from '../../Services/UserService/user-service.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -11,17 +13,19 @@ export class RegistrationComponent implements OnInit {
   submitted=false;
 
   constructor(private matcard : MatCardModule,
-    private formBuilder:FormBuilder) { }
+              private formBuilder:FormBuilder,
+              private router:Router,
+              private userService:UserServiceService) { }
  
 
   ngOnInit() {
                 this.registrationform=this.formBuilder.group({
                 firstName: ['', Validators.required],
                 lastName:['',Validators.required],
-                userName:['',Validators.required],
-                Email: ['', [Validators.required, Validators.email]],
+                userName:['',Validators.required,/*Validators.pattern('$gmail.com')*/],
                 password: ['', [Validators.required, Validators.minLength(6)]],
-                confirmPassword: ['', Validators.required]
+                confirmPassword: ['', Validators.required],
+                "ServiceType":"Advance"
     },
       {
         validator: this.MustMatch('password', 'confirmPassword')
@@ -52,19 +56,47 @@ export class RegistrationComponent implements OnInit {
     }
 }
 
-  register(data){
-    console.log(" data in ",);
+  register(value){
     
+    let newUser={
+      FirstName:this.registrationform.value.firstName,
+      LastName:this.registrationform.value.lastName,
+      UserName:this.registrationform.value.userName,
+      Password:this.registrationform.value.password,
+      ServiceType:"Basic",
+      Email:this.registrationform.value.email,
+      MobileNumber:this.registrationform.value.MobileNumber
+      
+        }
+
+    //console.log('newUser', newUser);
+    //console.log('registration', this.registrationform.value);
+          this.userService.register(newUser).subscribe(response=>
+            {
+              console.log('response after registration', response); 
+                  
+              this.router.navigate(['/login']);
+            },
+            error=>
+            {
+              console.log('error msg', error);
+            })
   }
+  
   onSubmit() {
-    this.submitted = true;
-
+      this.submitted = true;
+  }
     // stop here if form is invalid
-    if (this.registrationform.invalid)
-     {
-          return;
-     }
+    // if (this.registrationform.invalid)
+    //  {
+    //       return;
+    //  }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registrationform.value))
-    }
-}
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registrationform.value))
+
+     
+  }
+
+
+  
+

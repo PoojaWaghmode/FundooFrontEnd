@@ -1,16 +1,40 @@
-<div>
-        <div fxLayout="row" fxLayoutAlign="center center" > 
-                <mat-card>
-                <div>Google</div>
-                <div>Sign in </div>
-                <div>Use your  Google Account</div>
-                <div>
-                <mat-form-field appearance="outline">
-                        <mat-label>Email or phone </mat-label>
-                        <input matInput placeholder="Email or Phone Here">
-                        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                </mat-form-field>
+<div mat-card fxLayoutAlign="center">
+       <mat-card>
+                <form [formGroup]="loginform">
+                        <mat-card-title>Google</mat-card-title>
+                        <mat-card-subtitle>sign In</mat-card-subtitle>
+                        <mat-card-subtitle>Use your Google Account</mat-card-subtitle> 
+                        
+                                <div>
+                                <mat-form-field appearance="outline">
+                                        <mat-label>Email or Username</mat-label> 
+                                        <input matInput placeholder="Enter Username Here" formControlName ="email"/>
+                                </mat-form-field>
+                                </div>
+
+                                <div>
+                                <mat-form-field  appearance="outline">
+                                        <mat-label>Password</mat-label> 
+                                        <input matInput placeholder="Enter Password Here" formControlName ="password"/>
+                                </mat-form-field>
+                                </div>
+
+                                <div  fxLayout="row" fxLayoutAlign="space-between center">
+                                        
+                                        <div fxLayoutAlign="end center" fxFlex= 100 fxFlex.xs = 50>
+                                                <button  [style.fontSize.px]="12" mat-button class= "button" (click)="login()" >SignIn</button>
+                                        </div>
+
+                                </div> 
+                        
+                </form>
+                <div fxLayoutAlign="start center"  >
+                        <span [style.fontSize.px]="12" routerLink="/register" routerLinkActive="router-link-active" class="color">Create Account</span>
                 </div>
-                </mat-card>
-        </div>
+               
+                <div fxLayoutAlign="end center" >
+                        <button  [style.fontSize.px]="12" mat-button class= "button" (click)="forgetPassword()" >Forget Password</button>
+                </div>
+        </mat-card>
+       
 </div>

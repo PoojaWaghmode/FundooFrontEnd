@@ -36,7 +36,7 @@ export class ForgetPasswordComponent implements OnInit {
         this.userService.forgetPassword(user).subscribe(response=>
           {
           console.log('response after forgetpassword',response);
-          //this.router.navigate(['/reset'])
+          //this.router.navigate(['/resetpassword'])
 
         },
         error=>

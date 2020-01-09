@@ -35,13 +35,13 @@ get f() { return this.loginform.controls; }
               {
                   let user= {
                     email:this.loginform.value.email,
-                    Password:this.loginform.value.password
+                    password:this.loginform.value.password
 
                   }
                   this.userService.login(user).subscribe(response=>
                     {
                     console.log('response after login',response);
-                    this.router.navigate(['/register'])
+                   // this.router.navigate(['/register'])
 
                   },
                   

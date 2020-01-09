@@ -22,7 +22,8 @@ export class RegistrationComponent implements OnInit {
                 this.registrationform=this.formBuilder.group({
                 firstName: ['', Validators.required],
                 lastName:['',Validators.required],
-                userName:['',Validators.required,/*Validators.pattern('$gmail.com')*/],
+                Email:['',Validators.required,/*Validators.pattern('$gmail.com')*/],
+                userName:['',Validators.required],
                 password: ['', [Validators.required, Validators.minLength(6)]],
                 confirmPassword: ['', Validators.required],
                 "ServiceType":"Advance"
@@ -61,11 +62,12 @@ export class RegistrationComponent implements OnInit {
     let newUser={
       FirstName:this.registrationform.value.firstName,
       LastName:this.registrationform.value.lastName,
-      UserName:this.registrationform.value.userName,
+      Email:this.registrationform.value.Email,
+      userName:this.registrationform.value.userName,
       Password:this.registrationform.value.password,
       ServiceType:"Basic",
-      Email:this.registrationform.value.email,
-      MobileNumber:this.registrationform.value.MobileNumber
+     
+     // MobileNumber:this.registrationform.value.MobileNumber
       
         }
 

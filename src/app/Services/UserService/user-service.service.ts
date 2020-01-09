@@ -3,6 +3,8 @@ import{HttpServiceService} from './../HttpService/http-service.service'
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class UserServiceService {
 
   constructor(private httpService : HttpServiceService) { }
@@ -17,5 +19,11 @@ export class UserServiceService {
   forgetPassword(data)
   {
     return this.httpService.post('api/UserAccount/forgetPassword',data)
+  }
+  resetPassword(data)
+  {
+    console.log("Toakn data ",data.Token);
+   // return this.httpService.post(`api/UserAccount/resetPassword /*/${data.Token}`,data.resetnewPassword*/);
+    return this.httpService.post('api/UserAccount/resetPassword',data);
   }
 }

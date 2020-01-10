@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
               ngOnInit() {
                           this.loginform=this.formBuilder.group ({
                
-                  email:['',Validators.required],
-                password: ['', [Validators.required, Validators.minLength(6)]],
+                  email:['',Validators.required,Validators.email],
+                  password: ['', [Validators.required, Validators.minLength(6)]],
                
                 },
                  );
               }
 // convenience getter for easy access to form fields
-get f() { return this.loginform.controls; }
+//get f() { return this.loginform.controls; }
 
               login(data)
               {
@@ -56,9 +56,9 @@ get f() { return this.loginform.controls; }
                 this.router.navigate(['/forgetpassword'])
 
               }
-                onSubmit()
-                {
-                  this.submitted=true;
-                }
+                // onSubmit()
+                // {
+                //   this.submitted=true;
+                // }
 
 }

@@ -16,17 +16,16 @@ export class RegistrationComponent implements OnInit {
               private formBuilder:FormBuilder,
               private router:Router,
               private userService:UserServiceService) { }
- 
+ hide=true
 
-  ngOnInit() {
+ngOnInit() {
                 this.registrationform=this.formBuilder.group({
-                firstName: ['', Validators.required],
-                lastName:['',Validators.required],
-                Email:['',Validators.required,/*Validators.pattern('$gmail.com')*/],
-                userName:['',Validators.required],
+                firstName: ['', [Validators.required,Validators.minLength(3)]],
+                lastName:['',[Validators.required,Validators.minLength(3)]],
+                Email:['',[Validators.required,Validators.email]],
                 password: ['', [Validators.required, Validators.minLength(6)]],
-                confirmPassword: ['', Validators.required],
-                "ServiceType":"Advance"
+                confirmPassword: ['', [Validators.required,]]
+                //"ServiceType":"Advance"
     },
       {
         validator: this.MustMatch('password', 'confirmPassword')
@@ -34,11 +33,11 @@ export class RegistrationComponent implements OnInit {
     
   }
    // convenience getter for easy access to form fields
-   get f() { return this.registrationform.controls; }
+  // get f() { return this.registrationform.controls; }
   
 
 
-  MustMatch(controlName: string, matchingControlName: string) {
+MustMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
         const control = formGroup.controls[controlName];
         const matchingControl = formGroup.controls[matchingControlName];
@@ -65,13 +64,11 @@ export class RegistrationComponent implements OnInit {
       Email:this.registrationform.value.Email,
       userName:this.registrationform.value.userName,
       Password:this.registrationform.value.password,
-      ServiceType:"Basic",
-     
-     // MobileNumber:this.registrationform.value.MobileNumber
+      //ServiceType:"Basic",
+    
       
         }
 
-    //console.log('newUser', newUser);
     //console.log('registration', this.registrationform.value);
           this.userService.register(newUser).subscribe(response=>
             {
@@ -84,20 +81,10 @@ export class RegistrationComponent implements OnInit {
               console.log('error msg', error);
             })
   }
+}
   
-  onSubmit() {
-      this.submitted = true;
-  }
-    // stop here if form is invalid
-    // if (this.registrationform.invalid)
-    //  {
-    //       return;
-    //  }
-
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registrationform.value))
-
      
-  }
+  
 
 
   

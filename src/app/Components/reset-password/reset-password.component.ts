@@ -10,7 +10,7 @@ import {UserServiceService} from '../../Services/UserService/user-service.servic
 })
 export class ResetPasswordComponent implements OnInit {
   resetPasswordForm:FormGroup
-  submitted=false;
+  //submitted=false;
 
   constructor(private matcard: MatCardModule,
     private formBuilder:FormBuilder,
@@ -28,7 +28,7 @@ export class ResetPasswordComponent implements OnInit {
                     },
             );
   }
-  get f(){return this.resetPasswordForm.controls;}
+  //get f(){return this.resetPasswordForm.controls;}
   resetPassword(data)
   {
     const token=this.route.snapshot.paramMap.get('token');
@@ -51,10 +51,10 @@ export class ResetPasswordComponent implements OnInit {
     console.log('error msg', error);
     })
   }
-  onsubmit()
-  {
-    this.submitted=true;
-  }
+  // onsubmit()
+  // {
+  //   this.submitted=true;
+  // }
   
 
 }

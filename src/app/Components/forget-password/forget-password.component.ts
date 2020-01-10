@@ -18,35 +18,34 @@ export class ForgetPasswordComponent implements OnInit {
                 private router:Router,
                 private userService:UserServiceService) { }
 
-                ngOnInit() {
-                  this.forgetPasswordForm=this.formBuilder.group
-                   ({
-                     email:['',Validators.required],
-                    },
-            );
-      }
-      get f(){return this.forgetPasswordForm.controls;}
+                ngOnInit()
+                 {
+                      this.forgetPasswordForm=this.formBuilder.group (
+                      {
+                          email:['',[Validators.required,Validators.email]],
+                      },
+                      );
+                 }
+      //get f(){return this.forgetPasswordForm.controls;}
       forgetPassword()
       {
         let user= {
-          email:this.forgetPasswordForm.value.email
-        }
-        console.log('in functon');
+                    email:this.forgetPasswordForm.value.email
+                  }
+                  console.log('in functon');
         
-        this.userService.forgetPassword(user).subscribe(response=>
-          {
-          console.log('response after forgetpassword',response);
-          //this.router.navigate(['/resetpassword'])
-
-        },
-        error=>
-        {
-        console.log('error msg', error);
-        })
+                  this.userService.forgetPassword(user).subscribe(response=>
+                  {
+                          console.log('response after forgetpassword',response);
+                  },
+                  error=>
+                  {
+                          console.log('error msg', error);
+                  })
       }
-      onsubmit()
-      {
-        this.submitted=true;
-      }
+      // onsubmit()
+      // {
+      //   this.submitted=true;
+      // }
 
 }

@@ -1,5 +1,5 @@
-<div mat-card fxLayoutAlign="center">
-       <mat-card>
+<div  mat-card fxLayoutAlign="center center" fxLayout= "row "flexfx="100" >
+       <mat-card  >
                 <form [formGroup]="loginform">
                         <mat-card-title>Google</mat-card-title>
                         <mat-card-subtitle>sign In</mat-card-subtitle>
@@ -32,9 +32,11 @@
                         <span [style.fontSize.px]="12" routerLink="/register" routerLinkActive="router-link-active" class="color">Create Account</span>
                 </div>
                
+                <!-- <div fxLayoutAlign="end center"  >
+                        <span [style.fontSize.px]="12" routerLink="/forgetPassword" routerLinkActive="router-link-active" class="color">Forget Password?</span>
+                </div> -->
                 <div fxLayoutAlign="end center" >
                         <button  [style.fontSize.px]="12" mat-button class= "button" (click)="forgetPassword()" >Forget Password</button>
                 </div>
         </mat-card>
-       
 </div>

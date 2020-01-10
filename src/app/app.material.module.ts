@@ -4,7 +4,7 @@ import {MatIconModule} from '@angular/material/icon';
 // import {MatFormFieldModule,} from '@angular/material/form-field';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -13,14 +13,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,FlexLayoutModule,ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,MatButtonToggleModule
 
   ],
   exports:[
     MatCardModule,FlexLayoutModule,ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonToggleModule
 
   ],
 

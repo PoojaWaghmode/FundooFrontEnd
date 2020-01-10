@@ -1,8 +1,10 @@
 
-<div mat-card fxLayoutAlign="center ">       
+<div mat-card fxLayout="row" fxLayoutAlign="center center" flexfx="100">       
         <mat-card>
                 <form [formGroup]="registrationform">
                         <mat-card-title>Fundoo</mat-card-title>
+                        <span class ="blue">F</span>
+                        <span class ="red">u</span>
                 
                         <mat-card-subtitle>Create your  Google Account</mat-card-subtitle>
                 
@@ -23,25 +25,24 @@
                                 <mat-form-field appearance="outline">
                                 <mat-label>Email</mat-label>
                                 <input matInput placeholder="Enter Email ID Here" formControlName="Email"/>
-                                </mat-form-field>
-                                <mat-form-field appearance="outline">
-                                        <mat-label>User name</mat-label>
-                                        <input matInput placeholder="Enter UserName" formControlName="userName"/>    
-                                </mat-form-field>
-                
+                                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+                                </mat-form-field> 
+                                
                         </div>
 
                         
                         <div fxLayoutGap="15px">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input matInput placeholder="Enter Password Here" formControlName="password"/>
+                                <input matInput placeholder="Enter Password Here" formControlName="password" [type]="hide ? 'password' : 'text'"/>
+                             
                                 </mat-form-field>
                         
                                 <mat-form-field appearance="outline">
                                 <mat-label>Confirm</mat-label>
-                                <input matInput placeholder="Confirm Password" formControlName="confirmPassword"/>
+                                <input matInput placeholder="Confirm Password" formControlName="confirmPassword" [type]="hide ? 'password' : 'text'"/>
                                 </mat-form-field>
+                                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </div>
                         
                         
@@ -53,6 +54,11 @@
                                         <button  [style.fontSize.px]="12" mat-button class= "button" (click)="register()" >Next</button>
                                 </div>
                         </div> 
+                        
+                        <mat-button-toggle-group #toggleGroup ="matButtonToggleGroup" >
+                                  <mat-button-toggle value="Basic" (click)="color=true" [style.backgroundColor]="color==true?'#17ce30':'white'">Basic</mat-button-toggle>
+                                  <mat-button-toggle value="Advance" (click)="color=false"[style.backgroundColor]="color==false?'#17ce30':'white'">Advance</mat-button-toggle>
+                        </mat-button-toggle-group>
   
                 </form>     
                          

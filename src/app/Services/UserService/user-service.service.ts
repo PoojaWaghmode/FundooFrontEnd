@@ -26,4 +26,8 @@ export class UserServiceService {
    // return this.httpService.post(`api/UserAccount/resetPassword /*/${data.Token}`,data.resetnewPassword*/);
     return this.httpService.post('api/UserAccount/resetPassword',data);
   }
+  dashboard(data)
+  {
+    console.log("dashboard");
+  }
 }

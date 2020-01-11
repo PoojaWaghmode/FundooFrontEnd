@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
                 },
                  );
               }
-// convenience getter for easy access to form fields
-//get f() { return this.loginform.controls; }
+
 
               login(data)
               {
@@ -41,7 +40,7 @@ export class LoginComponent implements OnInit {
                   this.userService.login(user).subscribe(response=>
                     {
                     console.log('response after login',response);
-                   // this.router.navigate(['/register'])
+                    this.router.navigate(['/dashboard'])
 
                   },
                   
@@ -56,9 +55,6 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/forgetpassword'])
 
               }
-                // onSubmit()
-                // {
-                //   this.submitted=true;
-                // }
+                
 
 }

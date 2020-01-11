@@ -6,6 +6,9 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import{MatToolbarModule} from '@angular/material';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -13,15 +16,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,FlexLayoutModule,ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule,MatButtonToggleModule
+    MatInputModule,MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule
 
+    
   ],
   exports:[
     MatCardModule,FlexLayoutModule,ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule
 
   ],
 

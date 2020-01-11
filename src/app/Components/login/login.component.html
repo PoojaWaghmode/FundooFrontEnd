@@ -1,5 +1,5 @@
 <div  mat-card fxLayoutAlign="center center" fxLayout= "row "flexfx="100" >
-       <mat-card  >
+       <mat-card  class= "container">
                 <form [formGroup]="loginform">
                         <mat-card-title>Google</mat-card-title>
                         <mat-card-subtitle>sign In</mat-card-subtitle>
@@ -21,15 +21,15 @@
 
                                 <div  fxLayout="row" fxLayoutAlign="space-between center">
                                         
-                                        <div fxLayoutAlign="end center" fxFlex= 100 fxFlex.xs = 50>
-                                                <button  [style.fontSize.px]="12" mat-button class= "button" (click)="login()" >SignIn</button>
+                                        <div fxLayoutAlign="end center" fxFlex= 100 >
+                                                <button  [style.fontSize.px]="12" mat-button class= "button" (click)="dashboard()" >SignIn</button>
                                         </div>
 
                                 </div> 
                         
                 </form>
                 <div fxLayoutAlign="start center"  >
-                        <span [style.fontSize.px]="12" routerLink="/register" routerLinkActive="router-link-active" class="color">Create Account</span>
+                        <span [style.fontSize.px]="12" routerLink="/register" routerLinkActive="router-link-active">Create Account</span>
                 </div>
                
                 <!-- <div fxLayoutAlign="end center"  >

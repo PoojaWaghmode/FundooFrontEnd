@@ -8,6 +8,7 @@ import{HttpServiceService} from './../HttpService/http-service.service'
 export class UserServiceService {
 
   constructor(private httpService : HttpServiceService) { }
+
   register(data)
   {
     return this.httpService.post('api/UserAccount/register',data)
@@ -23,11 +24,8 @@ export class UserServiceService {
   resetPassword(data)
   {
     console.log("Toakn data ",data.Token);
-   // return this.httpService.post(`api/UserAccount/resetPassword /*/${data.Token}`,data.resetnewPassword*/);
     return this.httpService.post('api/UserAccount/resetPassword',data);
   }
-  dashboard(data)
-  {
-    console.log("dashboard");
-  }
+  
+  
 }

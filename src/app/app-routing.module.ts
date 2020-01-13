@@ -5,6 +5,10 @@ import {RegistrationComponent} from './Components/registration/registration.comp
 import {ForgetPasswordComponent} from './Components/forget-password/forget-password.component'
 import {ResetPasswordComponent}from './Components/reset-password/reset-password.component'
 import{DashboardComponent} from './Components/dashboard/dashboard.component'
+import{NotesComponent}from './Components/notes/notes.component'
+import { TrashComponent } from './Components/trash/trash.component';
+import { ArchiveComponent } from './Components/archive/archive.component';
+import { DisplayNotesComponent } from './Components/display-notes/display-notes.component';
 const routes: Routes = [
   { path: '',
   redirectTo: '/login',
@@ -14,7 +18,23 @@ const routes: Routes = [
 {path:'register',component :RegistrationComponent},
 {path:'forgetpassword',component:ForgetPasswordComponent},
 {path:'resetpassword/:token',component:ResetPasswordComponent},
-{path:'dashboard',component:DashboardComponent}
+{path:'dashboard',component:DashboardComponent ,
+
+
+children:[
+
+        { path: '',
+        redirectTo: 'notes',
+        pathMatch: 'full'
+        },
+        { path: 'notes',component: NotesComponent },
+        // {path:'display',component:DisplayNotesComponent},
+        // {path:'trash',component:TrashComponent},
+        // {path:'archive',component:ArchiveComponent},
+       
+        
+]
+}
 
 
 ];

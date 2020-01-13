@@ -12,24 +12,25 @@ import{UserServiceService} from '../../Services/UserService/user-service.service
 })
 export class LoginComponent implements OnInit {
   loginform:FormGroup
-  submitted=false;
+ 
 
-  constructor(private matcard:MatCardModule,
+  constructor(
               private formBuilder:FormBuilder,
               private router:Router,
               private userService:UserServiceService) { }
 
+              hide=true
               ngOnInit() {
                           this.loginform=this.formBuilder.group ({
                
-                  email:['',Validators.required,Validators.email],
+                  email:['',[Validators.required,Validators.email]],
                   password: ['', [Validators.required, Validators.minLength(6)]],
                
                 },
                  );
               }
 
-
+              
               login(data)
               {
                   let user= {
@@ -55,6 +56,4 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/forgetpassword'])
 
               }
-                
-
 }

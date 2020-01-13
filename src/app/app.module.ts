@@ -11,8 +11,16 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
 import { MaterialModule } from './app.material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './Components/dashboard/dashboard.component'; 
-
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { NotesComponent } from './Components/notes/notes.component';
+import { RemindersComponent } from './Components/reminders/reminders.component';
+import { EditLabelsComponent } from './Components/edit-labels/edit-labels.component';
+import { ArchiveComponent } from './Components/archive/archive.component';
+import { TrashComponent } from './Components/trash/trash.component';
+import { AddNoteComponent } from './Components/add-note/add-note.component';
+import { DisplayNotesComponent } from './Components/display-notes/display-notes.component';
+import { IconsComponent } from './Components/icons/icons.component'; 
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,12 +28,21 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
     LoginComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    NotesComponent,
+    RemindersComponent,
+    EditLabelsComponent,
+    ArchiveComponent,
+    TrashComponent,
+    AddNoteComponent,
+    DisplayNotesComponent,
+    IconsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,MatFormFieldModule,MaterialModule,
-    BrowserAnimationsModule,  HttpClientModule
+    BrowserAnimationsModule,  HttpClientModule,RouterModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

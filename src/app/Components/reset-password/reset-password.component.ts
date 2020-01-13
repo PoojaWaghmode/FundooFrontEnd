@@ -18,24 +18,25 @@ export class ResetPasswordComponent implements OnInit {
     private route:ActivatedRoute,
     private userService:UserServiceService) { }
 
+    hide=true
+
   ngOnInit() {
     this.resetPasswordForm=this.formBuilder.group
                    ({
                      
-                     password:['',Validators.required],
+                     password:['',[Validators.required,Validators.minLength(6)]],
                      token:['',Validators.required]
 
                     },
             );
   }
-  //get f(){return this.resetPasswordForm.controls;}
   resetPassword(data)
   {
     const token=this.route.snapshot.paramMap.get('token');
 
     let user= {
       Password:this.resetPasswordForm.value.password,
-      Token:token//+"."
+      Token:token
     }
     console.log('in functon');
     console.log(user);
@@ -51,10 +52,6 @@ export class ResetPasswordComponent implements OnInit {
     console.log('error msg', error);
     })
   }
-  // onsubmit()
-  // {
-  //   this.submitted=true;
-  // }
   
 
 }

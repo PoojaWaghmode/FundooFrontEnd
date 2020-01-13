@@ -1,42 +1,45 @@
-<div  mat-card fxLayoutAlign="center center" fxLayout= "row "flexfx="100" >
-       <mat-card  class= "container">
+<div fxLayoutAlign="center center" fxLayout= "row "flexfx="100" >
+       <mat-card class="display-matcard" >
                 <form [formGroup]="loginform">
                         <mat-card-title>Google</mat-card-title>
                         <mat-card-subtitle>sign In</mat-card-subtitle>
                         <mat-card-subtitle>Use your Google Account</mat-card-subtitle> 
                         
-                                <div>
+                                <div  [style.fontSize.px]="16">
                                 <mat-form-field appearance="outline">
-                                        <mat-label>Email or Username</mat-label> 
-                                        <input matInput placeholder="Enter Username Here" formControlName ="email"/>
+                                        <mat-label>Email </mat-label> 
+                                        <input matInput placeholder="Enter Email Here" formControlName ="email"/>
                                 </mat-form-field>
                                 </div>
 
-                                <div>
+                                <div [style.fontSize.px]="16">
                                 <mat-form-field  appearance="outline">
                                         <mat-label>Password</mat-label> 
-                                        <input matInput placeholder="Enter Password Here" formControlName ="password"/>
+                                        <input matInput placeholder="Enter Password Here" formControlName ="password"[type]="hide ? 'password' : 'text'"/>
                                 </mat-form-field>
+                                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                 </div>
 
-                                <div  fxLayout="row" fxLayoutAlign="space-between center">
+                                <div  fxLayout="row" >
                                         
                                         <div fxLayoutAlign="end center" fxFlex= 100 >
-                                                <button  [style.fontSize.px]="12" mat-button class= "button" (click)="dashboard()" >SignIn</button>
+                                                <button  [style.fontSize.px]="12" mat-button class= "button" (click)="login()" >SignIn</button>
                                         </div>
 
                                 </div> 
                         
                 </form>
-                <div fxLayoutAlign="start center"  >
-                        <span [style.fontSize.px]="12" routerLink="/register" routerLinkActive="router-link-active">Create Account</span>
-                </div>
-               
-                <!-- <div fxLayoutAlign="end center"  >
-                        <span [style.fontSize.px]="12" routerLink="/forgetPassword" routerLinkActive="router-link-active" class="color">Forget Password?</span>
-                </div> -->
-                <div fxLayoutAlign="end center" >
-                        <button  [style.fontSize.px]="12" mat-button class= "button" (click)="forgetPassword()" >Forget Password</button>
-                </div>
+                <div  fxLayout="row" fxLayoutAlign="space-between center">
+                                <div fxLayoutAlign="start center"  >
+                                        <span [style.fontSize.px]="12" routerLink="/register" routerLinkActive="router-link-active" class="color">Create Account</span>
+                                </div>
+                        
+                                <!-- <div fxLayoutAlign="end center"  >
+                                        <span [style.fontSize.px]="12" routerLink="/forgetPassword" routerLinkActive="router-link-active" class="color">Forget Password?</span>
+                                </div> -->
+                                <div fxLayoutAlign="end center" >
+                                        <button  [style.fontSize.px]="12" mat-button class= "button" color="primary"(click)="forgetPassword()"  >Forget Password</button>
+                                </div>
+                </div>              
         </mat-card>
 </div>

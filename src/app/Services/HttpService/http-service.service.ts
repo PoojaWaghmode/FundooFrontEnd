@@ -7,16 +7,29 @@ import {environment} from '../../../environments/environment';
 export class HttpServiceService {
   baseUrl=environment.baseUrl
 
-  constructor(private http:HttpClient) { }
+  constructor(private httpClient:HttpClient) { }
 
-post(url,data){
-  let options={
-    headers:new HttpHeaders({
-     // 'Authorization':'Bearer'+localStorage.getItem('token'),
-      'Content-Type':'application/json'
-
-    })
-  }
-  return this.http.post(this.baseUrl +url ,data,options);
-}
+      post(url,data)
+      {
+          let options=
+          {
+          headers:new HttpHeaders
+          ({
+            'Authorization':'Bearer'+localStorage.getItem('token'),
+            'Content-Type':'application/json'
+          })
+        }
+          return this.httpClient.post(this.baseUrl +url ,data,options);
+      }
+      get(url)
+      {
+        let options={
+        headers:new HttpHeaders
+        ({
+          'Authorization':'Bearer'+localStorage.getItem('token'),
+          'Content-Type':'application/json'
+        })
+      }
+        return this.httpClient.get(this.baseUrl +url ,options);
+      }
 }

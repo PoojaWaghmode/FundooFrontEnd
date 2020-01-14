@@ -24,8 +24,7 @@ export class HttpServiceService {
       get(url)
       {
         let options={
-        headers:new HttpHeaders
-        ({
+        headers:new HttpHeaders({
           'Authorization':'Bearer'+localStorage.getItem('token'),
           'Content-Type':'application/json'
         })

@@ -12,4 +12,6 @@ export class AddNoteComponent implements OnInit {
   ngOnInit() {
   }
 
+  isOpen=false;
+
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material';
+import { Component, OnInit, Input } from '@angular/core';
+
 import{Router} from '@angular/router';
 import{UserServiceService} from '../../Services/UserService/user-service.service';
 @Component({
@@ -9,7 +9,7 @@ import{UserServiceService} from '../../Services/UserService/user-service.service
 })
 export class DisplayNotesComponent implements OnInit {
 
- 
+ @Input() displayArray;
 
   constructor(
    
@@ -17,6 +17,8 @@ export class DisplayNotesComponent implements OnInit {
     private userService:UserServiceService) { }
 
   ngOnInit() {
+    console.log(this.displayArray);
+    
   }
 
 }

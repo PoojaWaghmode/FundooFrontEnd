@@ -3,6 +3,7 @@ import {MatCardModule} from '@angular/material';
 import{FormGroup,FormBuilder,Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UserServiceService} from '../../Services/UserService/user-service.service';
+
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',

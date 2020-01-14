@@ -26,7 +26,7 @@ export class ForgetPasswordComponent implements OnInit {
                       },
                       );
                  }
-      //get f(){return this.forgetPasswordForm.controls;}
+     
       forgetPassword()
       {
         let user= {

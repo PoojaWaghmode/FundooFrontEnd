@@ -8,14 +8,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import{MatToolbarModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   imports: [
     MatCardModule,FlexLayoutModule,ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule,MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule
+    MatInputModule,MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule,MatSnackBarModule,
+    MatButtonModule
 
     
   ],
@@ -24,7 +26,8 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule
+    MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule,MatSnackBarModule,
+    MatButtonModule
 
   ],
 

@@ -10,6 +10,6 @@ export class NotesService {
   constructor( private httpService:HttpServiceService ) { }
   getNotes()
   {
-    return this.httpService.get('api/Note')
+    return this.httpService.get('api/Note');
   }
 }

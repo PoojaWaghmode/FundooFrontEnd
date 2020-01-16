@@ -3,6 +3,7 @@ import {MatCardModule} from '@angular/material';
 import{FormGroup,FormBuilder,Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserServiceService} from '../../Services/UserService/user-service.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-forget-password',
@@ -16,7 +17,8 @@ export class ForgetPasswordComponent implements OnInit {
   constructor( private matcard: MatCardModule,
                 private formBuilder:FormBuilder,
                 private router:Router,
-                private userService:UserServiceService) { }
+                private userService:UserServiceService,
+                private snackBar:MatSnackBar) { }
 
                 ngOnInit()
                  {
@@ -37,15 +39,22 @@ export class ForgetPasswordComponent implements OnInit {
                   this.userService.forgetPassword(user).subscribe(response=>
                   {
                           console.log('response after forgetpassword',response);
+                          this.snackBar.open(response['message'],'',{
+                            duration:2000,
+                            verticalPosition: 'top',
+                            horizontalPosition:'center'
+                          });
                   },
                   error=>
                   {
                           console.log('error msg', error);
-                  })
+                        
+                          this.snackBar.open(error['error']['message'] ,'Error Occured',
+                          { 
+                            duration:50000,
+                            verticalPosition: 'top',
+                            horizontalPosition:'center' } )
+                          })
       }
-      // onsubmit()
-      // {
-      //   this.submitted=true;
-      // }
-
+      
 }

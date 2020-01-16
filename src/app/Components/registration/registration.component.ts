@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserServiceService} from '../../Services/UserService/user-service.service';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -14,7 +15,8 @@ export class RegistrationComponent implements OnInit {
   constructor(
               private formBuilder:FormBuilder,
               private router:Router,
-              private userService:UserServiceService) { }
+              private userService:UserServiceService,
+              private snackBar:MatSnackBar) { }
  hide=true
 
 ngOnInit() {
@@ -24,7 +26,8 @@ ngOnInit() {
                 email:['',[Validators.required,Validators.email]],
                 userName:['',[Validators.required]],
                 password: ['', [Validators.required, Validators.minLength(6)]],
-                confirmPassword: ['', [Validators.required,]]
+                confirmPassword: ['', [Validators.required,]],
+                ServiceType : ['',Validators.required]
                 
     },
       {
@@ -65,11 +68,8 @@ MustMatch(controlName: string, matchingControlName: string) {
       Email:this.registrationform.value.email,
       userName:this.registrationform.value.userName,
       Password:this.registrationform.value.password,
-      
+      ServiceType:this.registrationform.value.ServiceType, 
       UserType:"User",
-      //ServiceType:"Basic",
-    
-      
         }
 
     //console.log('registration', this.registrationform.value);
@@ -78,13 +78,25 @@ MustMatch(controlName: string, matchingControlName: string) {
               console.log('response after registration', response); 
                   
               this.router.navigate(['/login']);
+              this.snackBar.open(response['message'],'',{
+                duration:2000,
+                verticalPosition: 'top',
+                horizontalPosition:'center'
+              });
+
             },
             error=>
             {
               console.log('error msg', error);
-            })
-
-  }
+              this.snackBar.open(error['error']['message'] ,'Error Occured',
+              { 
+                    duration:50000,
+                    verticalPosition: 'top',
+                    horizontalPosition:'center' } )
+                            
+                  
+              }) 
+             }
 }
   
      

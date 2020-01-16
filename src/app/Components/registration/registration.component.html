@@ -61,10 +61,12 @@
                                 </div>
                         </div> 
                         
-                        <mat-button-toggle-group #toggleGroup ="matButtonToggleGroup"  >
+                        <mat-button-toggle-group #toggleGroup ="matButtonToggleGroup"  formControlName = "ServiceType" class="form-control">
                                   <mat-button-toggle value="Basic" (click)="color=true" [style.backgroundColor]="color==true?'#17ce30':'white'">Basic</mat-button-toggle>
                                   <mat-button-toggle value="Advance" (click)="color=false"[style.backgroundColor]="color==false?'#17ce30':'white'">Advance</mat-button-toggle>
                         </mat-button-toggle-group>
+
+                     
   
                 </form>     
                          

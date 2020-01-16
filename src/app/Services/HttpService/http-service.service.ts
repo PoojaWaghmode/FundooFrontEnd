@@ -25,10 +25,11 @@ export class HttpServiceService {
       {
         let options={
         headers:new HttpHeaders({
-          'Authorization':'Bearer'+localStorage.getItem('token'),
+          'Authorization':'Bearer '+localStorage.getItem('token'),          
           'Content-Type':'application/json'
         })
       }
+        console.log(localStorage.getItem('token'))
         return this.httpClient.get(this.baseUrl +url ,options);
       }
 }

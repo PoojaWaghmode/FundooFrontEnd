@@ -17,6 +17,7 @@ export class DisplayNotesComponent implements OnInit {
     private userService:UserServiceService) { }
 
   ngOnInit() {
+    
     console.log(this.displayArray);
     
   }

@@ -3,21 +3,26 @@
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="example-app-name">FundooNotes</h1>
       <div fxLayout="row" fxLayoutAlign="center center" class="app-bar" fxLayoutGap="10px" >
-        <mat-card class="search-bar" fxLayout="start-center"  placeholder="Search">
-          <mat-icon prefix>search</mat-icon>
+        <mat-card class="search-bar" fxLayout="start-center" >
+          <!-- <mat-icon prefix>search</mat-icon>
+          <input matInput placeholder="Search" /> -->
+          <div>
+          <button mat-icon-button><mat-icon>search</mat-icon></button>
+          </div>
+          <div  >
+            <mat-form-field>
+              <input matInput placeholder="Search">
+            </mat-form-field>
+          </div>
+          <button mat-icon-button><mat-icon>close</mat-icon></button>
         </mat-card>
         <div fxLayout="row" fxLayoutGap="7px">
           <button mat-icon-button><mat-icon>refresh</mat-icon></button>
           <button mat-icon-button><mat-icon>view_agenda</mat-icon></button>
-          <button mat-icon-button><mat-icon>settings_applications</mat-icon></button>
+          <button mat-icon-button><mat-icon>settings</mat-icon></button>
           <button mat-icon-button><mat-icon>apps</mat-icon></button>
           <button mat-icon-button><mat-icon>add_a_photo</mat-icon></button>
           
-              <!-- <mat-icon fxLayout="end-center">refresh</mat-icon>
-              <mat-icon fxLayout="end-center">view_agenda</mat-icon>
-              <mat-icon fxLayout="end-center">settings_applications</mat-icon>
-              <mat-icon fxLayout="end-center">apps</mat-icon>
-              <mat-icon fxLayout="end-center">add_a_photo</mat-icon> -->
         </div>
 
       </div>

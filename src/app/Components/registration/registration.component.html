@@ -7,23 +7,32 @@
                 
                         <mat-card-subtitle>Create your  Google Account</mat-card-subtitle>
                 
-                        <div fxLayoutGap="15px">
+                        <div fxLayoutGap="15px"  [style.fontSize.px]="14" >
                                 <mat-form-field appearance="outline">
                                         <mat-label>First name</mat-label>
                                         <input matInput placeholder="Enter First name Here" formControlName ="firstName"/>
+                                        <mat-error *ngIf="registrationform.controls.firstName.hasError('required')">
+                                                Please enter firstName 
+                                        </mat-error>
                                 </mat-form-field>
 
                                 <mat-form-field appearance="outline">
                                 <mat-label>Last name</mat-label>
-                                <input matInput placeholder="Enter Last name Here" formControlName="lastName"/>    
+                                <input matInput placeholder="Enter Last name Here" formControlName="lastName"/> 
+                                <mat-error *ngIf="registrationform.controls.lastName.hasError('required')">
+                                        Please enter lastName 
+                                </mat-error>   
                                 </mat-form-field>
         
                         </div>
 
-                        <div fxLayoutGap="15px">
+                        <div fxLayoutGap="15px" [style.fontSize.px]="14">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Email</mat-label>
                                 <input matInput placeholder="Enter Email ID Here" formControlName="email"/>
+                                <mat-error *ngIf="registrationform.controls.email.hasError('required')">
+                                        Please enter valid emailId
+                                </mat-error>
                                 <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
                                 </mat-form-field> 
                                 
@@ -31,33 +40,42 @@
                                 <mat-form-field appearance="outline">
                                 <mat-label>UserName</mat-label>
                                 <input matInput placeholder="Enter UserName Here" formControlName="userName"/>
+                                <mat-error *ngIf="registrationform.controls.userName.hasError('required')">
+                                        Please enter userName 
+                                </mat-error>
                                 <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
                                 </mat-form-field> 
                                 
                         </div>
 
                         
-                        <div fxLayoutGap="15px">
+                        <div fxLayoutGap="15px" [style.fontSize.px]="14">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Password</mat-label>
                                 <input matInput placeholder="Enter Password Here" formControlName="password" [type]="hide ? 'password' : 'text'"/>
-                             
+                                <mat-error *ngIf="registrationform.controls.password.hasError('required')">
+                                        Please enter password atlaest 6 to 10 characters
+                                </mat-error>
                                 </mat-form-field>
                         
                                 <mat-form-field appearance="outline">
                                 <mat-label>Confirm</mat-label>
                                 <input matInput placeholder="Confirm Password" formControlName="confirmPassword" [type]="hide ? 'password' : 'text'"/>
+                                <mat-error *ngIf="registrationform.controls.confirmPassword.hasError('required')">
+                                        Please enter matching password 
+                                </mat-error>
                                 </mat-form-field>
                                 <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                
                         </div>
                         
                         
-                        <div  fxLayout="row" fxLayoutAlign="space-between center">
+                        <div  fxLayout="row" fxLayoutAlign="space-between center" class="subSubContainer" [style.fontSize.px]="14">
                                 <div fxLayoutAlign="start center" fxFlex= 100 >
-                                        <span [style.fontSize.px]="12" routerLink="/login" routerLinkActive="router-link-active" class="color">Sign In Instead ?</span>
+                                        <span [style.fontSize.px]="13" routerLink="/login" routerLinkActive="router-link-active" class="color">Sign In Instead ?</span>
                                 </div>
                                 <div fxLayoutAlign="end center" fxFlex= 100 >
-                                        <button  [style.fontSize.px]="12" mat-button class= "button" (click)="register()" >Register</button>
+                                        <button  [style.fontSize.px]="13" mat-button class= "button" (click)="register()" >Register</button>
                                 </div>
                         </div> 
                         

@@ -2,15 +2,31 @@
     background-color: #149fdb; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 9px 38px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 8px 16px;
     margin-top: 8px;
-    margin-right: 16px;
+    margin-right: 40px;
     margin-bottom: 8px;
     margin-left: 16px;
+    color: white;
 
   }
+  .mat-form-field
+  {
+    height: 70px;
+    margin-bottom: 20px;
+    width:220px
+  }
+  .subSubContainer
+{
+   
+    padding-top: 50px;
+
+}
+.mat-button
+{
+  line-height: 30px;
+}

@@ -1,57 +1,17 @@
-<p>icons works!</p>
-<div>
-<mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon>
 
+<div flexLayout="space-around-center" fxFlex=100>
+
+    <div>
+        <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
+    </div>
+    <div>
+        <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
+    </div>
+    <div>
+        <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
+    </div>
+    <div>
+        <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
+    </div>
+    
 </div>
-<!-- <mat-card class="container">
- 
-        <form [formGroup]="loginForm">
-           <div class="subContainer">
-              <div fxLayout="column" fxLayoutAlign="center center">
-                  <mat-card-header class="tab">
-                      <mat-card-title>Sign In</mat-card-title>       
-                      <mat-card-subtitle>Use your Google Account</mat-card-subtitle>
-                  </mat-card-header>
-              </div>
-          
-              <div class="tab">
-                  <div class="example-container">
-                      <mat-form-field appearance="outline">
-                          <mat-label>Email ID</mat-label>
-                          <input matInput placeholder="Email ID" [formControl]="loginForm.get('EmailID')" class="form-control" [ngClass]="{ 'is-invalid': submitted && EmailID.errors }" />
-                              <mat-error *ngIf="loginForm.get('EmailID').hasError('required')">
-                                  Please provide EmailID.
-                              </mat-error>    
-                              <mat-error *ngIf="loginForm.get('EmailID').hasError('email')">
-                                   Please provide valid EmailID. 
-                              </mat-error>              
-                      </mat-form-field>
-                      <mat-form-field appearance="outline">            
-                          <mat-label>Enter Password</mat-label>                    
-                          <input matInput placeholder="Password" minlength ="6" [type]="hide ? 'password' : 'text'" [formControl]= "loginForm.get('Password')" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" />
-                          <mat-error *ngIf="loginForm.get('Password').hasError('required')">
-                              Please provide password.
-                           </mat-error>
-                           <mat-error *ngIf="loginForm.get('Password').hasError('minlength')">
-                              Password must be 6-15 characters long 
-                           </mat-error>
-                          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>                                                         
-                      </mat-form-field>
-                  </div>
-             </div>
-      
-             <div class="tab" >
-              <div class="example-button-row">
-                <a mat-button routerLink="/forgetPassword">Forget Password?</a> 
-              </div>
-             </div>
-      
-             <div class="tab" style="padding-top: 20px;">
-                <div class="example-button-row">
-                  <a mat-flat-button routerLink="/register">Create Account</a>
-                  <button mat-raised-button color="primary" (click)= Login(this.form-control)>Sign In</button>  
-                </div>
-             </div>
-          </div>
-      </form>
-      </mat-card> -->

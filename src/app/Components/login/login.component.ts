@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit
                 this.router.navigate(['/forgetpassword'])
 
               }
-                // convenience getter for easy access to form fields
-    get f() { return this.loginform.controls; }
+              
+               
+   
 }

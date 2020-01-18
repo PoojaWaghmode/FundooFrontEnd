@@ -14,7 +14,7 @@ export class ForgetPasswordComponent implements OnInit {
   forgetPasswordForm:FormGroup
   submitted=false;
 
-  constructor( private matcard: MatCardModule,
+  constructor(  private matcard: MatCardModule,
                 private formBuilder:FormBuilder,
                 private router:Router,
                 private userService:UserServiceService,

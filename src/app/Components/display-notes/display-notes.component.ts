@@ -9,7 +9,7 @@ import{UserServiceService} from '../../Services/UserService/user-service.service
 })
 export class DisplayNotesComponent implements OnInit {
 
- @Input() displayArray;
+ @Input() getChildMessage;
 
   constructor(
    
@@ -18,7 +18,7 @@ export class DisplayNotesComponent implements OnInit {
 
   ngOnInit() {
     
-    console.log(this.displayArray);
+    console.log(this.getChildMessage);
     
   }
 

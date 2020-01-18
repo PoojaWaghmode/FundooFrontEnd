@@ -15,12 +15,13 @@ export class HttpServiceService {
           {
           headers:new HttpHeaders
           ({
-            'Authorization':'Bearer'+localStorage.getItem('token'),
+            'Authorization':'Bearer '+localStorage.getItem('token'),
             'Content-Type':'application/json'
           })
         }
-          return this.httpClient.post(this.baseUrl +url ,data,options);
+          return this.httpClient.post(this.baseUrl +url ,data, options);
       }
+
       get(url)
       {
         let options={

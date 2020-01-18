@@ -1,5 +1,31 @@
-<div fxFlex=100>
-   <mat-card>
-       Display Component
-   </mat-card>
-</div>
+<div fxLayout="row wrap" style="margin: 10% 0 0 10%">    
+   <mat-card *ngFor="let note of getChildMessage" style="margin: 20px 20px 20px 20px;">
+         <div fxLayout="column" fxLayoutAlign="space-around center" >
+            <div  fxLayout="row" fxLayoutAlign="space-around center" fxFlex="100" fxLayoutAlign="space-between center">
+
+               
+               <div fxFlex="80"  fxLayoutAlign="start center">
+                   {{note['title']}}
+               </div>  
+               
+               <div fxFlex="20" *ngIf="!note['isPin']" fxLayoutAlign="end center">
+                   <button mat-icon-button>
+                       <img src="/assets/images/pin.svg" >
+                   </button>
+               </div>
+               <div fxFlex="20" *ngIf="note['isPin']" fxLayoutAlign="end center">
+                   <button mat-icon-button >
+                       <img src="/assets/images/pin2.png" >
+                   </button>
+               </div>    
+           </div>
+           <div style="padding-bottom: 10px;" word-break:break-all fxFlex="100">
+               {{note['description']}}
+           </div>
+           <div style="padding-bottom: 10px;"  >
+               <app-icons></app-icons>
+           </div>
+         </div>       
+           
+       </mat-card>
+   </div>    

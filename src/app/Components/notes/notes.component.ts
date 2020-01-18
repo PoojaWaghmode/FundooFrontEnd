@@ -18,21 +18,21 @@ export class NotesComponent implements OnInit {
 ) { }
 
   ngOnInit() {
-this.getAllNotes()
+        this.getAllNotes()
 
   }
  getAllNotes()
- {
-  this.notesService.getNotes().subscribe(response=>
-              {
-                console.log('response after Display Notes', response); 
-                    this.allNotes=[response]
-                    this.router.navigate(['/displayNotes'])
-               
+  {
+   this.notesService.getNotes().subscribe(response=>
+               {
+                 console.log('response after Display Notes', response); 
+                     this.allNotes=response['results']               
               },
               error=>
-              {
-                console.log('error msg', error);
-              })
-            }
+               {
+                 console.log('error msg', error);
+               })
+             }
+             
 }
+ 

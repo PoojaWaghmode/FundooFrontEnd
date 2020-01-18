@@ -12,4 +12,10 @@ export class IconsComponent implements OnInit {
   ngOnInit() {
   }
 
+  DeleteNote(){"Empty"}
+  ChangeLabels(){"Empty"}
+  MakeACopy(){"Empty"}
+  ShowCheckboxes(){"Empty"}
+  CopyToGoogleDocs(){"Empty"}
+
 }

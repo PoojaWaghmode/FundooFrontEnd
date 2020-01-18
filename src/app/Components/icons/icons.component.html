@@ -1,17 +1,37 @@
+<div fxLayout="row" >
 
-<div flexLayout="space-around-center" fxFlex=100>
+    <div>
+        <button mat-icon-button ><mat-icon fontSet="material-icons-outlined">add_alert</mat-icon></button>
+    </div>
+    <div>
+        <button mat-icon-button><mat-icon fontSet="material-icons-outlined">group_add</mat-icon></button>
+    </div>
+    
+    <div>
+        <button mat-icon-button><mat-icon fontSet="material-icons-outlined">palette</mat-icon></button>
+    </div>
+    <div>
+        <button mat-icon-button><mat-icon fontSet="material-icons-outlined">image</mat-icon></button>
+    </div>
+    <div>
+        <button mat-icon-button><mat-icon fontSet="material-icons-outlined">archive</mat-icon></button>
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="buttons">    
+        <mat-icon fontSet = "material-icons-outlined">more_vert</mat-icon>
+          <mat-menu #menu = "matMenu">
+            <button mat-menu-item (click)="DeleteNote()">Delete Note</button >  
+            <button mat-menu-item (click)="ChangeLabels()">Change Labels</button > 
+            <button mat-menu-item (click)="MakeACopy()">Make a copy</button >  
+            <button mat-menu-item (click)="ShowCheckboxes()">Show Checkboxes</button > 
+            <button mat-menu-item (click)="CopyToGoogleDocs">Copy to GoogleDocs</button >                         
+          </mat-menu>
+      </button>
 
     <div>
-        <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
+        <button mat-icon-button><mat-icon fonSet="material-icons-outlined">undo</mat-icon></button>
     </div>
     <div>
-        <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
-    </div>
-    <div>
-        <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
-    </div>
-    <div>
-        <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
+        <button mat-icon-button><mat-icon fonSet="material-icons-outlined">redo</mat-icon></button>
     </div>
     
 </div>

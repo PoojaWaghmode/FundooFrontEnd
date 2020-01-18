@@ -1,35 +1,45 @@
 <div fxLayoutAlign="center center" display="flex">
-    <mat-card fxFlex="520px" class="add-note" fxLayout="row">
-        <div *ngIf="!isOpen" (click)="isOpen= !isOpen" fxFlex="30">
-                <div fxFlex="420px">
-                    <p style="font-size: 14px;">Take a note...</p>            
-                </div> 
-            
-            <div style="align-items: center;" display="flex" fxLayout="row">
-                <!-- <button mat-icon-button><mat-icon>check_box_outline</mat-icon></button>
-                <button mat-icon-button><mat-icon>brush</mat-icon></button>
-                <button mat-icon-button><mat-icon>image</mat-icon></button> -->
-                
-                <mat-icon aria-hidden="false" aria-label="Example home icon">check_box</mat-icon>
-                <mat-icon aria-hidden="false" aria-label="Example home icon">brush</mat-icon>
-                <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
-                <!-- <button mat-icon-button><mat-icon fontSet="material-icons-outlined">check_box</mat-icon></button> -->
-                
+    <mat-card fxFlex="600px" class="make-note" fxLayout="row" [ngStyle]="{'background-color': color}">
+        <div *ngIf="isOpen" (click)="isOpen = !isOpen">
+            <div fxFlex="420px">
+                <p style="font-size: 14px;">Take a note...</p>            
             </div>
+            <div style="align-items: center;" display="flex" flexLayout="row">
+                <button mat-icon-button><mat-icon fontSet="material-icons-outlined">check_box</mat-icon></button>
+                <button mat-icon-button><mat-icon fontSet="material-icons-outlined">brush</mat-icon></button>
+                <button mat-icon-button><mat-icon fontSet="material-icons-outlined">image</mat-icon></button>
+            </div>
+        </div>
+
+        <div *ngIf="!isOpen">
+            <div  fxLayout="column">
+                <div>
+                    <div fxFlex="500px">
+                        <input matInput type="text" [(ngModel)]="title" placeholder="Title" style="font-size: 15px;"> 
+                    </div> 
+                    <div>
+                        <button mat-icon-button style="padding-bottom: 18px;" (click)="isPin = !isPin">
+                            <img src="/assets/images/pin.svg" *ngIf="!isPin">
+                            <img src="/assets/images/pin2.png" *ngIf="isPin">
+                        </button>
+                    </div>                    
+                </div> 
+                <div>
+                    <input matInput type="text" [(ngModel)]="description" placeholder="Take a note...." style="font-size: 15px;">
+                </div> 
+                <div fxLayout="row">
+                    <div fxFlex="80%">
+                        <app-icons></app-icons>
+                    </div>
+                    <div style="padding: 15px 0 0 75px;">
+                        <button mat-icon-button (click)=" createNote()">
+                            Close
+                        </button>
+                    </div>
+                </div>       
+            </div>
+            
         </div>
         
-        <div *ngIf="isOpen" (click)="isOpen= !isOpen">
-            <div fxFlex="800px">
-                <p style="font-size: 14px;">make a note...</p>            
-            </div> 
-            <div>
-            </div>
-            <!-- <app-icon></app-icon> -->
-        </div>
     </mat-card>
 </div>
-
-
-
-
-

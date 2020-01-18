@@ -10,6 +10,8 @@ import{MatToolbarModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule,MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    MatMenuModule
 
     
   ],
@@ -27,7 +31,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule,MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    MatMenuModule
 
   ],
 

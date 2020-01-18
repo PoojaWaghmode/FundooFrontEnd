@@ -30,9 +30,7 @@ children:[
         { path: 'addNote',component: AddNoteComponent },
         {path:'display',component:DisplayNotesComponent},
         
-         
-       
-        
+   
 ]
 }
 

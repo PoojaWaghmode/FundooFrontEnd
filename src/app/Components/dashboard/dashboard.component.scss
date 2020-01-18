@@ -2,6 +2,7 @@
 // {
 //   background-color: white;
 // }
+.search-bar
 .example-container {
     display: flex;
     flex-direction: column;
@@ -15,7 +16,7 @@
     width:100%
   }
   .search-bar{
-    width:60%;
+    width:80%;
     top:10%;
     bottom:5%
   }
@@ -40,4 +41,76 @@
        `<body>` to be our scrolling element for mobile layouts. */
     flex: 1 0 auto;
   }
-  
+  .container{    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }     
+
+  .buttons
+  {
+    height: 10px;
+    width: 10px;
+  }
+#toolbar{
+    background-color: white;
+    padding-left: 25px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.bulb{
+    padding-left: 10px;
+}
+
+.app-name{
+    padding-left: 10px;
+    font-family: sans-serif;
+}
+
+.search{
+    box-sizing: border-box;
+}
+
+.searchInput{
+    width: 90%;
+}
+
+.listView{
+    height: 25px;;
+    width: 25px;
+    margin-top: -10px;
+}
+
+.gridView{
+    height: 35px;;
+    width: 35px;
+    margin-top: -10px;
+}
+
+#over:hover{
+    background-color: rgb(233, 230, 225);
+    border-radius: 0 25px 25px 0;   
+}
+
+
+#over:focus{
+    background-color: rgb(245, 228, 171);
+    border-radius: 0 25px 25px 0; 
+     
+}
+
+#iconPadding{
+    padding: 0px 20px 0px 10px;
+}
+
+
+
+.mat-menu-div{
+    height: 350px;
+    width: 280px; 
+    text-align: center;
+}

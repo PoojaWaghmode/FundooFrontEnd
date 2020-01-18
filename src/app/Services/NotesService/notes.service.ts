@@ -12,4 +12,10 @@ export class NotesService {
   {
     return this.httpService.get('api/Note');
   }
+
+  createNote(data)
+  {
+    console.log("ashjg");
+    return this.httpService.post('api/Note',data);
+  }
 }

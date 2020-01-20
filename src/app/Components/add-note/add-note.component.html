@@ -15,17 +15,17 @@
             <div  fxLayout="column">
                 <div>
                     <div fxFlex="500px">
-                        <input matInput type="text" [(ngModel)]="title" placeholder="Title" style="font-size: 15px;"> 
+                        <input matInput type="text" [(ngModel)]="title" placeholder="Title" style="font-size: 14px;"> 
                     </div> 
                     <div>
-                        <button mat-icon-button style="padding-bottom: 18px;" (click)="isPin = !isPin">
+                        <button mat-icon-button  (click)="isPin = !isPin">
                             <img src="/assets/images/pin.svg" *ngIf="!isPin">
                             <img src="/assets/images/pin2.png" *ngIf="isPin">
                         </button>
                     </div>                    
                 </div> 
                 <div>
-                    <input matInput type="text" [(ngModel)]="description" placeholder="Take a note...." style="font-size: 15px;">
+                    <input matInput type="text" [(ngModel)]="description" placeholder="Take a note...." style="font-size: 14px;">
                 </div> 
                 <div fxLayout="row">
                     <div fxFlex="80%">

@@ -1,6 +1,7 @@
 <div class="container" >
     <mat-toolbar id="toolbar" >
-        <div fxLayout="row" fxLayout.xs="column" display="flex" fxLayoutAlign="space-between center" fxFlex="100%">
+     
+        <div fxLayout="row" display="flex" fxLayoutAlign="space-between center" fxFlex="100%">
 
             <div  fxLayout="row" fxFlex=25 >
                 <button mat-icon-button="" matTooltip="Main Menu" class="mat-icon-button" style="margin-top: 5px" (click)="snav.toggle()">
@@ -11,7 +12,7 @@
             </div>
 
             <div class="search-bar" fxLayout="row" fxFlex=50 style="margin-top: 22px;" >
-              <mat-form-field [style.fontSize.px]="12" appearance="outline" class="searchInput">                
+              <mat-form-field [style.fontSize.px]="16" appearance="outline" class="searchInput">                
                 <mat-icon matPrefix>search</mat-icon>
                 <input matInput type="text" placeholder="search" >
               </mat-form-field>
@@ -32,7 +33,7 @@
               <button mat-icon-button [matMenuTriggerFor]="menu" style="margin-top:7px;margin-left: 20px; outline: none;"class="buttons">    
                 <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
                   <mat-menu #menu = "matMenu">
-                    <button mat-menu-item (click)="logOut()">Sign Out</button >                           
+                    <button mat-menu-item (click)="uploadProfile();logOut()">Sign Out</button >                           
                   </mat-menu>
               </button>
     </div>
@@ -43,15 +44,15 @@
     <mat-sidenav-container  [style.marginTop.px]="mobileQuery.matches ? 56 : 0" style="height: 100%;">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" style="width: 18%; border: none; ">
-
+                    
           <mat-nav-list>
             <div style="padding: 0px 0px 8px 0px">
-              <a mat-list-item routerLink="Notes" id="over" (click)='name="Fundoo"'>
-                <mat-icon id="iconPadding"></mat-icon>
+              <a mat-list-item routerLink="notes" id="over" (click)='name="Fundoo"'>
+                <mat-icon id="iconPadding" fontSet="material-icons-outlined">emoji_objects</mat-icon>
                 <div class="notes">Notes</div>
               </a>
                 
-              <a mat-list-item routerLink="remindered" id="over" (click)='name="Reminder"'>
+              <a mat-list-item routerLink="" id="over" (click)='name="Reminder"'>
                 <mat-icon id="iconPadding">notifications_none_outline</mat-icon>
                 <div class="notes">Reminder</div>
               </a>
@@ -65,22 +66,29 @@
                 <div class="notes">Edit labels</div>
               </a>
            
-              <a mat-list-item routerLink="archived" id="over" (click)='name="Archive"'>
-                <mat-icon  fontSet="material-icons-outlined" id="iconPadding">archive</mat-icon>
+              <a mat-list-item routerLink="archive" id="over" (click)='name="Archive"'>
+                <mat-icon   fontSet="material-icons-outlined" id="iconPadding">archive</mat-icon>
                 <div class="notes">Archive</div>
               </a>
+              <!-- <a mat-list-item id="over" (click)= "GetArchiveNotes()">
+                <mat-icon  fontSet="material-icons-outlined" id="iconPadding">archive</mat-icon>
+                <div class="notes">Archive</div>
+              </a> -->
               
-              
-              <a mat-list-item routerLink="trashed" id="over" (click)='name="Trash"'>
-                <mat-icon  fontSet="material-icons-outlined" id="iconPadding">delete_outline</mat-icon>
+              <a mat-list-item routerLink="trash" id="over" (click)='name="Trash"'>
+                <mat-icon   fontSet="material-icons-outlined" id="iconPadding">delete</mat-icon>
                 <div class="notes">Trash</div>
               </a>
+              <!-- <a mat-list-item id="over" (click)= "GetTrashNotes()">
+                <mat-icon  fontSet="material-icons-outlined" id="iconPadding">delete_outline</mat-icon>
+                <div class="notes">Trash</div>
+              </a> -->
           
             </div>
 
           </mat-nav-list>
         </mat-sidenav>        
-
+       
         <mat-sidenav-content style="background-color: white;" >
           <router-outlet ></router-outlet>
         </mat-sidenav-content>

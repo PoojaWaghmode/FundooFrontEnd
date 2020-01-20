@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
  import{ NotesService } from '../../Services/NotesService/notes.service'
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import{DataServiceService}from '../../Services/DataService/data-service.service';
 @Component({
   selector: 'app-add-note',
   templateUrl: './add-note.component.html',
@@ -17,12 +18,14 @@ export class AddNoteComponent implements OnInit {
         constructor(
         private noteService :NotesService,
         private  router :Router,
-        private snackBar:MatSnackBar
+        private snackBar:MatSnackBar,
+        private dataService:DataServiceService
         ) { }
 
   ngOnInit() {
   }
 
+  
   createNote()
   {
     this.isOpen=true;
@@ -47,6 +50,13 @@ export class AddNoteComponent implements OnInit {
                         verticalPosition: 'top',
                         horizontalPosition:'center'
                       });
+
+
+                      this.dataService.changeMessage({
+                        type:'createNote'
+                      })
+
+
               },
               error=>
               {

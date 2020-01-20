@@ -15,7 +15,17 @@ export class NotesService {
 
   createNote(data)
   {
-    console.log("ashjg");
     return this.httpService.post('api/Note',data);
+  }
+
+  getArchiveNotes()
+  {
+    console.log("Archve");
+    return this.httpService.get('api/Note/Archieve')
+  }
+  getTrashNotes()
+  {
+    console.log()
+    return this.httpService.get('api/Note/Trash')
   }
 }

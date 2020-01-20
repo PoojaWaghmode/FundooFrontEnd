@@ -26,6 +26,10 @@ export class UserServiceService {
     console.log("Toakn data ",data.Token);
     return this.httpService.post('api/UserAccount/resetPassword',data);
   }
+  uploadProfile(data)
+  {
+    return this.httpService.post('api/UserAccount/UploadProfileImage',data)
+  }
   
   
 }

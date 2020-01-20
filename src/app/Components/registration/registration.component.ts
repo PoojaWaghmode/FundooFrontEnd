@@ -72,7 +72,8 @@ MustMatch(controlName: string, matchingControlName: string) {
       UserType:"User",
         }
 
-    //console.log('registration', this.registrationform.value);
+        if(this.registrationform.status=='VALID')
+        {
           this.userService.register(newUser).subscribe(response=>
             {
               console.log('response after registration', response); 
@@ -97,6 +98,12 @@ MustMatch(controlName: string, matchingControlName: string) {
                   
               }) 
              }
+             else{
+               console.log("All Fields Are Required");
+               this.snackBar.open(['error']['Message'],'All Fields Are Required');
+           
+            }
+  }
 }
   
      

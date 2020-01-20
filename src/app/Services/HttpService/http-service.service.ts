@@ -30,7 +30,7 @@ export class HttpServiceService {
           'Content-Type':'application/json'
         })
       }
-        console.log(localStorage.getItem('token'))
+        // console.log(localStorage.getItem('token'))
         return this.httpClient.get(this.baseUrl +url ,options);
       }
 }

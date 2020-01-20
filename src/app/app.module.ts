@@ -21,6 +21,8 @@ import { AddNoteComponent } from './Components/add-note/add-note.component';
 import { DisplayNotesComponent } from './Components/display-notes/display-notes.component';
 import { IconsComponent } from './Components/icons/icons.component'; 
 import { RouterModule } from '@angular/router';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     AppRoutingModule,MatFormFieldModule,MaterialModule,
-    BrowserAnimationsModule,  HttpClientModule,RouterModule
+    BrowserAnimationsModule,  HttpClientModule,RouterModule, FlexLayoutModule
 
   ],
   providers: [],

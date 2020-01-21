@@ -53,7 +53,7 @@ export class AddNoteComponent implements OnInit {
 
 
                       this.dataService.changeMessage({
-                        type:'createNote'
+                        type:'getNotes'
                       })
 
 

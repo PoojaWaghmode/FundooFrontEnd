@@ -20,12 +20,30 @@ export class NotesService {
 
   getArchiveNotes()
   {
-    console.log("Archve");
-    return this.httpService.get('api/Note/Archieve')
+    return this.httpService.get('api/Note/Archieve');
   }
   getTrashNotes()
   {
-    console.log()
-    return this.httpService.get('api/Note/Trash')
+    return this.httpService.get('api/Note/Trash');
+  }
+  getReminderNotes()
+  {
+    return this.httpService.get('api/Note/Reminder');
+  }
+  trashNote(noteId)
+  {
+    return this.httpService.put('api/Note/'+noteId+'/Trash', noteId);
+  }
+  deleteNote(noteId)
+  {
+    return this.httpService.delete('api/Note/'+noteId)
+  }
+  restoreNote(noteId)
+  {
+    return this.httpService.put('api/Note/'+noteId+'/Restore',noteId)
+  }
+  changeColor(noteId,color)
+  {
+    return this.httpService.put('api/Note/'+noteId+'/ChangeColor/'+color,noteId);
   }
 }

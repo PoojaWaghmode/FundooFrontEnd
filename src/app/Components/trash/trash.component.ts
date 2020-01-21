@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{NotesService} from '../../Services/NotesService/notes.service'
+import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
 
 @Component({
   selector: 'app-trash',
@@ -9,10 +10,19 @@ import{NotesService} from '../../Services/NotesService/notes.service'
 export class TrashComponent implements OnInit {
 
   allNotes=[];
-  constructor(private notesService:NotesService) { }
+  constructor(private notesService:NotesService,
+    private dataService:DataServiceService) { }
 
   ngOnInit() {
+    
      this.GetTrash();
+    
+    
+      this.dataService.currentMessage.subscribe(response=>{
+        if(response.type== "getNotes"){
+          this.GetTrash();
+        }
+      })
     }  
 
   GetTrash()

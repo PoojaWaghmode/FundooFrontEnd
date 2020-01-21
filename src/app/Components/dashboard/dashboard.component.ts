@@ -54,5 +54,9 @@ export class DashboardComponent implements OnDestroy {
     {
       this.router.navigate(['/dashboard/trash'])
     }
+    GetReminderNotes()
+    {
+      this.router.navigate(['/dashboard/reminder'])
+    }
   
 }

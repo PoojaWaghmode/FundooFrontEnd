@@ -1,37 +1,51 @@
-<div fxLayout="row" >
 
-    <div>
-        <button mat-icon-button ><mat-icon fontSet="material-icons-outlined">add_alert</mat-icon></button>
+    <div *ngIf="!isTrash" fxLayout="row" fxFlex="100">
+                <div>
+                    <button mat-icon-button ><mat-icon fontSet="material-icons-outlined" matTooltip="Remind me">add_alert</mat-icon></button>
+                </div>
+                <div>
+                    <button mat-icon-button><mat-icon fontSet="material-icons-outlined" matTooltip="Collaborator">group_add</mat-icon></button>
+                </div>
+<!--                 
+                <div>
+                    <button mat-icon-button><mat-icon fontSet="material-icons-outlined" matTooltip="Change color">palette</mat-icon></button>
+                </div> -->
+                <button mat-icon-button [matMenuTriggerFor]="aboveMenu" matTooltip="Change color" class="matbutton">
+                    <mat-icon fontSet="material-icons-outlined" >color_lens</mat-icon>
+                    <mat-menu #aboveMenu="matMenu" yPosition="above" >
+                        <div class="colorMenu" style="width: 100px;">
+                        <button mat-mini-fab *ngFor="let color of colors" [style.backgroundColor]="color" (click)="ChangeColor(color)"></button>                
+                        </div>
+                    </mat-menu>
+                </button>  
+            
+                <div>
+                    <button mat-icon-button><mat-icon fontSet="material-icons-outlined" matTooltip="Add image">image</mat-icon></button>
+                </div>
+                <div>
+                    <button mat-icon-button><mat-icon fontSet="material-icons-outlined" matTooltip="Archive">archive</mat-icon></button>
+                </div>
+                <div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" class="buttons">    
+                        <mat-icon fontSet = "material-icons-outlined" matTooltip="More">more_vert</mat-icon>
+                        <mat-menu #menu = "matMenu">
+                            <button mat-menu-item (click)="TrashNote()">Delete Note</button >  
+                            <button mat-menu-item (click)="ChangeLabels()">Change Labels</button > 
+                            <button mat-menu-item (click)="MakeACopy()">Make a copy</button >  
+                            <button mat-menu-item (click)="ShowCheckboxes()">Show Checkboxes</button > 
+                            <button mat-menu-item (click)="CopyToGoogleDocs">Copy to GoogleDocs</button >                         
+                        </mat-menu>
+                    </button>
+                </div>
+                
     </div>
-    <div>
-        <button mat-icon-button><mat-icon fontSet="material-icons-outlined">group_add</mat-icon></button>
+    <div *ngIf="isTrash" fxLayout="row" fxFlex="100">
+            <div>
+                <button mat-icon-button  (click)="DeleteNote()"><mat-icon fontSet="material-icons-outlined" matTooltip="Delete forever">delete_forever</mat-icon></button>
+            </div>
+            <div>
+                <button mat-icon-button (click)="RestoreNote()"><mat-icon fontSet="material-icons-outlined" matTooltip="Restore">delete</mat-icon></button>
+            </div>
     </div>
-    
-    <div>
-        <button mat-icon-button><mat-icon fontSet="material-icons-outlined">palette</mat-icon></button>
-    </div>
-    <div>
-        <button mat-icon-button><mat-icon fontSet="material-icons-outlined">image</mat-icon></button>
-    </div>
-    <div>
-        <button mat-icon-button><mat-icon fontSet="material-icons-outlined">archive</mat-icon></button>
-    </div>
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="buttons">    
-        <mat-icon fontSet = "material-icons-outlined">more_vert</mat-icon>
-          <mat-menu #menu = "matMenu">
-            <button mat-menu-item (click)="DeleteNote()">Delete Note</button >  
-            <button mat-menu-item (click)="ChangeLabels()">Change Labels</button > 
-            <button mat-menu-item (click)="MakeACopy()">Make a copy</button >  
-            <button mat-menu-item (click)="ShowCheckboxes()">Show Checkboxes</button > 
-            <button mat-menu-item (click)="CopyToGoogleDocs">Copy to GoogleDocs</button >                         
-          </mat-menu>
-      </button>
 
-    <!-- <div>
-        <button mat-icon-button><mat-icon fonSet="material-icons-outlined">undo</mat-icon></button>
-    </div>
-    <div>
-        <button mat-icon-button><mat-icon fonSet="material-icons-outlined">redo</mat-icon></button>
-    </div> -->
-    
-</div>
+

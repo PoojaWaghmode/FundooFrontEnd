@@ -10,8 +10,7 @@ import{UserServiceService} from '../../Services/UserService/user-service.service
 export class DisplayNotesComponent implements OnInit {
 
  @Input() getChildMessage;
- @Input() getArchiveNotes;
-
+ 
   constructor(
    
     private router:Router,

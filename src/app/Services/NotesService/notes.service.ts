@@ -44,6 +44,14 @@ export class NotesService {
   }
   changeColor(noteId,color)
   {
-    return this.httpService.put('api/Note/'+noteId+'/ChangeColor/'+color,noteId);
+    return this.httpService.put('api/Note/'+noteId+'/ChangeColor',color);
+  }
+  archiveNote(noteId)
+  {
+    return this.httpService.put('api/Note/'+noteId+'/Archieve',noteId);
+  }
+  addImage(noteId,file)
+  {
+    return this.httpService.post('api/Note'+noteId+'/Image',file)
   }
 }

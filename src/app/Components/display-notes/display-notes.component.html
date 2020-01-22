@@ -1,7 +1,8 @@
 <div fxLayout="row wrap" style="margin: 10% 0 0 10%">    
-   <mat-card *ngFor="let note of getChildMessage" style="margin: 20px 20px 20px 20px;">
-         <div fxLayout="column" >
-            <div  fxLayout="row" style="padding-bottom: 10px;"fxFlex="100" >
+   <mat-card *ngFor="let note of getChildMessage" style="margin: 20px 20px 20px 20px;" [ngStyle] ="{'backgroundColor' : note.color}">
+         <div fxLayout="column">
+
+            <div fxLayout="row" style="padding-bottom: 10px;"fxFlex="100" >
                     <div fxFlex="85" aria-multiline="true">
                         {{note['title']}}
                     </div >  
@@ -13,7 +14,7 @@
                     </div>
                     <div *ngIf="note['isPin']" fxFlex="5">
                         <button mat-icon-button >
-                            <img src="/assets/images/pin2.png" >
+                            <img src="/assets/images/Unpin.png" >
                         </button>
                     </div>    
             </div>
@@ -23,9 +24,9 @@
             </div>
 
             <div  fxFlex="100"style="padding-bottom: 10px;"  >
-               <app-icons [noteInfo]='note' [isTrash]='note.isTrash'></app-icons>
+               <app-icons [noteInfo]='note' [isTrash]='note.isTrash' (messageEvent)="receiveMessage($event)"></app-icons>
             </div>
-         </div>       
-           
-       </mat-card> 
-   </div>    
+
+        </div>       
+    </mat-card> 
+</div>    

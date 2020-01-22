@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../../Services/NotesService/notes.service';
+import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
 
 
 @Component({
@@ -10,25 +11,37 @@ import { NotesService } from '../../Services/NotesService/notes.service';
 export class ArchiveComponent implements OnInit {
 
   allNotes=[];
-  constructor( private notesService:NotesService) { }
+  constructor( private notesService:NotesService,
+               private dataService:DataServiceService) { }
 
 
-  ngOnInit() {
-     this.GetArchiveNotes();
-   }
+  ngOnInit(){
 
-
-   GetArchiveNotes()
-   {
-    this.notesService.getArchiveNotes().subscribe(response=>
+      this.GetArchiveNotes();
+      this.dataService.currentMessage.subscribe(response=>
       {
-        console.log('response after Display  Archive Notes', response['result']); 
-        this.allNotes = response['results']               
-      },
-      error=>
-      {
-        console.log('error msg', error);
-      })
+        
+            if(response.type== "getNotes")
+            {
+                this.GetArchiveNotes();
+            }
+            
+            })
+       }
+
+
+    GetArchiveNotes()
+    {
+          this.notesService.getArchiveNotes().subscribe(response=>
+          {
+              console.log('response after Display  Archive Notes', response['result']); 
+
+              this.allNotes = response['results'];              
+          },
+          error=>
+          {
+              console.log('error msg', error);
+          })
     }  
 
  }

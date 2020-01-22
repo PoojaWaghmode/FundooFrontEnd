@@ -13,47 +13,52 @@ export class HttpServiceService {
       {
           let options=
           {
-          headers:new HttpHeaders
-          ({
-            'Authorization':'Bearer '+localStorage.getItem('token'),
-            'Content-Type':'application/json'
-          })
-        }
+            headers:new HttpHeaders
+            ({
+              'Authorization':'Bearer '+localStorage.getItem('token'),
+              'Content-Type':'application/json'
+            })
+          }
           return this.httpClient.post(this.baseUrl+url ,data, options);
       }
 
       get(url)
       {
-        let options={
-        headers:new HttpHeaders({
-          'Authorization':'Bearer '+localStorage.getItem('token'),          
-          'Content-Type':'application/json'
-        })
-      }
-        // console.log(localStorage.getItem('token'))
-        return this.httpClient.get(this.baseUrl+url ,options);
+          let options=
+          {
+            headers:new HttpHeaders
+            ({
+                  'Authorization':'Bearer '+localStorage.getItem('token'),          
+                  'Content-Type':'application/json'
+            })
+          }
+          // console.log(localStorage.getItem('token'))
+          return this.httpClient.get(this.baseUrl+url ,options);
       }
 
       put(url,data)
       {
           let options=
           {
-          headers:new HttpHeaders
-          ({
-            'Authorization':'Bearer '+localStorage.getItem('token'),
-            'Content-Type':'application/json'
-          })
-        }
+            headers:new HttpHeaders
+            ({
+              'Authorization':'Bearer '+localStorage.getItem('token'),
+              'Content-Type':'application/json'
+            })
+          }
           return this.httpClient.put(this.baseUrl+url,data, options);
       }
+
       delete(url)
       {
-        let options={
-        headers:new HttpHeaders({
-          'Authorization':'Bearer '+localStorage.getItem('token'),          
-          'Content-Type':'application/json'
-        })
-      }
+        let options=
+        {
+          headers:new HttpHeaders
+          ({
+            'Authorization':'Bearer '+localStorage.getItem('token'),          
+            'Content-Type':'application/json'
+          })
+         }
         // console.log(localStorage.getItem('token'))
         return this.httpClient.delete(this.baseUrl+url ,options);
       }

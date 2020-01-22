@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit
                           this.loginform=this.formBuilder.group ({
                
                   email:['',[Validators.required,Validators.email]],
+
                   password: ['', [Validators.required, Validators.minLength(6)]],
                
                 },
@@ -37,36 +38,44 @@ export class LoginComponent implements OnInit
               {
                 if(this.loginform.status=="VALID")
                 {
+
                   let user= {
                     email:this.loginform.value.email,
                     password:this.loginform.value.password
   
                   }
                   this.userService.login(user).subscribe(response=>
-                    {
-                    console.log('response after login',response);
-                    localStorage.setItem('token', response['token']);
+                  {
+                    
+                      console.log('response after login',response);
+                      
+                      localStorage.setItem('token', response['token']);
+    
+                      this.router.navigate(['/dashboard'])
+                    
+                      this.snackBar.open(response['message'],'',
+                      {
+                        duration:2000,
+                        verticalPosition: 'top',
+                        horizontalPosition:'center'
+                      });
+    
   
-                    this.router.navigate(['/dashboard'])
-                   
-                    this.snackBar.open(response['message'],'',{
-                      duration:2000,
-                      verticalPosition: 'top',
-                      horizontalPosition:'center'
-                    });
-  
-  
-                    },
-                    error=>
-                    {
+                  },
+                  error=>
+                  {
                     console.log('error msg', error);
-                    this.snackBar.open(error['error']['message'] ,'Error Occured',{ 
+
+                    this.snackBar.open(error['error']['message'] ,'Error Occured',
+                    { 
                       duration:50000,
                       verticalPosition: 'top',
-                      horizontalPosition:'center' } )
-                              })
+                      horizontalPosition:'center' 
+                    })
+                  })
                 }
-                else{
+                else
+                {
                     console.log("All Fields Are Required");
                     this.snackBar.open(['error']['message'] ,'All Fields Are Required');
                 }
@@ -74,10 +83,8 @@ export class LoginComponent implements OnInit
               }
               forgetPassword(data)
               {
+                
                 this.router.navigate(['/forgetpassword'])
 
               }
-              
-               
-   
 }

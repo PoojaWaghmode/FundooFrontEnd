@@ -17,14 +17,15 @@ export class RemindersComponent implements OnInit {
 
   GetReminderNotes()
   {
-    this.noteService.getReminderNotes().subscribe(response=>
+      this.noteService.getReminderNotes().subscribe(response=>
       {
-        console.log('response after Display  Reminder Notes', response); 
-        this.allNotes = response['results'] ;              
-     },
-     error=>
+          console.log('response after Display  Reminder Notes', response); 
+          
+          this.allNotes = response['results'] ;              
+      },
+      error=>
       {
-        console.log('error msg', error);
+          console.log('error msg', error);
       })
-  }
+    }
 }

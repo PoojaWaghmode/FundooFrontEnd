@@ -32,12 +32,9 @@ children:[
         { path: 'trash',component:TrashComponent},
         { path:'reminder',component:RemindersComponent}
         
-        
-        
-   
-]
+  
+    ]
 }
-
 
 ];
 

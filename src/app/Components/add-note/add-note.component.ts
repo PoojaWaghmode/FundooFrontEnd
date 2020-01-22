@@ -8,11 +8,17 @@ import{DataServiceService}from '../../Services/DataService/data-service.service'
   templateUrl: './add-note.component.html',
   styleUrls: ['./add-note.component.scss']
 })
+
+
 export class AddNoteComponent implements OnInit {
       title=''
       description=''
       color=''
       image=''
+      //isTrash=''
+      //isArchive=''
+      //isPin=''
+    
 
         isOpen=true;
         constructor(
@@ -22,7 +28,21 @@ export class AddNoteComponent implements OnInit {
         private dataService:DataServiceService
         ) { }
 
+     
+
   ngOnInit() {
+
+    this.dataService.currentMessage.subscribe(response=>{
+      if(response.type == "changeColor")
+      {
+        this.color=response.data;
+      }
+    })
+
+    this.dataService.changeMessage({
+      type:'getNotes'
+    })
+    
   }
 
   
@@ -39,23 +59,23 @@ export class AddNoteComponent implements OnInit {
                 Title:this.title,
                 Description: this.description,
                 Image:"",
-                Color:"#F00",
+                color:this.color,
                      
             }
             this.noteService.createNote(note).subscribe(response=>
               {
                       console.log('response after create Note',response);
+
+                      
+                      this.dataService.changeMessage({
+                        type:'getNotes'
+                      })
+
                       this.snackBar.open(response['message'],'',{
                         duration:2000,
                         verticalPosition: 'top',
                         horizontalPosition:'center'
                       });
-
-
-                      this.dataService.changeMessage({
-                        type:'getNotes'
-                      })
-
 
               },
               error=>
@@ -69,12 +89,9 @@ export class AddNoteComponent implements OnInit {
                         horizontalPosition:'center' } )
                       })
       
-    
                }
-        
     } 
-  
-   
+    
 }
  
 

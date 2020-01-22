@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ɵisDefaultChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { NotesService } from 'src/app/Services/NotesService/notes.service';
 import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
 import { MatSnackBar } from '@angular/material';
@@ -12,12 +12,21 @@ export class IconsComponent implements OnInit {
 
     @Input() noteInfo;
     @Input() isTrash;
-   colors=['#fff','#f28b82','#fbbc04','#fff475','#ccff90','#a7ffeb','#cbf0f8','#aecbfa','#d7aefb','#fdcfe8','#e6c9a8','#e8eaed']
-  constructor( private noteService:NotesService,
+    
+    
+
+    @Output() messageEvent = new EventEmitter<string>();
+
+   colors=['#fff','#f28b82','#fbbc04','#fff475','#ccff90','#a7ffeb','#cbf0f8','#aecbfa','#d7aefb',
+            '#fdcfe8','#e6c9a8','#e8eaed'];
+  
+   constructor(  private noteService:NotesService,
                 private dataService:DataServiceService,
                 private snackBar:MatSnackBar) { }
+               
    
   ngOnInit() {
+    
   }
 
   noteId : any;
@@ -44,6 +53,8 @@ export class IconsComponent implements OnInit {
     })
    
   }
+
+
   DeleteNote()
   {
     this.noteId = this.noteInfo.id
@@ -71,7 +82,7 @@ export class IconsComponent implements OnInit {
         this.dataService.changeMessage(
           {
             type:"getNotes"
-          } )  
+          })  
           this.snackBar.open(response['message'],'',{
             duration:4000,
             horizontalPosition:'start'
@@ -83,20 +94,78 @@ export class IconsComponent implements OnInit {
           console.log('error msg', error);
       })
   }
+  
   ChangeColor(color)
   {
+    console.log("color is ....",color);
+    
+    if(this.noteInfo != undefined)
+    {
+    
+      console.log("color is ....",color);
+    this.messageEvent = color;
+
+    let info={
+      color : color
+    }
+
     this.noteId = this.noteInfo.id
-    this.noteService.changeColor(this.noteId,color).subscribe(response=>{
-      console.log('Note  Color Changed')
+    this.noteService.changeColor(this.noteId,info).subscribe(response=>{
+    console.log('Note  Color Changed',response);
+   
+    this.dataService.changeMessage({
+     
+                  type:"getNotes"
+
+          })
     },
     error=>
+    {
+          console.log('error msg', error);
+    })
+  }
+  else{
+    this.dataService.changeMessage({
+      type : "changeColor",
+      data : color
+    })
+  }
+
+}
+
+
+
+NoteArchive()
+{
+  this.noteId = this.noteInfo.id
+  this.noteService.archiveNote(this.noteId).subscribe(response=>{
+    console.log('Note Archived' );
+      this.dataService.changeMessage(
+        {
+            type:"getNotes"
+        } )  
+        this.snackBar.open(response['message'],'',{
+          duration:4000,
+          horizontalPosition:'start'
+        }); 
+      },
+      error=>
       {
           console.log('error msg', error);
       })
-  }
+
+}
+
+AddImage(image)
+{
+  // this.noteId=this.noteInfo.id;
+  // this.noteService.addImage(this.noteId)
+}
+
   ChangeLabels(){"Empty"}
   MakeACopy(){"Empty"}
   ShowCheckboxes(){"Empty"}
   CopyToGoogleDocs(){"Empty"}
+
 
 }

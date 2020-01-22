@@ -1,5 +1,5 @@
 <div fxLayoutAlign="center center" display="flex">
-    <mat-card fxFlex="600px" class="make-note" fxLayout="row" [ngStyle]="{'background-color': color}">
+    <mat-card fxFlex="600px" class="make-note" fxLayout="row" [ngStyle]="{'backgroundColor' : color}">
         <div *ngIf="isOpen" (click)="isOpen = !isOpen">
             <div fxFlex="420px">
                 <p style="font-size: 14px;">Take a note...</p>            
@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div *ngIf="!isOpen">
+        <div *ngIf="!isOpen" >
             <div  fxLayout="column">
                 <div>
                     <div fxFlex="500px">
@@ -19,8 +19,8 @@
                     </div> 
                     <div>
                         <button mat-icon-button  (click)="isPin = !isPin">
-                            <img src="/assets/images/pin.svg" *ngIf="!isPin">
-                            <img src="/assets/images/pin2.png" *ngIf="isPin">
+                            <img src="/assets/images/pin.svg" matTooltip="Pin Note" *ngIf="!isPin">
+                            <img src="/assets/images/pin2.png" matTooltip="Unpin Note" *ngIf="isPin">
                         </button>
                     </div>                    
                 </div> 

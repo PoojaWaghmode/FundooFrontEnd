@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import{Router} from '@angular/router';
 import{UserServiceService} from '../../Services/UserService/user-service.service';
+import {DataServiceService} from '../../Services/DataService/data-service.service'
 @Component({
   selector: 'app-display-notes',
   templateUrl: './display-notes.component.html',
@@ -11,15 +12,22 @@ export class DisplayNotesComponent implements OnInit {
 
  @Input() getChildMessage;
  
-  constructor(
-   
-    private router:Router,
-    private userService:UserServiceService) { }
+ color:any
+ message:string;
+  constructor( private router:Router,
+               private userService:UserServiceService,
+               private dataService:DataServiceService) { }
 
-  ngOnInit() {
+  receiveMessage($event)
+  {
+        this.message = $event
+  }
+
+  ngOnInit() 
+  {
     
-    console.log(this.getChildMessage);
-    
+     console.log(this.getChildMessage);
+   
   }
 
 }

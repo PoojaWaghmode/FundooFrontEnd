@@ -10,7 +10,7 @@ import { DataServiceService } from 'src/app/Services/DataService/data-service.se
 })
 export class ArchiveComponent implements OnInit {
 
-  allNotes=[];
+    allArchivedNotes=[];
   constructor( private notesService:NotesService,
                private dataService:DataServiceService) { }
 
@@ -36,7 +36,7 @@ export class ArchiveComponent implements OnInit {
           {
               console.log('response after Display  Archive Notes', response['result']); 
 
-              this.allNotes = response['results'];              
+              this.allArchivedNotes = response['results'];              
           },
           error=>
           {

@@ -22,10 +22,12 @@ export class NotesComponent implements OnInit {
    {
         this.getAllNotes()
     
-      this.dataService.currentMessage.subscribe(response=>{
-        if(response.type== "getNotes"){
-          this.getAllNotes();
-        }
+        this.dataService.currentMessage.subscribe(response=>
+        {
+          if(response.type== "getNotes")
+          {
+            this.getAllNotes();
+          }
       })
 
   }

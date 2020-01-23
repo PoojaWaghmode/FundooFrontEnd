@@ -1,0 +1,35 @@
+<div fxLayoutAlign="start center" display="flex" style="width: 350px;">
+    <mat-card fxFlex="60px" fxLayout="row" [ngStyle]="{'backgroundColor' : color}">
+        
+            <div  fxLayout="column">
+                <div>
+                    <div fxFlex="500px">
+                        <input matInput type="text" [(ngModel)]="data.title" style="font-size: 14px;"> 
+                    </div> 
+                    <div>
+                        <button mat-icon-button  (click)="isPin = !isPin">
+                            <img src="/assets/images/pin.svg" matTooltip="Pin Note" *ngIf="!isPin">
+                            <img src="/assets/images/pin2.png" matTooltip="Unpin Note" *ngIf="isPin">
+                        </button>
+                    </div>                    
+                </div> 
+                <div>
+                    <input matInput type="text" [(ngModel)]="data.description"  style="font-size: 14px;">
+                </div> 
+                <div>
+                    <input matInput type="text" [(ngModel)]="data.reminder" style="font-size: 14px;">
+                </div> 
+                <div fxLayout="row">
+                    <div fxFlex="80%">
+                        <app-icons></app-icons>
+                    </div>
+                    <div style="padding: 15px 0 0 75px;">
+                        <button mat-icon-button (click)=" EditNote()">
+                            Close
+                        </button>
+                    </div>
+                </div>       
+            </div>
+        
+    </mat-card>
+</div>

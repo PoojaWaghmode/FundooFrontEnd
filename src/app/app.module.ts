@@ -22,6 +22,7 @@ import { DisplayNotesComponent } from './Components/display-notes/display-notes.
 import { IconsComponent } from './Components/icons/icons.component'; 
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { EditNoteComponent } from './Components/edit-note/edit-note.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     TrashComponent,
     AddNoteComponent,
     DisplayNotesComponent,
-    IconsComponent
+    IconsComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,

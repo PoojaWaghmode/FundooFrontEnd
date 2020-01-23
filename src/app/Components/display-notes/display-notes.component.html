@@ -2,10 +2,10 @@
    <mat-card *ngFor="let note of getChildMessage" style="margin: 20px 20px 20px 20px;" [ngStyle] ="{'backgroundColor' : note.color}">
          <div fxLayout="column">
 
-            <div fxLayout="row" style="padding-bottom: 10px;"fxFlex="100" >
-                    <div fxFlex="85" aria-multiline="true">
+            <div fxLayout="row" style="padding-bottom: 10px;"fxFlex="100" (click)="openDialog(note)" >
+                    <div fxFlex="85" aria-multiline="true" >
                         {{note['title']}}
-                    </div >  
+                    </div>  
                     
                     <div *ngIf="!note['isPin']"fxFlex="5" >
                         <button mat-icon-button>
@@ -19,7 +19,7 @@
                     </div>    
             </div>
 
-            <div  fxFlex="100" aria-multiline="true">
+            <div  fxFlex="100" aria-multiline="true" (click)="openDialog(note)">
                {{note['description']}}
             </div>
 

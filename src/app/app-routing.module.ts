@@ -11,6 +11,7 @@ import {AddNoteComponent}from './Components/add-note/add-note.component';
 import { ArchiveComponent } from './Components/archive/archive.component';
 import { TrashComponent } from './Components/trash/trash.component';
 import { RemindersComponent } from './Components/reminders/reminders.component';
+import { EditNoteComponent } from './Components/edit-note/edit-note.component';
 const routes: Routes = [
   { path: '',
   redirectTo: '/login',
@@ -30,8 +31,8 @@ children:[
         { path:  'display',component:DisplayNotesComponent},
         { path: 'archive',component:ArchiveComponent},
         { path: 'trash',component:TrashComponent},
-        { path:'reminder',component:RemindersComponent}
-        
+        { path:'reminder',component:RemindersComponent},
+        { path:'edit-note',component:EditNoteComponent},
   
     ]
 }

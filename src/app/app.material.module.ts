@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule,MatSnackBarModule,
     MatButtonModule,
     FormsModule,
-    MatMenuModule,MatTooltipModule
+    MatMenuModule,MatTooltipModule,MatDialogModule
 
     
   ],
@@ -35,7 +36,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule,MatSnackBarModule,
     MatButtonModule,
     FormsModule,
-    MatMenuModule,MatTooltipModule
+    MatMenuModule,MatTooltipModule,MatDialogModule
 
   ],
 

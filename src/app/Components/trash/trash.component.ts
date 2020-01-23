@@ -9,7 +9,7 @@ import { DataServiceService } from 'src/app/Services/DataService/data-service.se
 })
 export class TrashComponent implements OnInit {
 
-  allNotes=[];
+  allTrashedNotes=[];
   constructor(  private notesService:NotesService,
                 private dataService:DataServiceService) { }
 
@@ -35,7 +35,7 @@ export class TrashComponent implements OnInit {
 
               console.log('response after Display  Trash Notes', response); 
 
-              this.allNotes = response['results'] ;              
+              this.allTrashedNotes = response['results'] ;              
           },
           error=>
           {

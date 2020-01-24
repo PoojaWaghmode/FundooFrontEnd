@@ -10,7 +10,8 @@ import { DataServiceService } from 'src/app/Services/DataService/data-service.se
 })
 export class ArchiveComponent implements OnInit {
 
-    allArchivedNotes=[];
+  allArchivedNotes=[];
+  
   constructor( private notesService:NotesService,
                private dataService:DataServiceService) { }
 

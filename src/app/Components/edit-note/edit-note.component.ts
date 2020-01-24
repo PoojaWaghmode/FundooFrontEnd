@@ -11,7 +11,7 @@ import { DataServiceService } from 'src/app/Services/DataService/data-service.se
 export class EditNoteComponent implements OnInit {
 
 
-  @Input() noteInfo;
+ 
   constructor( public dialogRef: MatDialogRef<EditNoteComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
 
@@ -21,58 +21,75 @@ export class EditNoteComponent implements OnInit {
     ) { }
 
     
-  ngOnInit() {
+  ngOnInit() 
+  {
+    this.dataService.currentMessage.subscribe(response=>
+      {
+        if(response.type == "changeColor")
+        {
+          this.data.color=response.data;
+        }
+    })
   }
+
   title=''
   description=''
   color=''
   image=''
   reminder=''
 
-  
-  // noteId = this.noteInfo.id;
   EditNote()
-{
-  
-  // console.log("gdas",this.data);
-  if(this.title || this .description)
   {
-          let note={
-
-              Title:this.data.title,
-              Description: this.data.description,
-              Image:"",
-              color:this.data.color,
-              reminder: this.data.reminder
-                   
-          }
-          this.noteService.editNote(this.data.id,note).subscribe(response=>
+    console.log("Data:",this.data);
+    if(this.data.title || this.data.description)
+    {
+            let note =
             {
-                    console.log('response after Edit Note',response);
+                Title:this.data.title,
+                Description: this.data.description,
+                Image:"",
+                color:this.data.color,
+                reminder: this.data.reminder                
+            }
 
+            console.log("d :",this.data.color);
+            this.noteService.editNote(this.data.id,note).subscribe(response=>
+              {
+                
+                      console.log('response after Edit Note',response);
+                      console.log("d :",this.data.color);
+                      
+                      this.dataService.changeMessage({
+                        type:'getNotes'
+                      })
+                      // this.dataService.changeMessage({
+                      //   type:'changeColor'
+                      // })
+
+
+                      this.snackBar.open(response['message'],'',{
+                        duration:2000,
+                        verticalPosition: 'top',
+                        horizontalPosition:'center'
+                      });
+
+              },
+              error=>
+              {
+                      console.log('error msg', error);
                     
-                    this.dataService.changeMessage({
-                      type:'getNotes'
-                    })
-
-                    this.snackBar.open(response['message'],'',{
-                      duration:2000,
-                      verticalPosition: 'top',
-                      horizontalPosition:'center'
-                    });
-
-            },
-            error=>
-            {
-                    console.log('error msg', error);
-                  
-                    this.snackBar.open(error['error']['message'] ,'Error Occured',
-                    { 
-                      duration:50000,
-                      verticalPosition: 'top',
-                      horizontalPosition:'center' } )
-                    })
-    
-             }
-  } 
+                      this.snackBar.open(error['error']['message'] ,'Error Occured',
+                      { 
+                        duration:50000,
+                        verticalPosition: 'top',
+                        horizontalPosition:'center'})
+                      })
+              }
+        else
+        {
+            console.error("Atleast One Field Required");
+        }
+        this.dialogRef.close();
+    } 
+  
 }

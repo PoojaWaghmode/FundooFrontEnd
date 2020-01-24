@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
- import{ NotesService } from '../../Services/NotesService/notes.service'
+import{ NotesService } from '../../Services/NotesService/notes.service'
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import{DataServiceService}from '../../Services/DataService/data-service.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-add-note',
   templateUrl: './add-note.component.html',
@@ -15,6 +16,7 @@ export class AddNoteComponent implements OnInit {
       description=''
       color=''
       image=''
+     // reminder=''
       //isTrash=''
       //isArchive=''
       //isPin=''
@@ -39,9 +41,9 @@ export class AddNoteComponent implements OnInit {
       }
     })
 
-    this.dataService.changeMessage({
-      type:'getNotes'
-    })
+    // this.dataService.changeMessage({
+    //   type:'getNotes'
+    // })
     
   }
 
@@ -50,7 +52,7 @@ export class AddNoteComponent implements OnInit {
   {
     this.isOpen=true;
 
-    console.log("title",this.title,"description",this.description);
+    //console.log("title",this.title,"description",this.description);
 
     if(this.title || this .description)
     {
@@ -60,6 +62,7 @@ export class AddNoteComponent implements OnInit {
                 Description: this.description,
                 Image:"",
                 color:this.color,
+                //reminder:this.reminder
                      
             }
             this.noteService.createNote(note).subscribe(response=>
@@ -90,7 +93,17 @@ export class AddNoteComponent implements OnInit {
                       })
       
                }
-    } 
+    else
+    {
+      console.error("Atleast one field Required");
+    }
+    this.title='';
+    this.description='';
+   // this.reminder='';
+    this.color='';
+
+  } 
+    
     
 }
  

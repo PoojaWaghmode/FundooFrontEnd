@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
@@ -23,6 +22,8 @@ import { IconsComponent } from './Components/icons/icons.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { EditNoteComponent } from './Components/edit-note/edit-note.component';
+ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { EditNoteComponent } from './Components/edit-note/edit-note.component';
     RegistrationComponent,
     LoginComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent,
+    ResetPasswordComponent, 
     DashboardComponent,
     NotesComponent,
     RemindersComponent,
@@ -40,12 +41,14 @@ import { EditNoteComponent } from './Components/edit-note/edit-note.component';
     AddNoteComponent,
     DisplayNotesComponent,
     IconsComponent,
-    EditNoteComponent
+    EditNoteComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,MatFormFieldModule,MaterialModule,
-    BrowserAnimationsModule,  HttpClientModule,RouterModule, FlexLayoutModule
+    BrowserAnimationsModule,  HttpClientModule,RouterModule, FlexLayoutModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
 
   ],
   providers: [],

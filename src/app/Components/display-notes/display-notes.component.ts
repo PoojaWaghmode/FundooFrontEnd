@@ -34,7 +34,8 @@ export class DisplayNotesComponent implements OnInit {
   openDialog(noteData)
     {
     const dialogRef = this.dialog.open(EditNoteComponent, {
-      width: '350px',
+      width: '450px',
+      height:'200px',
       data: noteData
     });
 

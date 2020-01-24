@@ -54,8 +54,14 @@ export class NotesService {
   {
     return this.httpService.post('api/Note'+noteId+'/Image',file)
   }
-  editNote(noteId,data)
+  editNote(id,data)
   {
-    return this.httpService.put('api/note/'+noteId,data);
+    console.log("data :", id,data);
+    return this.httpService.put('api/Note/'+id,data);
   }
+  setReminder(noteId,data)
+  {
+    return this.httpService.put('api/Note/'+noteId+'/SetReminder',data)
+  }
+
 }

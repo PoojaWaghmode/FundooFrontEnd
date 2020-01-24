@@ -1,7 +1,6 @@
-<div fxLayoutAlign="start center" display="flex" style="width: 350px;">
-    <mat-card fxFlex="60px" fxLayout="row" [ngStyle]="{'backgroundColor' : color}">
-        
-            <div  fxLayout="column">
+<div fxLayoutAlign="start center" display="flex" style="width: 350px;" fxFlex="600px" fxLayout="row"  [ngStyle]="{'backgroundColor' : data.color}">
+    
+           <div>
                 <div>
                     <div fxFlex="500px">
                         <input matInput type="text" [(ngModel)]="data.title" style="font-size: 14px;"> 
@@ -13,12 +12,15 @@
                         </button>
                     </div>                    
                 </div> 
+
                 <div>
                     <input matInput type="text" [(ngModel)]="data.description"  style="font-size: 14px;">
                 </div> 
+               
                 <div>
                     <input matInput type="text" [(ngModel)]="data.reminder" style="font-size: 14px;">
                 </div> 
+
                 <div fxLayout="row">
                     <div fxFlex="80%">
                         <app-icons></app-icons>
@@ -31,5 +33,5 @@
                 </div>       
             </div>
         
-    </mat-card>
+    
 </div>

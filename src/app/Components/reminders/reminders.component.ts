@@ -8,7 +8,7 @@ import { NotesService } from 'src/app/Services/NotesService/notes.service';
 })
 export class RemindersComponent implements OnInit {
 
-  allNotes=[];
+  allReminderedNotes=[];
   constructor( private noteService:NotesService) { }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class RemindersComponent implements OnInit {
       {
           console.log('response after Display  Reminder Notes', response); 
           
-          this.allNotes = response['results'] ;              
+          this.allReminderedNotes = response['results'] ;              
       },
       error=>
       {

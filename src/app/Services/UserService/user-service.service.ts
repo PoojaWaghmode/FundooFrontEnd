@@ -30,6 +30,5 @@ export class UserServiceService {
   {
     return this.httpService.post('api/UserAccount/UploadProfileImage',data)
   }
-  
-  
+ 
 }

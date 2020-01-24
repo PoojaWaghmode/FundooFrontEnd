@@ -37,13 +37,13 @@ export class NotesComponent implements OnInit {
    this.notesService.getNotes().subscribe(response=>
                {
                  console.log('response after Display Notes', response['message']); 
-                     this.allNotes = response['results']               
-              },
+                  this.allNotes = response['results']               
+               },
               error=>
                {
                  console.log('error msg', error);
                })
   
-              }           
+  }           
 }
  

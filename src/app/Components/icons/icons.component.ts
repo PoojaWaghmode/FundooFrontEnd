@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { NotesService } from 'src/app/Services/NotesService/notes.service';
 import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
 import { MatSnackBar } from '@angular/material';
+import{DatePipe}from '@angular/common';
+
 
 @Component({
   selector: 'app-icons',
@@ -23,6 +25,7 @@ export class IconsComponent implements OnInit {
   
    constructor(  private noteService:NotesService,
                 private dataService:DataServiceService,
+                
                 private snackBar:MatSnackBar) { changeText:false}
                
    
@@ -157,6 +160,28 @@ NoteArchive()
       })
 
 }
+reminder=''
+addReminder(reminder)
+{
+  let noteData={
+    reminder: reminder 
+  }
+  this.noteId = this.noteInfo.id;
+  console.log("In Reminder",noteData);
+        this.noteService.setReminder(this.noteId,noteData).subscribe(response=>
+        {
+          console.log('response after Set Reminder',response);
+        })
+        this.dataService.changeMessage({
+          type:'getNotes'
+        })
+        error=>
+        {
+                console.log('error msg', error);
+              
+               
+        }
+}
 
 AddImage(image)
 {
@@ -164,7 +189,9 @@ AddImage(image)
   // this.selectedFile
    
 }
-
+SetTodaysTime(){""}
+SetTomorrowsTime(){""}
+RemindMe(){""}
 
 ChangeLabels(){"Empty"}
 MakeACopy(){"Empty"}

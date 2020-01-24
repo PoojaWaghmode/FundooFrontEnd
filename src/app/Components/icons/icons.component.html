@@ -1,12 +1,64 @@
 
 <div *ngIf="!isTrash" fxLayout="row" fxFlex="100">
    
+    <!-- <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu1" class="buttons">    
+            <mat-icon fontSet = "material-icons-outlined" matTooltip="More">add_alert</mat-icon>
+            <!-- <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
+                    <owl-date-time #dt1></owl-date-time> -->
+            <!-- <mat-menu #menu1 = "matMenu" >
+                
+                    <mat-menu-item >
+                        <input matInput placeholder=Today (click)="SetTodaysTime()"/>
+                    </mat-menu-item>
+                    <mat-divider></mat-divider> 
+                    <mat-menu-item >
+                        <input matInput placeholder=Today (click)="SetTodaysTime()">
+                    </mat-menu-item>
+                    <mat-divider></mat-divider>  -->
+                <!-- <button (click)="SetTodaysTime()">Today</button>  
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="SetTomorrowsTime()">Tommorrow</button> 
+                <mat-divider></mat-divider>                             
+                <button mat-menu-item (click)="RemindMe()">Remind Me
+                    <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
+                    <owl-date-time #dt1></owl-date-time>
+                </button> 
+                <mat-divider></mat-divider>  -->
+               
+<!--                    
+            </mat-menu>
+        </button>
+    </div> --> 
+
         <div>
-            <button mat-icon-button ><mat-icon fontSet="material-icons-outlined" matTooltip="Remind me">add_alert</mat-icon></button>
+            <button mat-icon-button  [matMenuTriggerFor]="reminderMenu">
+               <mat-icon fontSet="material-icons-outlined" matTooltip="Add Reminder" >add_alert</mat-icon>
+                <mat-menu #reminderMenu="matMenu" yPosition="above" >
+                    <div>
+                        <button mat-menu-item [matMenuTriggerFor]="datetime">Pick Date and Time</button>                        
+                    </div>
+                    <div>
+                        <button mat-menu-item (click)="later()">Later 8 PM</button > 
+                    </div>
+                    <div>
+                        <button mat-menu-item (click)="tommorow()">Tommorow 8 AM</button > 
+                    </div>
+                </mat-menu>
+
+                <mat-menu #datetime="matMenu">
+                    <input [(ngModel)]="reminderDate" placeholder="Click here to select date and time"
+                    [owlDateTimeTrigger]="dtPicker1" [owlDateTime]="dtPicker1">
+                    <owl-date-time #dtPicker1></owl-date-time>
+                    <button mat-menu-item (click) = "addReminder(reminderDate)">Save</button>
+                </mat-menu>
+            </button>
         </div>
 
         <div>
-            <button mat-icon-button><mat-icon fontSet="material-icons-outlined" matTooltip="Collaborator">group_add</mat-icon></button>
+            <button mat-icon-button>
+                <mat-icon fontSet="material-icons-outlined" matTooltip="Collaborator">group_add</mat-icon>
+            </button>
         </div>
         <!--                 
         <div>
@@ -24,7 +76,7 @@
         </div>
     
         <div >
-            <button mat-icon-button (click)="AddImage()">
+            <button mat-icon-button input type="file"(change)="onFileSelected($event)" (click)="AddImage()">
                 <mat-icon fontSet="material-icons-outlined" matTooltip="Add image">image</mat-icon>
             </button>
         </div>

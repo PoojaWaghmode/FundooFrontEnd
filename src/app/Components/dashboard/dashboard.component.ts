@@ -41,7 +41,7 @@ export class DashboardComponent implements OnDestroy {
         //)
     }
 
-  logOut(){
+    logOut(){
     localStorage.clear();
     this.router.navigate(['/login'])
     }

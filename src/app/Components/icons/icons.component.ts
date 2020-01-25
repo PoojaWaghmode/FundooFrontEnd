@@ -24,9 +24,8 @@ export class IconsComponent implements OnInit {
             '#fdcfe8','#e6c9a8','#e8eaed'];
   
    constructor(  private noteService:NotesService,
-                private dataService:DataServiceService,
-                
-                private snackBar:MatSnackBar) { changeText:false}
+                private dataService:DataServiceService,              
+                private snackBar:MatSnackBar) { }
                
    
   ngOnInit() {
@@ -116,7 +115,7 @@ export class IconsComponent implements OnInit {
 
       this.noteId = this.noteInfo.id
       this.noteService.changeColor(this.noteId,colorInfo).subscribe(response=>{
-        console.log('Note  Color Changed',response);
+        console.log('Note Color Changed',response);
     
       this.dataService.changeMessage
             ({
@@ -131,10 +130,12 @@ export class IconsComponent implements OnInit {
     else
     {
         this.dataService.changeMessage
-        ({
+        (
+          {
             type : "changeColor",
             data : color
-        })
+          }
+        )
     }
 }
 
@@ -160,29 +161,52 @@ NoteArchive()
       })
 
 }
-reminder=''
-addReminder(reminder)
+
+AddReminder(reminder)
 {
-  let noteData={
+  console.log("re1:",reminder)
+  let date;
+  reminder.setHours(reminder.getHours()+5)
+  reminder.setMinutes(reminder.getMinutes()+30);
+
+  let noteData=
+  {
     reminder: reminder 
   }
+
   this.noteId = this.noteInfo.id;
   console.log("In Reminder",noteData);
         this.noteService.setReminder(this.noteId,noteData).subscribe(response=>
         {
           console.log('response after Set Reminder',response);
+          this.dataService.changeMessage(
+            {
+              type:'setReminder',
+              data : reminder
+            })
+
+          this.dataService.changeMessage
+          (
+            {
+              type:'getNotes'
+            }
+          )
         })
-        this.dataService.changeMessage({
-          type:'getNotes'
-        })
+       
         error=>
         {
-                console.log('error msg', error);
-              
-               
+                console.log('error msg', error); 
         }
 }
 
+Tomorrow()
+{
+
+}
+Today()
+{
+
+}
 AddImage(image)
 {
    this.noteId=this.noteInfo.id;

@@ -27,6 +27,11 @@
                 <div>
                     <input matInput type="text" [(ngModel)]="description" placeholder="Take a note...." style="font-size: 14px;">
                 </div> 
+                <div fxFlex="100" (click)="openDialog(note)">
+                    <mat-chip style:width:23px>
+                    {{reminder | date:'short'}}
+                    </mat-chip>
+                 </div>
                 <div fxLayout="row">
                     <div fxFlex="80%">
                         <app-icons></app-icons>

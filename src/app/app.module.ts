@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { EditNoteComponent } from './Components/edit-note/edit-note.component';
  import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { SearchComponent } from './Components/search/search.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { EditNoteComponent } from './Components/edit-note/edit-note.component';
     DisplayNotesComponent,
     IconsComponent,
     EditNoteComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

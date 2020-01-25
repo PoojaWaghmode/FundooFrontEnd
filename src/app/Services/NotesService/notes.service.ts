@@ -61,7 +61,13 @@ export class NotesService {
   }
   setReminder(noteId,data)
   {
-    return this.httpService.put('api/Note/'+noteId+'/SetReminder',data)
+    return this.httpService.put('api/Note/'+noteId+'/SetReminder',data);
+  }
+  searchNotes(searchNote)
+  {
+    console.log("in ser",searchNote );
+    
+    return this.httpService.get('api/Note/SearchNotes/'+searchNote);
   }
 
 }

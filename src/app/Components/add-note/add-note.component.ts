@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import{DataServiceService}from '../../Services/DataService/data-service.service';
 import { Title } from '@angular/platform-browser';
+import { IfStmt } from '@angular/compiler';
 @Component({
   selector: 'app-add-note',
   templateUrl: './add-note.component.html',
@@ -16,6 +17,7 @@ export class AddNoteComponent implements OnInit {
       description=''
       color=''
       image=''
+      reminder=''
      // reminder=''
       //isTrash=''
       //isArchive=''
@@ -30,20 +32,19 @@ export class AddNoteComponent implements OnInit {
         private dataService:DataServiceService
         ) { }
 
-     
-
   ngOnInit() {
 
-    this.dataService.currentMessage.subscribe(response=>{
+      this.dataService.currentMessage.subscribe(response=>{
       if(response.type == "changeColor")
       {
         this.color=response.data;
       }
+      if(response.type=="setReminder")
+      {
+         this.reminder=response.data;
+      }
+       
     })
-
-    // this.dataService.changeMessage({
-    //   type:'getNotes'
-    // })
     
   }
 
@@ -54,6 +55,7 @@ export class AddNoteComponent implements OnInit {
 
     //console.log("title",this.title,"description",this.description);
 
+    
     if(this.title || this .description)
     {
             let note={
@@ -62,6 +64,7 @@ export class AddNoteComponent implements OnInit {
                 Description: this.description,
                 Image:"",
                 color:this.color,
+                eminder:this.reminder
                 //reminder:this.reminder
                      
             }
@@ -74,6 +77,11 @@ export class AddNoteComponent implements OnInit {
                         type:'getNotes'
                       })
 
+                      this.dataService.changeMessage(
+                        {
+                          type:'changeColor'
+                        }
+                      )
                       this.snackBar.open(response['message'],'',{
                         duration:2000,
                         verticalPosition: 'top',
@@ -99,7 +107,7 @@ export class AddNoteComponent implements OnInit {
     }
     this.title='';
     this.description='';
-   // this.reminder='';
+    this.reminder='';
     this.color='';
 
   } 

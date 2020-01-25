@@ -3,6 +3,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 import{Router} from '@angular/router'
 import {UserServiceService} from '../../Services/UserService/user-service.service'
+import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
 
 
 @Component({
@@ -16,14 +17,15 @@ export class DashboardComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
-
+  value=''
 
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef,
      media: MediaMatcher,
      private router:Router,
-     private userService:UserServiceService) 
+     private userService:UserServiceService,
+     private dataService:DataServiceService )
      {
           this.mobileQuery = media.matchMedia('(max-width: 600px)');
           this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -58,5 +60,17 @@ export class DashboardComponent implements OnDestroy {
     {
       this.router.navigate(['/dashboard/reminder'])
     }
-  
+
+    SearchNotes(event)
+    {
+        console.log("Event: ", event);
+        this.value=event.target.value
+        this.router.navigate(['/dashboard/search'])
+        console.log("Event....................",event.target.value);
+       
+        this.dataService.changeMessage({
+          type:"SearchNotes",
+          data:this.value
+        })
+    }
 }

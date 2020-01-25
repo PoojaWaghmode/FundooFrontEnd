@@ -28,8 +28,19 @@ export class EditNoteComponent implements OnInit {
         if(response.type == "changeColor")
         {
           this.data.color=response.data;
+          //this.EditNote();
         }
     })
+    this.dataService.currentMessage.subscribe(response=>
+      {
+        if(response.type == "setReminder")
+        {
+          this.data.reminder=response.data;
+          //this.EditNote();
+          console.log("hj",this.data.reminder)
+        }
+    })
+
   }
 
   title=''
@@ -40,55 +51,74 @@ export class EditNoteComponent implements OnInit {
 
   EditNote()
   {
-    console.log("Data:",this.data);
-    if(this.data.title || this.data.description)
+    console.log("Data:",this.reminder);
+   
+    if(this.data.id != undefined)
     {
-            let note =
-            {
-                Title:this.data.title,
-                Description: this.data.description,
-                Image:"",
-                color:this.data.color,
-                reminder: this.data.reminder                
-            }
-
-            console.log("d :",this.data.color);
-            this.noteService.editNote(this.data.id,note).subscribe(response=>
+      if(this.data.title || this.data.description || this.data.reminder)
+      {
+              let note =
               {
-                
-                      console.log('response after Edit Note',response);
-                      console.log("d :",this.data.color);
-                      
-                      this.dataService.changeMessage({
+                  Title:this.data.title,
+                  Description: this.data.description,
+                  Image:"",
+                  color:this.data.color,
+                  reminder: this.data.reminder                
+              }
+  
+
+              console.log("d :",this.data.color);
+              this.noteService.editNote(this.data.id,note).subscribe(response=>
+                {
+                  
+                  console.log('response after Edit Note',response);
+                       
+                 
+                  this.dataService.changeMessage(
+                    {
+                        type:'changeColor',
+                         
+                    })
+
+                    this.dataService.changeMessage(
+                      {
                         type:'getNotes'
                       })
-                      // this.dataService.changeMessage({
-                      //   type:'changeColor'
-                      // })
-
-
-                      this.snackBar.open(response['message'],'',{
-                        duration:2000,
-                        verticalPosition: 'top',
-                        horizontalPosition:'center'
-                      });
-
-              },
-              error=>
-              {
-                      console.log('error msg', error);
-                    
-                      this.snackBar.open(error['error']['message'] ,'Error Occured',
-                      { 
-                        duration:50000,
-                        verticalPosition: 'top',
-                        horizontalPosition:'center'})
-                      })
-              }
-        else
+      
+  
+                  this.snackBar.open(response['message'],'',
+                  {
+                          duration:2000,
+                          verticalPosition: 'top',
+                          horizontalPosition:'center'
+                  });
+                },
+                error=>
+                {
+                        console.log('error msg', error);
+                      
+                        this.snackBar.open(error['error']['message'] ,'Error Occured',
+                        { 
+                          duration:50000,
+                          verticalPosition: 'top',
+                          horizontalPosition:'center'})
+                        })
+                }
+          else
+          {
+              console.error("Atleast One Field Required");
+          }
+    }
+    else
+    {
+      console.log("dfg");
+      this.dataService.changeMessage(
         {
-            console.error("Atleast One Field Required");
-        }
+          type:'changeColor',
+          data : this.data.color
+        })
+    }
+  
         this.dialogRef.close();
     } 
   

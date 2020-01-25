@@ -1,5 +1,6 @@
-<div fxLayoutAlign="start center" display="flex" style="width: 350px;" fxFlex="600px" fxLayout="row"  [ngStyle]="{'backgroundColor' : data.color}">
-    
+ <mat-card display="flex" style="width: 350px;" fxFlex="600px" fxLayout="row" [style.background-color]='data.color'
+ >
+    <!-- [ngStyle]="{'backgroundColor' : data.color}" -->
            <div>
                 <div>
                     <div fxFlex="500px">
@@ -32,6 +33,4 @@
                     </div>
                 </div>       
             </div>
-        
-    
-</div>
+</mat-card>

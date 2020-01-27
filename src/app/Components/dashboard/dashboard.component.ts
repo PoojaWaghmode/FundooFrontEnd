@@ -73,4 +73,5 @@ export class DashboardComponent implements OnDestroy {
           data:this.value
         })
     }
+   
 }

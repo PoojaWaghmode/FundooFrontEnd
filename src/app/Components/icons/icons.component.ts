@@ -14,11 +14,8 @@ export class IconsComponent implements OnInit {
 
     @Input() noteInfo;
     @Input() isTrash;
-    @Output() messageEvent = new EventEmitter<string>();
-    changeText: boolean;
-    onFileSelected(event){
-      console.log(event);
-    }
+    @Output() colorEvent = new EventEmitter<string>();
+    @Output() reminderEvent=new EventEmitter<string>();
 
    colors=['#fff','#f28b82','#fbbc04','#fff475','#ccff90','#a7ffeb','#cbf0f8','#aecbfa','#d7aefb',
             '#fdcfe8','#e6c9a8','#e8eaed'];
@@ -33,6 +30,7 @@ export class IconsComponent implements OnInit {
   }
 
   noteId : any;
+  date:any
 
   TrashNote()
   {
@@ -44,31 +42,34 @@ export class IconsComponent implements OnInit {
       this.noteService.trashNote(this.noteId).subscribe(response=>
       {
           console.log(' Note trashed' );    
-            this.dataService.changeMessage(
-              {
-                type:"getNotes"
-              }
-            )        
+          this.dataService.changeMessage(
+          {
+              type:"getNotes"
+          })  
+          this.snackBar.open(response['message'],'',{
+          duration:4000,
+              horizontalPosition:'start'
+          });      
       },
       error=>
       {
           console.log('error msg', error);
       })
-   
   }
-
-
   DeleteNote()
   {
-    this.noteId = this.noteInfo.id
-    this.noteService.deleteNote(this.noteId).subscribe(response=>
+      this.noteId = this.noteInfo.id
+      this.noteService.deleteNote(this.noteId).subscribe(response=>
       {
-        
-        console.log('Note Deleted' );
-        this.dataService.changeMessage(
+          console.log('Note Deleted' );
+          this.dataService.changeMessage(
           {
-            type:"getNotes"
-          } )   
+              type:"getNotes"
+          })   
+          this.snackBar.open(response['message'],'',{
+          duration:4000,
+          horizontalPosition:'start'
+          });
       },
       error=>
       {
@@ -80,91 +81,81 @@ export class IconsComponent implements OnInit {
   {
     this.noteId = this.noteInfo.id
     this.noteService.restoreNote(this.noteId).subscribe(response=>
-      {
-        
-        console.log('Note Restored' );
-        this.dataService.changeMessage(
+    {
+          console.log('Note Restored' );
+          this.dataService.changeMessage(
           {
             type:"getNotes"
           })  
           this.snackBar.open(response['message'],'',{
-            duration:4000,
-            horizontalPosition:'start'
+          duration:4000,
+          horizontalPosition:'start'
           });
-           
-      },
-      error=>
-      {
-          console.log('error msg', error);
-      })
+    },
+    error=>
+    {
+        console.log('error msg', error);
+    })
   }
   
   ChangeColor(color)
   {
-      //console.log("color is ....",color);
-      
-      if(this.noteInfo != undefined)
-      {
-      
-        //console.log("color is ....",color);
-        this.messageEvent = color;
-
-        let colorInfo={
-        color : color
-      }
-
-      this.noteId = this.noteInfo.id
-      this.noteService.changeColor(this.noteId,colorInfo).subscribe(response=>{
+    if(this.noteInfo != undefined)
+    {
+       //console.log("color is ....",color);
+        this.colorEvent.emit(color); 
+        let colorInfo=
+        {
+          color : color
+        }
+        this.noteId = this.noteInfo.id
+        this.noteService.changeColor(this.noteId,colorInfo).subscribe(response=>{
         console.log('Note Color Changed',response);
-    
-      this.dataService.changeMessage
-            ({
-               type:"getNotes"
-            })
-      },
-      error=>
-      {
-            console.log('error msg', error);
-      })
+        this.dataService.changeMessage(
+        {
+            type:"getNotes"
+        })
+    },
+    error=>
+    {
+        console.log('error msg', error);
+    })
+     
     }
     else
     {
-        this.dataService.changeMessage
-        (
-          {
+        this.dataService.changeMessage({
             type : "changeColor",
             data : color
-          }
-        )
-    }
-}
-
+        })
+     }
+  }
 
 
 NoteArchive()
 {
-  this.noteId = this.noteInfo.id
-  this.noteService.archiveNote(this.noteId).subscribe(response=>{
+    this.noteId = this.noteInfo.id
+    this.noteService.archiveNote(this.noteId).subscribe(response=>{
     console.log('Note Archived' );
-      this.dataService.changeMessage(
-        {
-            type:"getNotes"
-        } )  
-        this.snackBar.open(response['message'],'',{
-          duration:4000,
-          horizontalPosition:'start'
-        }); 
-      },
-      error=>
-      {
-          console.log('error msg', error);
-      })
-
+    this.dataService.changeMessage(
+    {
+        type:"getNotes"
+    })  
+    this.snackBar.open(response['message'],'',{
+    duration:4000,
+    horizontalPosition:'start'
+    }); 
+    },
+    error=>
+    {
+        console.log('error msg', error);
+    })
 }
 
 AddReminder(reminder)
 {
-  console.log("re1:",reminder)
+  this.reminderEvent.emit(reminder);
+
   let date;
   reminder.setHours(reminder.getHours()+5)
   reminder.setMinutes(reminder.getMinutes()+30);
@@ -176,53 +167,58 @@ AddReminder(reminder)
 
   this.noteId = this.noteInfo.id;
   console.log("In Reminder",noteData);
-        this.noteService.setReminder(this.noteId,noteData).subscribe(response=>
-        {
-          console.log('response after Set Reminder',response);
-          this.dataService.changeMessage(
-            {
-              type:'setReminder',
-              data : reminder
-            })
-
-          this.dataService.changeMessage
-          (
-            {
-              type:'getNotes'
-            }
-          )
-        })
-       
-        error=>
-        {
-                console.log('error msg', error); 
-        }
+  this.noteService.setReminder(this.noteId,noteData).subscribe(response=>{
+  console.log('response after Set Reminder',response);
+  this.dataService.changeMessage({
+          type:'getNotes'
+    })
+  })
+  error=>
+  {
+      console.log('error msg', error); 
+  }
 }
 
-Tomorrow()
+LaterToday()
 {
-
+ this.date =new Date();
+ this.date.setHours(20,0,0);
+ console.log("Later Today Time:",this.date);
+ this.AddReminder(this.date);
 }
-Today()
+
+Tomorrrow()
 {
-
+ this.date=new Date();
+ this.date.setHours(8,0,0);
+ this.date.setDate(this.date.getDate()+1);
+ console.log("Tommorow:"+this.date);
+ this.AddReminder(this.date);
 }
-AddImage(image)
+
+NextWeek()
+{
+  this.date=new Date();
+  this.date.setDate((this.date.getDate() - this.date.getDay() + 1) + 7);
+  console.log("Next Weak date:",this.date);
+  this.date.setHours(8,0,0);
+  this.AddReminder(this.date);
+}
+AddImage(files:File)
 {
    this.noteId=this.noteInfo.id;
-  // this.selectedFile
+   let fileToUpload = <File>files[0];
+   const formData: FormData = new FormData();
+   formData.append('formFile', fileToUpload); 
    
+   this.noteService.addImage(this.noteId,formData).subscribe(response=>
+    {
+      var imageUrl = response['result']
+
+      console.log('image url',response)
+   })
+      
 }
-SetTodaysTime(){""}
-SetTomorrowsTime(){""}
-RemindMe(){""}
-
-ChangeLabels(){"Empty"}
-MakeACopy(){"Empty"}
-ShowCheckboxes(){"Empty"}
-CopyToGoogleDocs(){"Empty"}
-
-
 }
 
 

@@ -17,20 +17,26 @@ export class DisplayNotesComponent implements OnInit {
  
  color:any
  message:string;
+ reminder=''
+
   constructor( private router:Router,
                private userService:UserServiceService,
                private dataService:DataServiceService,public dialog: MatDialog) { }
 
-  receiveMessage($event)
+  
+  receiveReminder($event) 
   {
-        this.message = $event
+    this.reminder = $event
   }
+  receiveColor($event)
+  {
+    this.color=$event;
+  }
+  
 
   ngOnInit() 
   {
   }
-
-
   openDialog(noteData)
     {
     const dialogRef = this.dialog.open(EditNoteComponent, {
@@ -38,11 +44,6 @@ export class DisplayNotesComponent implements OnInit {
       height:'200px',
       data: noteData
     });
-
-    
-  
-   //console.log('childMessage',this.getChildMessage);
- 
 }
 
 }

@@ -30,13 +30,16 @@
                 <button mat-icon-button style="margin-top:7px;margin-left: 40px; ">
                     <mat-icon fontSet = "material-icons-outlined">apps</mat-icon>
                 </button>
-                
-              <button mat-icon-button [matMenuTriggerFor]="menu" style="margin-top:7px;margin-left: 20px; outline: none;"class="buttons">    
-                <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
-                  <mat-menu #menu = "matMenu">
-                    <button mat-menu-item (click)="uploadProfile();logOut()">Sign Out</button >                           
-                  </mat-menu>
-              </button>
+               
+                <div>
+                  <button mat-icon-button [matMenuTriggerFor]="menu" style="margin-top:7px;margin-left: 20px; outline: none;" class="buttons">    
+                    <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
+                      <mat-menu #menu = "matMenu">
+                        <button mat-menu-item (click)="uploadProfile();logOut()">Sign Out</button >                           
+                      </mat-menu>
+                  </button>
+                </div>
+              
             </div>
             
         </div>

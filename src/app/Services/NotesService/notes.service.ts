@@ -50,13 +50,12 @@ export class NotesService {
   {
     return this.httpService.put('api/Note/'+noteId+'/Archieve',noteId);
   }
-  addImage(noteId,file)
+  addImage(noteId,formData)
   {
-    return this.httpService.post('api/Note'+noteId+'/Image',file)
+    return this.httpService.post('api/Note/'+noteId+'/Image',formData)
   }
   editNote(id,data)
   {
-    console.log("data :", id,data);
     return this.httpService.put('api/Note/'+id,data);
   }
   setReminder(noteId,data)
@@ -65,8 +64,6 @@ export class NotesService {
   }
   searchNotes(searchNote)
   {
-    console.log("in ser",searchNote );
-    
     return this.httpService.get('api/Note/SearchNotes/'+searchNote);
   }
 

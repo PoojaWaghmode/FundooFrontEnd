@@ -1,5 +1,5 @@
- <mat-card display="flex" style="width: 350px;" fxFlex="600px" fxLayout="row" [style.background-color]='data.color'
- >
+ <mat-card display="flex" style="width: 350px;" fxFlex="600px" fxLayout="row" [style.background-color]='data.color'>
+ 
     <!-- [ngStyle]="{'backgroundColor' : data.color}" -->
            <div>
                 <div>
@@ -24,7 +24,7 @@
 
                 <div fxLayout="row">
                     <div fxFlex="80%">
-                        <app-icons></app-icons>
+                        <app-icons (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)"></app-icons>
                     </div>
                     <div style="padding: 15px 0 0 75px;">
                         <button mat-icon-button (click)=" EditNote()">

@@ -39,15 +39,23 @@ export class AddNoteComponent implements OnInit {
       {
         this.color=response.data;
       }
-      if(response.type=="setReminder")
+    })
+    this.dataService.currentMessage.subscribe(response=>{
+      if(response.type == "setReminder")
       {
-         this.reminder=response.data;
+        this.reminder=response.data;
       }
-       
     })
     
   }
-
+  receiveReminder($event)
+  {
+      this.reminder = $event;
+  }
+  receiveColor($event)
+  {
+    this.color=$event
+  }
   
   createNote()
   {
@@ -64,8 +72,8 @@ export class AddNoteComponent implements OnInit {
                 Description: this.description,
                 Image:"",
                 color:this.color,
-                eminder:this.reminder
-                //reminder:this.reminder
+                //eminder:this.reminder
+                reminder:this.reminder
                      
             }
             this.noteService.createNote(note).subscribe(response=>
@@ -82,6 +90,9 @@ export class AddNoteComponent implements OnInit {
                           type:'changeColor'
                         }
                       )
+                      this.dataService.changeMessage({
+                        type:'setReminder'
+                      })
                       this.snackBar.open(response['message'],'',{
                         duration:2000,
                         verticalPosition: 'top',

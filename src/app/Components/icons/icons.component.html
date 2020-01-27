@@ -3,15 +3,18 @@
         <div>
             <button mat-icon-button  [matMenuTriggerFor]="reminderMenu">
                <mat-icon fontSet="material-icons-outlined" matTooltip="Add Reminder" >add_alert</mat-icon>
-                <mat-menu #reminderMenu="matMenu" yPosition="above" >
+                <mat-menu #reminderMenu="matMenu" yPosition="above"> <mat-label style="font-size: 15px;">Reminder :</mat-label>
+                    <div>
+                        <button mat-menu-item style="font-size: 14px;" (click)="LaterToday()">Later today        8.00 PM</button > 
+                    </div>
+                    <div>
+                        <button mat-menu-item style="font-size: 14px;" (click)="Tomorrrow()">Tommorow   8.00 AM</button > 
+                    </div>
+                    <div>
+                        <button mat-menu-item style="font-size: 14px;" (click)="NextWeek()">Next week  Mon,8.00 AM</button > 
+                    </div>
                     <div>
                         <button mat-menu-item [matMenuTriggerFor]="datetime">Pick Date and Time</button>                        
-                    </div>
-                    <div>
-                        <button mat-menu-item (click)="Today()">Later 8 PM</button > 
-                    </div>
-                    <div>
-                        <button mat-menu-item (click)="Tommorow()">Tommorow 8 AM</button > 
                     </div>
                 </mat-menu>
 
@@ -25,10 +28,11 @@
         </div>
 
         <div>
-            <button mat-icon-button>
+            <button mat-icon-button class="mat-icon-button" (click)=Collaborate()>
                 <mat-icon fontSet="material-icons-outlined" matTooltip="Collaborator">group_add</mat-icon>
             </button>
         </div>
+    
         <!--                 
         <div>
             <button mat-icon-button><mat-icon fontSet="material-icons-outlined" matTooltip="Change color">palette</mat-icon></button>
@@ -44,13 +48,11 @@
         </button>  
         </div>
     
-        <div >
-            <button mat-icon-button input type="file"(change)="onFileSelected($event)" (click)="AddImage()">
-                <mat-icon fontSet="material-icons-outlined" matTooltip="Add image">image</mat-icon>
-            </button>
-        </div>
-
-
+        <button mat-icon-button matTooltip="Add image"  (click)="file.click(file)" mat-icon-button>
+            <mat-icon fontSet="material-icons-outlined">add_photo_alternate</mat-icon>  
+            <input type="file" #file style="display:none;" (change)="AddImage(file.files)">
+        </button>
+        
         <div>
             <button mat-icon-button class="buttons">
                 <mat-icon *ngIf = "noteInfo == undefined" fontSet = "material-icons-outlined" (click)="NoteArchive()" matTooltip ="Archive">archive</mat-icon>

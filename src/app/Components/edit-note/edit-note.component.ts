@@ -10,7 +10,11 @@ import { DataServiceService } from 'src/app/Services/DataService/data-service.se
 })
 export class EditNoteComponent implements OnInit {
 
-
+  title=''
+  description=''
+  color=''
+  image=''
+  reminder=''
  
   constructor( public dialogRef: MatDialogRef<EditNoteComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
@@ -21,6 +25,15 @@ export class EditNoteComponent implements OnInit {
     ) { }
 
     
+    receiveReminder($event) 
+    {
+      this.data.reminder = $event
+    }
+    receiveColor($event)
+    {
+      this.data.color=$event
+    }
+
   ngOnInit() 
   {
     this.dataService.currentMessage.subscribe(response=>
@@ -28,34 +41,20 @@ export class EditNoteComponent implements OnInit {
         if(response.type == "changeColor")
         {
           this.data.color=response.data;
-          //this.EditNote();
+         
         }
     })
-    this.dataService.currentMessage.subscribe(response=>
-      {
-        if(response.type == "setReminder")
-        {
-          this.data.reminder=response.data;
-          //this.EditNote();
-          console.log("hj",this.data.reminder)
-        }
-    })
-
   }
 
-  title=''
-  description=''
-  color=''
-  image=''
-  reminder=''
+  
 
   EditNote()
   {
-    console.log("Data:",this.reminder);
+    // console.log("Data Reminder ",this.data.reminder);
    
     if(this.data.id != undefined)
     {
-      if(this.data.title || this.data.description || this.data.reminder)
+      if(this.data.title || this.data.description)
       {
               let note =
               {
@@ -66,7 +65,7 @@ export class EditNoteComponent implements OnInit {
                   reminder: this.data.reminder                
               }
   
-
+              console.log("Reminder  Edit Note :",this.data.reminder);
               console.log("d :",this.data.color);
               this.noteService.editNote(this.data.id,note).subscribe(response=>
                 {
@@ -78,14 +77,14 @@ export class EditNoteComponent implements OnInit {
                     {
                         type:'changeColor',
                          
-                    })
-
+                    }
+                  )
                     this.dataService.changeMessage(
                       {
                         type:'getNotes'
-                      })
-      
-  
+                      }
+                    )
+                     
                   this.snackBar.open(response['message'],'',
                   {
                           duration:2000,

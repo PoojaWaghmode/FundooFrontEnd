@@ -3,6 +3,9 @@
     <!-- [ngStyle]="{'backgroundColor' : data.color}" -->
            <div>
                 <div>
+                    <div fxLayout="row">
+                        <img src="data.image">
+                     </div>
                     <div fxFlex="500px">
                         <input matInput type="text" [(ngModel)]="data.title" style="font-size: 14px;"> 
                     </div> 
@@ -24,7 +27,7 @@
 
                 <div fxLayout="row">
                     <div fxFlex="80%">
-                        <app-icons (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)"></app-icons>
+                        <app-icons (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>
                     </div>
                     <div style="padding: 15px 0 0 75px;">
                         <button mat-icon-button (click)=" EditNote()">

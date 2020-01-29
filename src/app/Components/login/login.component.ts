@@ -50,12 +50,11 @@ export class LoginComponent implements OnInit
                       console.log('response after login',response);
                       
                       localStorage.setItem('token', response['token']);
-                      localStorage.setItem('firstName',response['firstName']);
-                      localStorage.setItem('lastName',response['lastName']);
-                      localStorage.setItem('email',response['email'])
-                      localStorage.setItem('image',response['image']);
-                      localStorage.setItem('userName',response['userName']);
-                      
+                      localStorage.setItem('FirstName',response['data']['firstName']);
+                      localStorage.setItem('LastName',response['data']['lastName']);
+                      localStorage.setItem('Email',response['data']['email'])
+                      localStorage.setItem('ProfileImage',response['data']['profileImage']);
+                     
     
                       this.router.navigate(['/dashboard'])
                     

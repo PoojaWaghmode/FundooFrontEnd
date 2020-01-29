@@ -66,5 +66,16 @@ export class NotesService {
   {
     return this.httpService.get('api/Note/SearchNotes/'+searchNote);
   }
-
+  deleteReminder(noteId)
+  {
+    return this.httpService.delete('api/Note/'+noteId+'/DeleteReminder');
+  }
+  addCollaborator(noteId,receiverId)
+  {
+    return this.httpService.post('api/Note/'+noteId+'/CollaborateNote/'+receiverId,receiverId);
+  }
+  removeCollaborator(noteId,receiverId)
+  {
+    return this.httpService.delete('api/Note'+noteId+'/CollaborateNote/'+receiverId);
+  }
 }

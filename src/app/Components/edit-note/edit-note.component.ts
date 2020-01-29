@@ -33,7 +33,10 @@ export class EditNoteComponent implements OnInit {
     {
       this.data.color=$event
     }
-
+    receiveImage($event)
+    {
+      this.data.image=$event
+    }
   ngOnInit() 
   {
     this.dataService.currentMessage.subscribe(response=>

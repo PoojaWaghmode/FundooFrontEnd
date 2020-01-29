@@ -18,10 +18,9 @@ export class AddNoteComponent implements OnInit {
       color=''
       image=''
       reminder=''
-     // reminder=''
-      //isTrash=''
-      //isArchive=''
-      //isPin=''
+      // isTrash=''
+      // isArchive=''
+      // isPin=''
     
 
         isOpen=true;
@@ -46,6 +45,12 @@ export class AddNoteComponent implements OnInit {
         this.reminder=response.data;
       }
     })
+    this.dataService.currentMessage.subscribe(response=>{
+      if(response.type == "addImage")
+      {
+        this.image=response.data;
+      }
+    })
     
   }
   receiveReminder($event)
@@ -56,12 +61,16 @@ export class AddNoteComponent implements OnInit {
   {
     this.color=$event
   }
-  
+  receiveImage($event)
+  {
+    console.log("Image:"+event);
+    this.image=$event
+  }
   createNote()
   {
     this.isOpen=true;
 
-    //console.log("title",this.title,"description",this.description);
+   
 
     
     if(this.title || this .description)
@@ -70,10 +79,12 @@ export class AddNoteComponent implements OnInit {
 
                 Title:this.title,
                 Description: this.description,
-                Image:"",
-                color:this.color,
-                //eminder:this.reminder
-                reminder:this.reminder
+                image:this.image,
+                color:this.color,               
+                reminder:this.reminder,
+                // isArchive:this.isArchive,
+                // isTrash:this.isTrash,
+                // isPin:this.isPin
                      
             }
             this.noteService.createNote(note).subscribe(response=>
@@ -90,8 +101,11 @@ export class AddNoteComponent implements OnInit {
                           type:'changeColor'
                         }
                       )
+                      // this.dataService.changeMessage({
+                      //   type:'setReminder'
+                      // })
                       this.dataService.changeMessage({
-                        type:'setReminder'
+                        type:'addImage'
                       })
                       this.snackBar.open(response['message'],'',{
                         duration:2000,

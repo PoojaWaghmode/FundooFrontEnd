@@ -56,10 +56,9 @@ export class HttpServiceService {
           headers:new HttpHeaders
           ({
             'Authorization':'Bearer '+localStorage.getItem('token'),          
-            'Content-Type':'application/json'
+           // 'Content-Type':'application/json'
           })
          }
-        // console.log(localStorage.getItem('token'))
         return this.httpClient.delete(this.baseUrl+url ,options);
       }
 }

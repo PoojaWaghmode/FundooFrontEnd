@@ -61,6 +61,10 @@ export class DashboardComponent implements OnDestroy {
       this.router.navigate(['/dashboard/reminder'])
     }
 
+    GetLabels()
+    {
+      
+    }
     SearchNotes(event)
     {
         console.log("Event: ", event);

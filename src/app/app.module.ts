@@ -24,6 +24,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { EditNoteComponent } from './Components/edit-note/edit-note.component';
  import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { SearchComponent } from './Components/search/search.component';
+import { LabelComponent } from './Components/label/label.component';
+import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { SearchComponent } from './Components/search/search.component';
     IconsComponent,
     EditNoteComponent,
     SearchComponent,
+    LabelComponent,
+    CollaboratorComponent,
   ],
   imports: [
     BrowserModule,

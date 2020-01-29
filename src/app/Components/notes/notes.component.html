@@ -1,3 +1,8 @@
 <app-add-note></app-add-note>
-<app-display-notes [getChildMessage]="allNotes" ></app-display-notes>
+<div *ngIf="pinnedNotes.length>0" style="margin: 0px 0 0 105px">Pinned</div>
+<app-display-notes [getChildMessage]="pinnedNotes"></app-display-notes>
+
+<div *ngIf="unpinnedNotes.length>0 && pinnedNotes.length>0"style="margin: 10px 0 0 105px">Others</div>
+<app-display-notes [getChildMessage]="unpinnedNotes"></app-display-notes>
+
 

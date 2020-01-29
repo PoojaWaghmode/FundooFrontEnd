@@ -13,14 +13,18 @@
 
         <div *ngIf="!isOpen" >
             <div  fxLayout="column">
+                
                 <div>
+                    <!-- <div fxLayout="row">
+                        <img src="{{image}}">
+                     </div> -->
                     <div fxFlex="500px">
                         <input matInput type="text" [(ngModel)]="title" placeholder="Title" style="font-size: 14px;"> 
                     </div> 
                     <div>
                         <button mat-icon-button  (click)="isPin = !isPin">
                             <img src="/assets/images/pin.svg" matTooltip="Pin Note" *ngIf="!isPin">
-                            <img src="/assets/images/pin2.png" matTooltip="Unpin Note" *ngIf="isPin">
+                            <img src="/assets/images/Unpin.png" matTooltip="Unpin Note" *ngIf="isPin">
                         </button>
                     </div>                    
                 </div> 
@@ -34,7 +38,7 @@
                  </div>
                 <div fxLayout="row">
                     <div fxFlex="80%">
-                        <app-icons (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)"></app-icons>
+                        <app-icons (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>
                     </div>
                     <div style="padding: 15px 0 0 75px;">
                         <button mat-icon-button (click)=" createNote()">

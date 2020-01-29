@@ -9,9 +9,6 @@ import { DataServiceService } from "../../Services/DataService/data-service.serv
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
-
-
-  allNotes=[];
   constructor( 
     private router:Router,
     private notesService:NotesService,
@@ -32,19 +29,41 @@ export class NotesComponent implements OnInit {
       })
 
   }
-
+ 
+  pinnedNotes=[];
+  unpinnedNotes=[];
+  allNotes=[];
+ 
+  separateNotes()
+  {
+    this.pinnedNotes=[];
+    this.unpinnedNotes=[];
+    for (let i = 0; i < this.allNotes.length; i++) 
+    {
+      if(this.allNotes[i].isPin == true)
+      {
+        this.pinnedNotes.push(this.allNotes[i]);
+      }
+      else
+      {
+        this.unpinnedNotes.push(this.allNotes[i]);
+      }
+    }
+  }
+ 
+ 
  getAllNotes()
   {
    this.notesService.getNotes().subscribe(response=>
-               {
-                 console.log('response after Display Notes', response['message']); 
-                  this.allNotes = response['results']               
-               },
-              error=>
-               {
-                 console.log('error msg', error);
-               })
-  
+   {
+      console.log('response after Display Notes', response['message']); 
+      this.allNotes = response['results'] 
+      this.separateNotes();              
+   },
+   error=>
+  {
+      console.log('error msg', error);
+  })
   }           
 }
  

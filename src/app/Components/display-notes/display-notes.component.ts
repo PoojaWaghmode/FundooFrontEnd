@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import{Router} from '@angular/router';
 import{UserServiceService} from '../../Services/UserService/user-service.service';
 import {DataServiceService} from '../../Services/DataService/data-service.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EditNoteComponent } from '../edit-note/edit-note.component';
+import { NotesService } from 'src/app/Services/NotesService/notes.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-display-notes',
@@ -18,10 +19,18 @@ export class DisplayNotesComponent implements OnInit {
  color:any
  message:string;
  reminder=''
+ image:File
+ 
+ 
+ 
 
   constructor( private router:Router,
                private userService:UserServiceService,
-               private dataService:DataServiceService,public dialog: MatDialog) { }
+               private dataService:DataServiceService,
+               private noteService:NotesService,
+               private snackBar:MatSnackBar,
+               public dialog: MatDialog
+               ) { }
 
   
   receiveReminder($event) 
@@ -32,18 +41,47 @@ export class DisplayNotesComponent implements OnInit {
   {
     this.color=$event;
   }
-  
+  receiveImage($event)
+  {
+    this.image=$event;
+  }
 
   ngOnInit() 
   {
   }
+
   openDialog(noteData)
+  {
+    const dialogRef = this.dialog.open(EditNoteComponent,
     {
-    const dialogRef = this.dialog.open(EditNoteComponent, {
       width: '450px',
       height:'200px',
       data: noteData
     });
-}
+ }
+
+ DeleteReminder(data)
+ {
+  
+    console.log("Data:",data.id);
+    
+     this.noteService.deleteReminder(data.id).subscribe(response=>
+     {
+         console.log('Note  Reminder Deleted' );
+         this.dataService.changeMessage(
+         {
+             type:"getNotes"
+         })   
+         this.snackBar.open(response['message'],'',{
+         duration:4000,
+         horizontalPosition:'start'
+         });
+     },
+     error=>
+     {
+         console.log('error msg', error);
+     })
+ }
+ 
 
 }

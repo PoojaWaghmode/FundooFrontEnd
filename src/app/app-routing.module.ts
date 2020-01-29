@@ -13,6 +13,7 @@ import { TrashComponent } from './Components/trash/trash.component';
 import { RemindersComponent } from './Components/reminders/reminders.component';
 import { EditNoteComponent } from './Components/edit-note/edit-note.component';
 import { SearchComponent } from './Components/search/search.component';
+import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
 const routes: Routes = [
   { path: '',
   redirectTo: '/login',
@@ -32,9 +33,10 @@ children:[
         { path:  'display',component:DisplayNotesComponent},
         { path: 'archive',component:ArchiveComponent},
         { path: 'trash',component:TrashComponent},
-        { path:'reminder',component:RemindersComponent},
-        { path:'edit-note',component:EditNoteComponent},
-        { path:'search',component:SearchComponent},
+        { path: 'reminder',component:RemindersComponent},
+        { path: 'edit-note',component:EditNoteComponent},
+        { path: 'search',component:SearchComponent},
+        { path: 'collaborator',component:CollaboratorComponent}
   
     ]
 }

@@ -1,21 +1,21 @@
-<div fxLayout="row wrap" style="margin:10% 0px 56px 10%;">    
+<div *ngIf="value==1" fxLayout="row wrap" style="margin:2% 0% 1% 10%;">    
    <mat-card *ngFor="let note of getChildMessage" style="margin: 10px 10px 10px 10px;" [ngStyle] ="{'backgroundColor' : note.color}">
          <div fxLayout="column">
 
-            <div fxLayout="row">
+            <div fxLayout="column">
                 <img src="{{note.image}}">
              </div>
-            <div fxLayout="row" style="padding-bottom: 10px;"fxFlex="100" (click)="openDialog(note)" >
-                    <div fxFlex="85" aria-multiline="true" >
+            <div fxLayout="row" style="padding-bottom: 10px;"fxFlex="100"  >
+                    <div fxFlex="85" aria-multiline="true" (click)="openDialog(note)">
                         {{note['title']}}
                     </div>  
                     
-                    <div *ngIf="!note['isPin']"fxFlex="5" >
+                    <div *ngIf="!note['isPin']"fxFlex="5" (click)="PinNote(note)" >
                         <button mat-icon-button>
                             <img src="/assets/images/pin.svg" >
                         </button>
                     </div>
-                    <div *ngIf="note['isPin']" fxFlex="5">
+                    <div *ngIf="note['isPin']" fxFlex="5" (click)="PinNote(note)">
                         <button mat-icon-button >
                             <img src="/assets/images/Unpin.png" >
                         </button>
@@ -36,8 +36,17 @@
                             <mat-icon>clear</mat-icon>
                         </button>
                     </mat-chip>
-                </span>
-                    
+                </span>       
+             </div>
+             <div *ngIf="note.collaborator > 0" fxLayout="row">
+                 <div *ngFor="let collaborator of note['collaborators']">
+                     <button *ngIf="collaborator['profilePicure'] == null" fxLayoutAlign = "start center" matTooltip="{{collaborator.email}}">
+                        <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
+                     </button>
+                    <div class="Profilepicture" *ngIf="collaborator['profilePicure'] != null">
+                        <img [src]="collaborator['profilePicure']" class="Profilepicture">
+                    </div>                   
+                 </div>
              </div>
             <div  fxFlex="100"style="padding-bottom: 10px;"  >
                <app-icons [noteInfo]='note' [isTrash]='note.isTrash' (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>
@@ -45,3 +54,61 @@
         </div>       
     </mat-card> 
 </div>    
+<div *ngIf="value==2" fxLayout="column wrap" style="margin:2% 70% 1% 10%;">    
+    <mat-card *ngFor="let note of getChildMessage" [ngStyle] ="{'backgroundColor' : note.color}">
+          <div fxLayout="column">
+ 
+             <div fxLayout="column">
+                 <img src="{{note.image}}">
+              </div>
+             <div fxLayout="column" style="padding-bottom: 10px;"fxFlex="100" >
+                     <div fxFlex="85" aria-multiline="true"  (click)="openDialog(note)">
+                         {{note['title']}}
+                     </div>  
+                     
+                     <div *ngIf="!note['isPin']"fxFlex="5" >
+                         <button mat-icon-button>
+                             <img src="/assets/images/pin.svg"  (click)="PinNote(note)" >
+                         </button>
+                     </div>
+                     <div *ngIf="note['isPin']" fxFlex="5">
+                         <button mat-icon-button >
+                             <img src="/assets/images/Unpin.png" (click)="PinNote(note)" >
+                         </button>
+                     </div>    
+             </div>
+ 
+             <div  fxFlex="100" aria-multiline="true" (click)="openDialog(note)">
+                {{note['description']}}
+             </div>
+ 
+            
+             <div  fxFlex="100" (click)="openDialog(note)">
+                 <span *ngIf="note.reminder!=null" style="border-radius:0.5px;">
+                     <mat-chip style = "width:20px; height:10px; opacity :0.5; border-radius: 2.5;">
+                         {{ note['reminder']  | date:'short'}}
+                         
+                         <button mat-icon-button (click)="DeleteReminder(note)">
+                             <mat-icon>clear</mat-icon>
+                         </button>
+                     </mat-chip>
+                 </span>       
+              </div>
+              <div *ngIf="note.collaborator > 0" fxLayout="row">
+                  <div *ngFor="let collaborator of note['collaborators']">
+                      <button *ngIf="collaborator['profilePicure'] == null" fxLayoutAlign = "start center" matTooltip="{{collaborator.email}}">
+                         <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
+                      </button>
+                     <div class="Profilepicture" *ngIf="collaborator['profilePicure'] != null" (click)= "Collaborator(note)">
+                         <img [src]="collaborator['profilePicure']" class="Profilepicture">
+                     </div>                   
+                  </div>
+              </div>
+ 
+             
+             <div  fxFlex="100"style="padding-bottom: 10px;"  >
+                <app-icons [noteInfo]='note' [isTrash]='note.isTrash' (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>
+             </div>
+         </div>       
+     </mat-card> 
+ </div>    

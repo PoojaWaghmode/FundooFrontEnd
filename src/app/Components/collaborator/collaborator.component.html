@@ -1,54 +1,40 @@
-<div mat-dialog-content style="height: 100%;">
+<div mat-dialog-content>
     <div class="collaborator" fxLayoutAlign="start center">
         <label>Collaborators</label>
      </div>
      <div fxLayoutAlign = "start center" style="margin-top: 10px;">
-        <span *ngIf="profilePicture == null" fxLayoutAlign = "start center" >
-             <mat-icon class="circular--square" fontSet = "material-icons-outlined">account_circle</mat-icon>
-        </span>
-        <!-- <div *ngIf="profilePicture != null" fxLayoutAlign = "start center">
-             <img class="circular--square" [src]="profilePicture" style="width: 40px;height: 40px;" />
-         </div> -->
-         <div fxLayout ="column">
+        <div *ngIf="profilePicture == null" fxLayoutAlign = "start center" >
+             <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
+        </div>
+        <div fxLayout ="column">
             
-            <label style="font-size: 16px;">{{ownerName}}
-                     <label style="font-size: 14px; font-style: italic;">(owner)</label>
+            <label style="font-size: 15px;">{{ownerName}}
+                     <label style="font-size: 13px;">(owner)</label>
             </label>
-            <label style="font-size: 14px;">{{emailID}}</label>
-            
+            <label style="font-size: 15px;">{{email}}</label>    
         </div>  
      </div>
 
-     <div *ngIf ="data.collaborator > 0" fxLayoutAlign ="space-around start" fxLayout = "column" style="margin-top: 10px;">
-         <div *ngFor = "let collab of data['collaborators']" fxLayoutAlign = "start center" style=" margin-top: 10px; width: 100%; height: 40px;">
-             <div *ngIf="collab['profilePicture'] == null" fxLayoutAlign = "start center" fxLayout ="row" style="width: 7%; height: 100%;">
-                 <mat-icon class="circular--square" fontSet = "material-icons-outlined" fxLayoutAlign = "center center">account_circle</mat-icon>
+     <div *ngIf = "data.collaborator > 0" style=" width: 100%; height: 40px; margin-top: 10px;">
+        <span *ngFor =" let collabInfo of data['collaborators']" fxLayout =" row" >
+            <div *ngIf="collaborator['profilePicure'] == null" fxLayoutAlign = "start center" matTooltip="{{collaborator.email}}">
+                <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon> {{collabInfo.emailId}}
+             </div>
+            <div class="Profilepicture" *ngIf="collaborator['profilePicure'] != null" (click)= "Collaborator(note)" style="margin-bottom: 30px;">
+                <img [src]="collaborator['profilePicure']" class="Profilepicture"> {{collabInfo.emailId}}
             </div>
-            <div *ngIf="collab['profilePicture'] != null" fxLayoutAlign = "start center" fxLayout ="row">
-                 <img class="circular--square" fxLayoutAlign = "center center" [src]="collab['profilePicture']"/>
-            </div>
-             <div fxLayout ="row"  fxLayoutAlign = "start center" style="padding-left: 20px; width: 73%; height: 100%;" fxFlex ="73">
-                <label style="font-size: 14px;">{{collab.emailID}}</label>
-             </div> 
-             <div fxLayout ="row" fxLayoutAlign = "end center" style=" width: 30%; height: 100%;">
-                <button mat-icon-button (click)= "RemoveCollaborator(collab)">
-                    <mat-icon fxLayoutAlign= "center center" style="margin-left: 7px;">clear</mat-icon>
-                </button> 
-            </div> 
-         </div>
+            <button mat-button style="margin-right: 10px; " (click)="RemoveCollaborator(collabInfo)"><mat-icon>clear</mat-icon></button>
+        </span>
      </div>
-     
-     <div fxLayoutAlign = "start center" fxLayout="row" style="padding-left: 10px; margin-top: 20px; ">
-         <div fxlayoutAlign = "start center" fxLayout="row" style="width: 65%; height: 40px;">
+
+     <div fxLayoutAlign = "start center" fxLayout="row" style="margin-top: 20px;">
+         <div fxlayoutAlign = "start center" fxLayout="row" style="margin-top: 12px;" >
              <mat-icon fxLayout="row" fxlayoutAlign = "center center" fontSet = "material-icons-outlined" matTooltip ="Collaborator" style="width:7%; height: 100%; margin-top: 5px; margin-left: 5px;">person_add</mat-icon>
-             <input mat-input fxLayout="row" appearance="none" placeholder="Person or Email to share with" [(ngModel)]="collaborator" (keyup)="SearchPerson($event)" style="margin-left: 10px; width:90%;">  
+             <input mat-input fxLayout="row" placeholder="Person or email to share with" [(ngModel)]="collaborator" style="margin-left: 10px; width:90%; ">
+            
          </div>    
      </div>
-     <div fxLayout="column" fxlayoutAlign = "start center" *ngFor= "let email of persons" style="width: 64%; margin-left: 10px;">
-        <button mat-button (click)= "collaborator = email" fxlayoutAlign = "start center" >
-            {{email}}
-        </button>
-    </div>       
+        
      <div fxLayoutAlign = "end center" fxLayout = "row" style="margin-bottom: 0px; margin-top: 20px; background-color: whitesmoke; height:50px;">
          <button mat-button mat-dialog-close style=" margin-right: 50px; padding-left: 10px;">Cancel</button>
          <button mat-button style="margin-right: 10px; " (click)="AddCollaborator()">Save</button>

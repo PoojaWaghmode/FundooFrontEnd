@@ -25,9 +25,7 @@ export class NotesComponent implements OnInit {
           {
             this.getAllNotes();
           }
-         
-      })
-
+         })
   }
  
   pinnedNotes=[];
@@ -58,6 +56,7 @@ export class NotesComponent implements OnInit {
    {
       console.log('response after Display Notes', response['message']); 
       this.allNotes = response['results'] 
+      console.log( "All Notes :",response['results'] );
       this.separateNotes();              
    },
    error=>

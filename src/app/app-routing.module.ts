@@ -36,8 +36,7 @@ children:[
         { path: 'reminder',component:RemindersComponent},
         { path: 'edit-note',component:EditNoteComponent},
         { path: 'search',component:SearchComponent},
-        { path: 'collaborator',component:CollaboratorComponent}
-  
+        { path: 'collaborator',component:CollaboratorComponent} 
     ]
 }
 

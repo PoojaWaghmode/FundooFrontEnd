@@ -14,16 +14,21 @@
             <div class="search-bar" fxLayout="row" fxFlex=50 style="margin-top: 22px;" >
               <mat-form-field [style.fontSize.px]="16" appearance="outline" class="searchInput">                
                 <mat-icon matPrefix>search</mat-icon>
-                <input matInput type="text" placeholder="search" autofocus=true (keyup)=SearchNotes($event) >
+                <input matInput type="text" placeholder="search" (keyup)=SearchNotes($event) >
               </mat-form-field>
             </div>
 
-            <mat-divider></mat-divider>
             <div fxFlex="25" fxLayout="row">              
                 <button mat-icon-button style="margin-top:7px;margin-left: 20px;">
                     <mat-icon fontSet = "material-icons-outlined">refresh</mat-icon>
                 </button>
                 
+                <button *ngIf="listView==1" mat-icon-button style="margin-top:7px;margin-left: 20px;"  (click)=ChangeView(2)>
+                  <mat-icon fontSet = "material-icons-outlined">view_agenda</mat-icon>
+                </button>
+                <button *ngIf="listView==2"mat-icon-button style="margin-top:7px;margin-left: 20px;" (click)=ChangeView(1)>
+                  <mat-icon fontSet = "material-icons-outlined">view_module</mat-icon>
+                </button>
                 <button mat-icon-button style="margin-top:7px;margin-left: 20px; ">
                     <mat-icon fontSet = "material-icons-outlined">settings</mat-icon>
                 </button>
@@ -31,15 +36,19 @@
                     <mat-icon fontSet = "material-icons-outlined">apps</mat-icon>
                 </button>
                
-                <div>
-                  <button mat-icon-button [matMenuTriggerFor]="menu" style="margin-top:7px;margin-left: 20px; outline: none;" class="buttons">    
-                    <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
-                      <mat-menu #menu = "matMenu">
-                        <button mat-menu-item (click)="uploadProfile();logOut()">Sign Out</button >                           
-                      </mat-menu>
-                  </button>
-                </div>
-              
+                <div fxLayout ="row" fxLayoutAlign="end center">
+                  <button mat-icon-button [matMenuTriggerFor]="menu" class="buttons">    
+                        <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
+                        <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" style="border-radius: 20px; width: 32px;height: 32px;margin-top: -18px;margin-left: 10px;">                   </button>
+                 </div>
+                                    
+                  <mat-menu #menu = "matMenu">
+                    <button mat-menu-item (click)="file.click(file)">Change Profile
+                      <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
+                    </button >                           
+             
+                    <button mat-menu-item (click)="logOut()">Sign Out</button >                           
+                  </mat-menu>
             </div>
             
         </div>
@@ -61,12 +70,12 @@
                 <mat-icon id="iconPadding">notifications_none_outline</mat-icon>
                 <div class="notes">Reminder</div>
               </a>
-              <a mat-list-item routerLink="label" id="over" (click)='name="Label"'>
+              <a mat-list-item id="over" (click)='name="Label"'>
                 <mat-icon id="iconPadding">label_outline</mat-icon>
-                <div class="notes">Labels </div>
+                <div class="notes">Labels</div>
               </a>
 
-              <a mat-list-item routerLink="edit_labels" id="over" (click)='name="Edit"'>
+              <a mat-list-item routerLink="edit_labels" id="over" (click)='name="Edit"' (click)="EditLabels()">
                 <mat-icon  fontSet="material-icons-outlined" id="iconPadding">edit</mat-icon>
                 <div class="notes">Edit labels</div>
               </a>
@@ -75,20 +84,11 @@
                 <mat-icon   fontSet="material-icons-outlined" id="iconPadding">archive</mat-icon>
                 <div class="notes">Archive</div>
               </a>
-              <!-- <a mat-list-item id="over" (click)= "GetArchiveNotes()">
-                <mat-icon  fontSet="material-icons-outlined" id="iconPadding">archive</mat-icon>
-                <div class="notes">Archive</div>
-              </a> -->
               
               <a mat-list-item routerLink="trash" id="over" (click)='name="Trash"'>
                 <mat-icon   fontSet="material-icons-outlined" id="iconPadding">delete</mat-icon>
                 <div class="notes">Trash</div>
-              </a>
-              <!-- <a mat-list-item id="over" (click)= "GetTrashNotes()">
-                <mat-icon  fontSet="material-icons-outlined" id="iconPadding">delete_outline</mat-icon>
-                <div class="notes">Trash</div>
-              </a> -->
-          
+              </a>                     
             </div>
 
           </mat-nav-list>

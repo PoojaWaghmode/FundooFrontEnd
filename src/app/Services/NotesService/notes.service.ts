@@ -70,12 +70,20 @@ export class NotesService {
   {
     return this.httpService.delete('api/Note/'+noteId+'/DeleteReminder');
   }
+  pinNote(noteId)
+  {
+    return this.httpService.put('api/Note/'+noteId+'/Pin',noteId);
+  }
   addCollaborator(noteId,receiverId)
   {
-    return this.httpService.post('api/Note/'+noteId+'/CollaborateNote/'+receiverId,receiverId);
+    return this.httpService.post('api/Note/'+noteId+'/CollaborateNote/'+receiverId, receiverId);
   }
   removeCollaborator(noteId,receiverId)
   {
-    return this.httpService.delete('api/Note'+noteId+'/CollaborateNote/'+receiverId);
+    return this.httpService.delete('api/Note/'+noteId+'/CollaborateNote/'+receiverId);
+  }
+  uploadProfile(formData)
+  {
+    return this.httpService.post('api/UserAccount/UploadProfileImage',formData)
   }
 }

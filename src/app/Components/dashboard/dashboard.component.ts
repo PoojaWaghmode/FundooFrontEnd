@@ -1,47 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef} from '@angular/core';
 import{Router} from '@angular/router'
 import {UserServiceService} from '../../Services/UserService/user-service.service'
 import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
-
-
+import { NotesService } from 'src/app/Services/NotesService/notes.service';
+import { MatSnackBar } from '@angular/material';
+import { LabelService } from 'src/app/Services/LabelService/label.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnDestroy {
+export class DashboardComponent implements OnInit {
   
-  
+  value='';
+  listView=1;
+  ProfilePicture=localStorage.getItem('ProfileImage');
+  allLabels=[];
+
   mobileQuery: MediaQueryList;
-
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
-  value=''
-
   private _mobileQueryListener: () => void;
-
   constructor(changeDetectorRef: ChangeDetectorRef,
      media: MediaMatcher,
      private router:Router,
      private userService:UserServiceService,
-     private dataService:DataServiceService )
+     private dataService:DataServiceService,
+     private noteService:NotesService,
+     private snackBar:MatSnackBar ,
+     private labelService:LabelService)
      {
           this.mobileQuery = media.matchMedia('(max-width: 600px)');
           this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-          this.mobileQuery.addListener(this._mobileQueryListener);
-          
-        
-  }
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener); 
-  }
-
-  uploadProfile(user)
-    {
-      // this.userService.uploadProfile(user),subscribe(response=>
-        //)
+          this.mobileQuery.addListener(this._mobileQueryListener);  
     }
+  ngOnInit() {
+    
+    this.GetLabels();
+    this.dataService.currentMessage.subscribe(response=>
+      {
+        if(response.type== "GetLabels")
+        {
+          this.GetLabels();
+        }
+      })
+  }
 
     logOut(){
     localStorage.clear();
@@ -61,10 +65,6 @@ export class DashboardComponent implements OnDestroy {
       this.router.navigate(['/dashboard/reminder'])
     }
 
-    GetLabels()
-    {
-      
-    }
     SearchNotes(event)
     {
         console.log("Event: ", event);
@@ -77,5 +77,51 @@ export class DashboardComponent implements OnDestroy {
           data:this.value
         })
     }
-   
+   ChangeView(value)
+   {
+      this.listView=value;
+      this.dataService.changeMessage
+      ({
+        type:"ChangeView",
+        data:value
+      })
+   }
+   UploadProfile(files:File)
+   {
+    let fileToUpload = <File>files[0];
+    const formData: FormData = new FormData();
+    formData.append('formFile', fileToUpload); 
+    this.noteService.uploadProfile(formData).subscribe(response=>
+    {
+      localStorage.setItem('ProfileImage',response['data']['profileImage']);
+      this.ProfilePicture=response['data']['profileImage']
+    
+        this.snackBar.open(response['message'],'',{
+        duration:4000,
+        horizontalPosition:'start'
+    });
+    })
+    error=>
+    {
+          console.log('error msg', error);
+    }
+   }
+   GetLabels()
+   {
+    this.labelService.getLabels().subscribe(response=>
+      {
+         console.log('response after Display Labels', response['message']); 
+         this.allLabels = response['results'] 
+         console.log( "All Labels:",response['results'] );
+         this.dataService.changeMessage
+         ({
+           type:"GetLabels"
+         })
+                   
+      },
+      error=>
+     {
+         console.log('error msg', error);
+     })
+   }
 }

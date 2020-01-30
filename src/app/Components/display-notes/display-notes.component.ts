@@ -6,6 +6,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { EditNoteComponent } from '../edit-note/edit-note.component';
 import { NotesService } from 'src/app/Services/NotesService/notes.service';
 import { MatSnackBar } from '@angular/material';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
 
 @Component({
   selector: 'app-display-notes',
@@ -15,16 +16,13 @@ import { MatSnackBar } from '@angular/material';
 export class DisplayNotesComponent implements OnInit {
 
  @Input() getChildMessage;
- 
+
  color:any
  message:string;
  reminder=''
  image:File
- 
- 
- 
-
-  constructor( private router:Router,
+ value="1"
+ constructor( private router:Router,
                private userService:UserServiceService,
                private dataService:DataServiceService,
                private noteService:NotesService,
@@ -48,6 +46,13 @@ export class DisplayNotesComponent implements OnInit {
 
   ngOnInit() 
   {
+    this.dataService.currentMessage.subscribe(response=>
+      {
+        if(response.type == "ChangeView")
+        {
+          this.value=response.data;
+        }
+    })
   }
 
   openDialog(noteData)
@@ -82,6 +87,39 @@ export class DisplayNotesComponent implements OnInit {
          console.log('error msg', error);
      })
  }
- 
 
+ PinNote(data)
+ {
+   console.log("In Pin");
+   this.noteService.pinNote(data.id).subscribe(response=> {
+      
+      this.dataService.changeMessage
+      ({
+        type:"PinNote"
+      })
+      this.dataService.changeMessage
+      ({
+          type:"getNotes"
+       })  
+       this.snackBar.open(response['message'],'',{
+          duration:4000,
+          horizontalPosition:'start'
+        });
+        error=>
+        {
+              console.log('error msg', error);
+        }
+
+     })
+  }
+
+  Collaborator(note)
+  {
+    const dialogRef = this.dialog.open(CollaboratorComponent,
+      {
+      width: '600px',
+  
+      data: note
+      });
+  }
 }

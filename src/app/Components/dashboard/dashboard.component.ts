@@ -5,8 +5,11 @@ import{Router} from '@angular/router'
 import {UserServiceService} from '../../Services/UserService/user-service.service'
 import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
 import { NotesService } from 'src/app/Services/NotesService/notes.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { LabelService } from 'src/app/Services/LabelService/label.service';
+import { EditNoteComponent } from '../edit-note/edit-note.component';
+ import { EditLabelsComponent } from '../edit-labels/edit-labels.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -29,7 +32,9 @@ export class DashboardComponent implements OnInit {
      private dataService:DataServiceService,
      private noteService:NotesService,
      private snackBar:MatSnackBar ,
-     private labelService:LabelService)
+     private labelService:LabelService,
+     public dialog: MatDialog
+     )
      {
           this.mobileQuery = media.matchMedia('(max-width: 600px)');
           this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -113,15 +118,35 @@ export class DashboardComponent implements OnInit {
          console.log('response after Display Labels', response['message']); 
          this.allLabels = response['results'] 
          console.log( "All Labels:",response['results'] );
-         this.dataService.changeMessage
-         ({
-           type:"GetLabels"
-         })
-                   
+                           
       },
       error=>
      {
          console.log('error msg', error);
      })
    }
+
+   EditLabels()
+   {
+
+
+
+    const dialogRef = this.dialog.open(EditLabelsComponent, {
+      width: '250px',
+      data: this.allLabels
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    
+    });
+
+
+    // const dialogRef = this.dialog.open(EditLabelsComponent,
+    //   {
+    //     width: '400px',
+    //     data: this.allLabels
+    //   });
+   }
+
 }

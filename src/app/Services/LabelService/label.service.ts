@@ -11,5 +11,9 @@ export class LabelService {
   {
     return this.httpService.get('api/Label');
   }
+  createLabel(data)
+  {
+    return this.httpService.post('api/Label',data);
+  }
 
 }

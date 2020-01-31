@@ -241,8 +241,9 @@ export class IconsComponent implements OnInit {
         console.log("In Collaborator");
         const dialogRef = this.dialog.open(CollaboratorComponent,
             {
-            width: '450px',
-            height:'200px',
+            width: '700px',
+            height:'250px',
+          
             data: this.noteInfo
             });
     }

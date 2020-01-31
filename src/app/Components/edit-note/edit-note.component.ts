@@ -113,7 +113,7 @@ export class EditNoteComponent implements OnInit {
     }
     else
     {
-      console.log("dfg");
+      //console.log("dfg");
       this.dataService.changeMessage(
         {
           type:'changeColor',

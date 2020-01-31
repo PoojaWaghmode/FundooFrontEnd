@@ -26,6 +26,7 @@ import { EditNoteComponent } from './Components/edit-note/edit-note.component';
 import { SearchComponent } from './Components/search/search.component';
 import { LabelComponent } from './Components/label/label.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
+import { SampleComponent } from './Components/sample/sample.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { CollaboratorComponent } from './Components/collaborator/collaborator.co
     SearchComponent,
     LabelComponent,
     CollaboratorComponent,
+    SampleComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,10 @@ import { CollaboratorComponent } from './Components/collaborator/collaborator.co
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+   SampleComponent
+  ],
+ 
 })
 export class AppModule { }

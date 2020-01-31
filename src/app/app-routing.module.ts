@@ -14,6 +14,7 @@ import { RemindersComponent } from './Components/reminders/reminders.component';
 import { EditNoteComponent } from './Components/edit-note/edit-note.component';
 import { SearchComponent } from './Components/search/search.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
+import { EditLabelsComponent } from './Components/edit-labels/edit-labels.component';
 const routes: Routes = [
   { path: '',
   redirectTo: '/login',
@@ -36,7 +37,9 @@ children:[
         { path: 'reminder',component:RemindersComponent},
         { path: 'edit-note',component:EditNoteComponent},
         { path: 'search',component:SearchComponent},
-        { path: 'collaborator',component:CollaboratorComponent} 
+        { path: 'collaborator',component:CollaboratorComponent},
+        { path: 'edit-labels',component:EditLabelsComponent}
+   
     ]
 }
 

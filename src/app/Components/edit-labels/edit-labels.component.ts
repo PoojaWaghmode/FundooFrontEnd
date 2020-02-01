@@ -17,22 +17,30 @@ export class EditLabelsComponent implements OnInit {
     private labelService:LabelService,
     private snackBar:MatSnackBar,
     private dataService:DataServiceService
-  ) { this.labels = data}
+  ) { this.labelArray = data}
 
-  labels = [];
+  
+  labelArray = [];
   visible=false;
-  ngOnInit() {  }
-  labelName=''
+  ngOnInit() { 
+    this.dialogRef.updateSize('25%','50%');
+   }
+  label=''
   
   CreateLabel()
   {
-    if(this.data.labelName!=null)
+    //console.log("Data Labelcdvf",this.labels);
+    if(this.label)
     {
-          let label={
+     
+      let labelInfo =
+      {
+        labelName : this.label
+      } 
 
-                Label:this.data.labelName                     
-            }
-            this.labelService.createLabel(label).subscribe(response=>
+      this.labelArray.push(labelInfo);
+     
+            this.labelService.createLabel(labelInfo).subscribe(response=>
               {
                       console.log('response after create label',response);
 
@@ -41,6 +49,12 @@ export class EditLabelsComponent implements OnInit {
                         verticalPosition: 'top',
                         horizontalPosition:'center'
                       });
+
+                      this.dataService.changeMessage(
+                        {
+                          type : 'GetLabels'
+                        }
+                      )
 
               },
               error=>
@@ -53,11 +67,58 @@ export class EditLabelsComponent implements OnInit {
                         verticalPosition: 'top',
                         horizontalPosition:'center' } )
                       })
+                      this.label=''
       }
       else
       {
         console.error(" Field Required");
       }
+    }
+
+    DeleteLabel(label)
+    {
+      
+      var find = this.labelArray.find(function(item){return item.label === label.labelName});
+      var index = this.labelArray.indexOf(find);
+      this.labelArray.splice(index);
+      this.labelService.deleteLabel(label.id).subscribe(response=>
+        {
+          console.log("After Delete Label",response);
+          this.snackBar.open(response['message'],'',{
+            duration:2000,
+            verticalPosition: 'top',
+            horizontalPosition:'center'
+          });
+
+          this.dataService.changeMessage(
+            {
+              type : 'GetLabels'
+            }
+          )
+
+      })
+
+    }
+    EditLabel(label)
+    {
+      let labelInfo={
+      
+        labelName : label.labelName
+      }
+      this.labelService.editLabel(label.id, labelInfo).subscribe(response=>
+      {
+          this.snackBar.open(response['message'],'',{
+            duration:2000,
+            verticalPosition: 'top',
+            horizontalPosition:'center'
+
+          });
+          this.dataService.changeMessage(
+            {
+              type : 'GetLabels'
+            }
+          )
+      })
     }
 }
 

@@ -66,12 +66,21 @@
                 <mat-icon fontSet = "material-icons-outlined" matTooltip="More">more_vert</mat-icon>
                 <mat-menu #menu = "matMenu">
                     <button mat-menu-item (click)="TrashNote()">Delete Note</button >  
-                    <button mat-menu-item (click)="ChangeLabels()">Change Labels</button > 
+                    <button mat-menu-item [matMenuTriggerFor]="labelmenu" (click)="GetLabel()">Add Labels</button > 
+
                     <button mat-menu-item (click)="MakeACopy()">Make a copy</button >  
                     <button mat-menu-item (click)="ShowCheckboxes()">Show Checkboxes</button > 
                     <button mat-menu-item (click)="CopyToGoogleDocs">Copy to GoogleDocs</button >                         
                 </mat-menu>
             </button>
+            <mat-menu #labelmenu ="matMenu">
+                <div *ngFor="let label of labels">
+                        <button (click)="AddLabels(label)">
+
+                            {{label.labelName}}
+                        </button>
+                </div>
+            </mat-menu>
         </div>
         
 </div>

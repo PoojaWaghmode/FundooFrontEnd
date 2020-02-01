@@ -15,5 +15,12 @@ export class LabelService {
   {
     return this.httpService.post('api/Label',data);
   }
-
+  deleteLabel(labelId)
+  {
+    return this.httpService.delete('api/Label/'+labelId);
+  }
+  editLabel(id,data)
+  {
+    return this.httpService.put('api/Label/'+id,data);
+  }
 }

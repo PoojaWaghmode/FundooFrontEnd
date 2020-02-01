@@ -210,8 +210,8 @@
     </mat-sidenav-content>
  </mat-sidenav-container>
 </div> --> 
-<div class="container" >
-    <mat-toolbar id="toolbar" >
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar>
      
         <div fxLayout="row" display="flex" fxLayoutAlign="space-between center" fxFlex="100%">
 
@@ -230,21 +230,21 @@
               </mat-form-field>
             </div>
 
-            <div fxFlex="25" fxLayout="row">              
-                <button mat-icon-button style="margin-top:7px;margin-left: 20px;">
+            <div fxFlex="25" fxLayout="row" class="toolbar-buttons">              
+                <button mat-icon-button >
                     <mat-icon fontSet = "material-icons-outlined">refresh</mat-icon>
                 </button>
                 
-                <button *ngIf="listView==1" mat-icon-button style="margin-top:7px;margin-left: 20px;"  (click)=ChangeView(2)>
+                <button *ngIf="listView==1" mat-icon-button  (click)=ChangeView(2)>
                   <mat-icon fontSet = "material-icons-outlined">view_agenda</mat-icon>
                 </button>
-                <button *ngIf="listView==2"mat-icon-button style="margin-top:7px;margin-left: 20px;" (click)=ChangeView(1)>
+                <button *ngIf="listView==2"mat-icon-button (click)=ChangeView(1)>
                   <mat-icon fontSet = "material-icons-outlined">view_module</mat-icon>
                 </button>
-                <button mat-icon-button style="margin-top:7px;margin-left: 20px; ">
+                <button mat-icon-button >
                     <mat-icon fontSet = "material-icons-outlined">settings</mat-icon>
                 </button>
-                <button mat-icon-button style="margin-top:7px;margin-left: 40px; ">
+                <button mat-icon-button >
                     <mat-icon fontSet = "material-icons-outlined">apps</mat-icon>
                 </button>
                
@@ -255,7 +255,7 @@
                  </div>
                                     
                   <mat-menu #menu = "matMenu">
-                    <button mat-menu-item (click)="file.click(file)">Change Profile
+                    <button mat-menu-item (click)="ChangeProfile()" (click)="file.click(file)">Change Profile
                       <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
                     </button >                           
              
@@ -272,7 +272,7 @@
                      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" style="width: 18%; border: none; ">
                     
           <mat-nav-list>
-            <div style="padding: 0px 0px 8px 0px">
+            <div style="padding: 0px 0px 8px 0px"  fxLayout="column">
               <a mat-list-item routerLink="notes" id="over" (click)='name="Fundoo"'>
                 <mat-icon id="iconPadding" fontSet="material-icons-outlined">emoji_objects</mat-icon>
                 <div class="notes">Notes</div>
@@ -280,17 +280,21 @@
                 
               <a mat-list-item routerLink="reminder" id="over" (click)='name="Reminder"'>
                 <mat-icon id="iconPadding">notifications_none_outline</mat-icon>
-                <div class="notes">Reminder</div>
-              </a>
-              <a mat-list-item id="over" (click)='name="Label"'>
-                <mat-icon id="iconPadding">label_outline</mat-icon>
-                <div class="notes">Labels</div>
+                <div class="Reminder">Reminder</div>
               </a>
 
-              <a mat-list-item routerLink="edit_labels" id="over" (click)='name="Edit"' (click)="EditLabels()">
-                <mat-icon  fontSet="material-icons-outlined" id="iconPadding">edit</mat-icon>
-                <div class="notes">Edit labels</div>
-              </a>
+              <div style="border-bottom: 2px inset">
+                <span>LABLES</span>
+                <a  mat-list-item id="over" *ngFor ="let label of allLabels">
+                        <mat-icon id="iconPadding" >label_outline</mat-icon>
+                    <div class="newlabels"> {{label.labelName}}</div>
+                </a>
+
+                <a mat-list-item  id="over" (click)="EditLabels()" >
+                  <mat-icon  fontSet="material-icons-outlined" id="iconPadding">edit</mat-icon>
+                  <div class="editLabels">Edit labels</div>
+                </a>
+            </div>
            
               <a mat-list-item routerLink="archive" id="over" (click)='name="Archive"'>
                 <mat-icon   fontSet="material-icons-outlined" id="iconPadding">archive</mat-icon>

@@ -48,6 +48,16 @@
                     </div>                   
                  </div>
              </div>
+             <div fxLayout ="row" fxLayoutAlign= "start center" style=" height: 40px; width:100%;">
+                <div *ngFor="let label of note['labels']">
+                    <mat-chip style = "width:20px; height:10px; opacity :0.5; border-radius: 2.5;">
+                        {{ label.labelName}}                        
+                        <button mat-icon-button (click)="DeleteLabel(label,note)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </mat-chip>                                      
+                </div>
+              </div>
             <div  fxFlex="100"style="padding-bottom: 10px;"  >
                <app-icons [noteInfo]='note' [isTrash]='note.isTrash' (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>
             </div>
@@ -61,7 +71,7 @@
              <div fxLayout="column">
                  <img src="{{note.image}}">
               </div>
-             <div fxLayout="column" style="padding-bottom: 10px;"fxFlex="100" >
+             <div fxLayout="column" style="padding-bottom: 10px;"fxFlex="100" placeholder="Title" >
                      <div fxFlex="85" aria-multiline="true"  (click)="openDialog(note)">
                          {{note['title']}}
                      </div>  
@@ -78,7 +88,7 @@
                      </div>    
              </div>
  
-             <div  fxFlex="100" aria-multiline="true" (click)="openDialog(note)">
+             <div  fxFlex="100" aria-multiline="true" (click)="openDialog(note)" placeholder="Description">
                 {{note['description']}}
              </div>
  
@@ -104,7 +114,18 @@
                      </div>                   
                   </div>
               </div>
- 
+              <div fxLayout ="row" fxLayoutAlign= "start center" style=" height: 40px; width:100%;">
+                <div *ngFor="let label of note['labels']">
+                    <mat-chip style = "width:20px; height:10px; opacity :0.5; border-radius: 2.5;">
+                        {{ label.labelName}}                        
+                        <button mat-icon-button (click)="DeleteLabel(label,note)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </mat-chip>                                      
+                </div>
+              </div>
+          
+            
              
              <div  fxFlex="100"style="padding-bottom: 10px;"  >
                 <app-icons [noteInfo]='note' [isTrash]='note.isTrash' (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>

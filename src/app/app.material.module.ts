@@ -19,25 +19,43 @@ import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   imports: [
-    MatCardModule,FlexLayoutModule,ReactiveFormsModule,
+    MatCardModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule,MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule,MatSnackBarModule,
+    MatInputModule,
+    MatButtonToggleModule,
+    MatSidenavModule,
+    MatToolbarModule,MatListModule,
+    MatSnackBarModule,
     MatButtonModule,
     FormsModule,
-    MatMenuModule,MatTooltipModule,MatDialogModule,MatChipsModule
+    MatMenuModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatChipsModule
 
     
   ],
   exports:[
-    MatCardModule,FlexLayoutModule,ReactiveFormsModule,
+    MatCardModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonToggleModule,MatSidenavModule,MatToolbarModule,MatListModule,MatSnackBarModule,
+    MatButtonToggleModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatSnackBarModule,
     MatButtonModule,
     FormsModule,
-    MatMenuModule,MatTooltipModule,MatDialogModule,MatChipsModule
+    MatMenuModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatChipsModule
 
   ],
 

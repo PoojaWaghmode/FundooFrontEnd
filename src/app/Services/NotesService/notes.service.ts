@@ -86,4 +86,8 @@ export class NotesService {
   {
     return this.httpService.post('api/UserAccount/UploadProfileImage',formData)
   }
+  addLabelOnNote(noteId,labelId)
+  {
+    return this.httpService.post('api/Note/'+noteId+'/addLabelOnNote/'+labelId,labelId)
+  }
 }

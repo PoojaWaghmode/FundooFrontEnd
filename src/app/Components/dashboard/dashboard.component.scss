@@ -57,11 +57,11 @@
 //     font-family: sans-serif;
 //     margin-top: 10px
 // }
-// .toolbar-buttons
-// {
-//   margin-top:7px;
-//   margin-left: 20px;
-// }
+.toolbar-buttons
+{
+  margin-top:7px;
+  margin-left: 20px;
+}
 
 // #over:hover{
 //     background-color: rgb(233, 230, 225);
@@ -94,10 +94,10 @@
 //   margin-left: 9px;
 // }
 
-.example-toolbar
-{
-  background-color: transparent;
-}
+// .example-toolbar
+// {
+//   background-color: transparent;
+// }
 .example-container {
     display: flex;
     flex-direction: column;
@@ -107,35 +107,35 @@
     left: 0;
     right: 0;
   }
-  .app-bar{
-    width:100%
-  }
-  .search-bar{
-    width:80%;
-    top:10%;
-    bottom:5%
-  }
-  .example-is-mobile .example-toolbar {
-    position: fixed;
-    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-    z-index: 2;
-  }
+//   .app-bar{
+//     width:100%
+//   }
+//   .search-bar{
+//     width:80%;
+//     top:10%;
+//     bottom:5%
+//   }
+//   .example-is-mobile .example-toolbar {
+//     position: fixed;
+//     /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+//     z-index: 2;
+//   }
   
-  h1.example-app-name {
-    margin-left: 8px;
-  }
+//   h1.example-app-name {
+//     margin-left: 8px;
+//   }
   
-  .example-sidenav-container {
-    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-    flex: 1;
-  }
+//   .example-sidenav-container {
+//     /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+//        causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+//     flex: 1;
+//   }
   
-  .example-is-mobile .example-sidenav-container {
-    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-       `<body>` to be our scrolling element for mobile layouts. */
-    flex: 1 0 auto;
-  }
+//   .example-is-mobile .example-sidenav-container {
+//     /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+//        `<body>` to be our scrolling element for mobile layouts. */
+//     flex: 1 0 auto;
+//   }
   .container{    
     position: absolute;
     top: 0;
@@ -144,31 +144,31 @@
     right: 0;
   }     
 
-  .buttons
-  {
-    height: 10px;
-    width: 10px;
-  }
-#toolbar{
-    background-color: transparent;
-    padding-left: 25px;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-}
+//   .buttons
+//   {
+//     height: 10px;
+//     width: 10px;
+//   }
+// #toolbar{
+//     background-color: transparent;
+//     padding-left: 25px;
+//     display: flex;
+//     flex-direction: row;
+//     position: relative;
+// }
 
-.bulb{
-    padding-left: 10px;
-}
+// .bulb{
+//     padding-left: 10px;
+// }
 
 .app-name{
     padding-left: 10px;
     font-family: sans-serif;
 }
 
-.search{
-    box-sizing: border-box;
-}
+// .search{
+//     box-sizing: border-box;
+// }
 
 .searchInput{
     width: 90%;
@@ -176,21 +176,11 @@
     margin-top: 30px;
 }
 
-.listView{
-    height: 25px;;
-    width: 25px;
-    margin-top: -10px;
-}
-
-.gridView{
-    height: 35px;;
-    width: 35px;
-    margin-top: -10px;
-}
 
 #over:hover{
     background-color: rgb(233, 230, 225);
     border-radius: 0 25px 25px 0;   
+   
 }
 
 
@@ -200,18 +190,18 @@
      
 }
 
-// #iconPadding{
-//     padding: 0px 20px 0px 10px;
-// }
+#iconPadding{
+    padding: 0px 20px 0px 10px;
+}
 
-.mat-menu-div{
-    height: 350px;
-    width: 280px; 
-    text-align: center;
-}
-.Profilepicture
-{
-    border-radius: 12%;
-    width: 20px;
-    height: 20px;
-}
+// .mat-menu-div{
+//     height: 350px;
+//     width: 280px; 
+//     text-align: center;
+// }
+// .Profilepicture
+// {
+//     border-radius: 12%;
+//     width: 20px;
+//     height: 20px;
+// }

@@ -3,7 +3,7 @@ import { NotesService } from 'src/app/Services/NotesService/notes.service';
 import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
-
+import { LabelService } from 'src/app/Services/LabelService/label.service';
 
 @Component({
   selector: 'app-icons',
@@ -27,13 +27,16 @@ export class IconsComponent implements OnInit {
                 private noteService:NotesService,
                 private dataService:DataServiceService,              
                 private snackBar:MatSnackBar,
-                public dialog: MatDialog) { }
+                public dialog: MatDialog,
+                private labelService : LabelService
+                ) { }
                
    
   ngOnInit() {
+     
     
   }
-
+    labels=[];
     noteId : any;
     date:any
 
@@ -241,11 +244,47 @@ export class IconsComponent implements OnInit {
         console.log("In Collaborator");
         const dialogRef = this.dialog.open(CollaboratorComponent,
             {
+            panelClass: 'myapp-no-padding-dialog',
             width: '700px',
             height:'250px',
           
             data: this.noteInfo
             });
+    }
+
+    GetLabel()
+    {
+        this.labelService.getLabels().subscribe( response =>
+            {
+                console.log("ads",response['results'])
+             
+                   this.labels = response['results']
+                
+            })
+    }
+
+    AddLabels(label)
+    {
+        this.noteService.addLabelOnNote(this.noteInfo.id,label.id).subscribe(response=>
+        {
+            this.dataService.changeMessage(
+                {
+                    type : 'getNotes'
+                })
+                this.snackBar.open(response['message'],'',{
+                    duration:4000,
+                    horizontalPosition:'start'
+                    });
+            
+        },
+        error =>
+        {
+            this.snackBar.open(error.error['message'],'',{
+                duration:4000,
+                horizontalPosition:'start'
+                });
+        })
+       
     }
 
 }

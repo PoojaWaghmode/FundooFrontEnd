@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/';
+import { MatFormFieldModule} from '@angular/material/';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
@@ -22,12 +22,10 @@ import { IconsComponent } from './Components/icons/icons.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { EditNoteComponent } from './Components/edit-note/edit-note.component';
- import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { SearchComponent } from './Components/search/search.component';
 import { LabelComponent } from './Components/label/label.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
-import { SampleComponent } from './Components/sample/sample.component';
-
 
 @NgModule({
   declarations: [
@@ -49,21 +47,27 @@ import { SampleComponent } from './Components/sample/sample.component';
     SearchComponent,
     LabelComponent,
     CollaboratorComponent,
-    SampleComponent,
+  
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,MatFormFieldModule,MaterialModule,
-    BrowserAnimationsModule,  HttpClientModule,RouterModule, FlexLayoutModule,
+    AppRoutingModule,
+    MatFormFieldModule,
+    MaterialModule,
+    BrowserAnimationsModule,  
+    HttpClientModule,
+    RouterModule, 
+    FlexLayoutModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
 
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [
-   SampleComponent
-  ],
+  // entryComponents: [
+  //  SampleComponent
+  // ],
  
 })
 export class AppModule { }

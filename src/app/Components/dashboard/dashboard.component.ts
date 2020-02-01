@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
     this.GetLabels();
     this.dataService.currentMessage.subscribe(response=>
       {
-        if(response.type== "GetLabels")
+        if(response.type == "GetLabels")
         {
           this.GetLabels();
         }
@@ -129,10 +129,23 @@ export class DashboardComponent implements OnInit {
    EditLabels()
    {
 
+        const dialogRef = this.dialog.open(EditLabelsComponent, {
+          panelClass: 'myapp-no-padding-dialog',
+          width: '300px', 
+          data: this.allLabels
+        });
 
-
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+        
+        });
+   }
+   ChangeProfile()
+   {
     const dialogRef = this.dialog.open(EditLabelsComponent, {
-      width: '250px',
+      panelClass: 'myapp-no-padding-dialog',
+      width: '280px',
+      height:'430px',
       data: this.allLabels
     });
 
@@ -141,12 +154,6 @@ export class DashboardComponent implements OnInit {
     
     });
 
-
-    // const dialogRef = this.dialog.open(EditLabelsComponent,
-    //   {
-    //     width: '400px',
-    //     data: this.allLabels
-    //   });
    }
 
 }

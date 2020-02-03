@@ -6,7 +6,7 @@
         <div *ngIf="profilePicture == null" fxLayoutAlign = "start center" >
              <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
         </div>
-        <div 8ngIf=profilePicure != null>
+        <div *ngIf="collaborator['profilePicure'] != null">
             <img [src]="collaborator['profilePicture']">
         </div>
         <div fxLayout ="column">

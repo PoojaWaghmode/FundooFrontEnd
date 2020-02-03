@@ -15,6 +15,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatMenuModule,
     MatTooltipModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    DragDropModule
 
     
   ],
@@ -55,7 +57,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatMenuModule,
     MatTooltipModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    DragDropModule
 
   ],
 

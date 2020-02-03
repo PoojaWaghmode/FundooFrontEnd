@@ -33,12 +33,12 @@ export class AddNoteComponent implements OnInit {
 
   ngOnInit() {
 
-      this.dataService.currentMessage.subscribe(response=>{
-      if(response.type == "changeColor")
-      {
-        this.color=response.data;
-      }
-    })
+  this.dataService.currentMessage.subscribe(response=>{
+    if(response.type == "changeColor")
+        {
+          this.color=response.data;
+        }
+      })
     this.dataService.currentMessage.subscribe(response=>{
       if(response.type == "setReminder")
       {
@@ -63,7 +63,7 @@ export class AddNoteComponent implements OnInit {
   }
   receiveImage($event)
   {
-    console.log("Image:"+event);
+    console.log("Image:"+$event);
     this.image=$event
   }
   createNote()
@@ -79,9 +79,9 @@ export class AddNoteComponent implements OnInit {
 
                 Title:this.title,
                 Description: this.description,
-                image:this.image,
-                color:this.color,               
-                reminder:this.reminder,
+                Image: this.image,
+                Color:this.color,               
+                Reminder:this.reminder,
                 // isArchive:this.isArchive,
                 // isTrash:this.isTrash,
                 // isPin:this.isPin
@@ -101,9 +101,6 @@ export class AddNoteComponent implements OnInit {
                           type:'changeColor'
                         }
                       )
-                      // this.dataService.changeMessage({
-                      //   type:'setReminder'
-                      // })
                       this.dataService.changeMessage({
                         type:'addImage'
                       })
@@ -134,6 +131,7 @@ export class AddNoteComponent implements OnInit {
     this.description='';
     this.reminder='';
     this.color='';
+    this.image='';
 
   } 
     

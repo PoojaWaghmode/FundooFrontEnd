@@ -1,5 +1,5 @@
-<div *ngIf="value==1" fxLayout="row wrap" style="margin:2% 0% 1% 10%;">    
-   <mat-card *ngFor="let note of getChildMessage" style="margin: 10px 10px 10px 10px;" [ngStyle] ="{'backgroundColor' : note.color}">
+<div *ngIf="value==1" cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" fxLayout="row wrap" style="margin:2% 0% 1% 10%;">    
+   <mat-card *ngFor="let note of getChildMessage" style="margin: 10px 10px 10px 10px;" [ngStyle] ="{'backgroundColor' : note.color}" cdkDrag>
          <div fxLayout="column">
 
             <div fxLayout="column">
@@ -10,7 +10,7 @@
                         {{note['title']}}
                     </div>  
                     
-                    <div *ngIf="!note['isPin']"fxFlex="5" (click)="PinNote(note)" >
+                    <div *ngIf="!note['isPin']"fxFlex="5" (click)="PinNote(note)">
                         <button mat-icon-button>
                             <img src="/assets/images/pin.svg" >
                         </button>
@@ -52,7 +52,7 @@
                 <div *ngFor="let label of note['labels']">
                     <mat-chip style = "width:20px; height:10px; opacity :0.5; border-radius: 2.5;">
                         {{ label.labelName}}                        
-                        <button mat-icon-button (click)="DeleteLabel(label,note)">
+                        <button mat-icon-button (click)="DeleteLabel(note,label)">
                             <mat-icon>clear</mat-icon>
                         </button>
                     </mat-chip>                                      
@@ -88,7 +88,7 @@
                      </div>    
              </div>
  
-             <div  fxFlex="100" aria-multiline="true" (click)="openDialog(note)" placeholder="Description">
+             <div fxFlex="100" aria-multiline="true" (click)="openDialog(note)" placeholder="Description">
                 {{note['description']}}
              </div>
  
@@ -96,8 +96,7 @@
              <div  fxFlex="100" (click)="openDialog(note)">
                  <span *ngIf="note.reminder!=null" style="border-radius:0.5px;">
                      <mat-chip style = "width:20px; height:10px; opacity :0.5; border-radius: 2.5;">
-                         {{ note['reminder']  | date:'short'}}
-                         
+                         {{ note['reminder']  | date:'short'}}                       
                          <button mat-icon-button (click)="DeleteReminder(note)">
                              <mat-icon>clear</mat-icon>
                          </button>
@@ -116,16 +115,17 @@
               </div>
               <div fxLayout ="row" fxLayoutAlign= "start center" style=" height: 40px; width:100%;">
                 <div *ngFor="let label of note['labels']">
+                <mat-chip-list>
                     <mat-chip style = "width:20px; height:10px; opacity :0.5; border-radius: 2.5;">
                         {{ label.labelName}}                        
-                        <button mat-icon-button (click)="DeleteLabel(label,note)">
+                        <button mat-icon-button (click)="DeleteLabel(note,label)">
                             <mat-icon>clear</mat-icon>
                         </button>
-                    </mat-chip>                                      
+                    </mat-chip>   
+                </mat-chip-list>>                                   
                 </div>
               </div>
           
-            
              
              <div  fxFlex="100"style="padding-bottom: 10px;"  >
                 <app-icons [noteInfo]='note' [isTrash]='note.isTrash' (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>

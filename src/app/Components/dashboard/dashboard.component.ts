@@ -9,6 +9,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { LabelService } from 'src/app/Services/LabelService/label.service';
 import { EditNoteComponent } from '../edit-note/edit-note.component';
  import { EditLabelsComponent } from '../edit-labels/edit-labels.component';
+import { ProfilePicComponent } from '../profile-pic/profile-pic.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -63,7 +64,7 @@ export class DashboardComponent implements OnInit {
     }
     GetTrashNotes()
     {
-      this.router.navigate(['/dashboard/trash'])
+      this.router.navigate(['/dashboard/trash']);
     }
     GetReminderNotes()
     {
@@ -91,25 +92,26 @@ export class DashboardComponent implements OnInit {
         data:value
       })
    }
+
    UploadProfile(files:File)
    {
-    let fileToUpload = <File>files[0];
-    const formData: FormData = new FormData();
-    formData.append('formFile', fileToUpload); 
-    this.noteService.uploadProfile(formData).subscribe(response=>
-    {
-      localStorage.setItem('ProfileImage',response['data']['profileImage']);
-      this.ProfilePicture=response['data']['profileImage']
-    
-        this.snackBar.open(response['message'],'',{
-        duration:4000,
-        horizontalPosition:'start'
-    });
-    })
-    error=>
-    {
-          console.log('error msg', error);
-    }
+      let fileToUpload = <File>files[0];
+      const formData: FormData = new FormData();
+      formData.append('formFile', fileToUpload); 
+      this.noteService.uploadProfile(formData).subscribe(response=>
+      {
+        localStorage.setItem('ProfileImage',response['data']['profileImage']);
+        this.ProfilePicture=response['data']['profileImage']
+      
+          this.snackBar.open(response['message'],'',{
+          duration:4000,
+          horizontalPosition:'start'
+      });
+      })
+      error=>
+      {
+            console.log('error msg', error);
+      }
    }
    GetLabels()
    {
@@ -140,20 +142,20 @@ export class DashboardComponent implements OnInit {
         
         });
    }
-   ChangeProfile()
-   {
-    const dialogRef = this.dialog.open(EditLabelsComponent, {
-      panelClass: 'myapp-no-padding-dialog',
-      width: '280px',
-      height:'430px',
-      data: this.allLabels
-    });
+  //  ChangeProfile()
+  //  {
+  //   const dialogRef = this.dialog.open(ProfilePicComponent, {
+  //     panelClass: 'myapp-no-padding-dialog',
+  //     width: '280px',
+  //     height:'430px',
+      
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
     
-    });
+  //   });
 
-   }
+  //  }
 
 }

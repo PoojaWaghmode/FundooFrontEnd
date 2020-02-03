@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{NotesService} from '../../Services/NotesService/notes.service'
 import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-trash',
@@ -11,7 +12,8 @@ export class TrashComponent implements OnInit {
 
   allTrashedNotes=[];
   constructor(  private notesService:NotesService,
-                private dataService:DataServiceService) { }
+                private dataService:DataServiceService,
+                private snackBar:MatSnackBar) { }
 
   ngOnInit() {
     
@@ -43,5 +45,20 @@ export class TrashComponent implements OnInit {
             console.log('error msg', error);
           })
       }
-
+      EmptyTrash()
+      {
+        this.notesService.emptyTrash().subscribe(response=>
+          {
+            console.log("Successfully All Note Trashed",response['result'])
+            this.snackBar.open(response['result'],'',{
+              duration:4000,
+                  horizontalPosition:'start'
+              }); 
+          })
+          this.dataService.changeMessage(
+            {
+                type:"getNotes"
+            })  
+              
+      }
 }

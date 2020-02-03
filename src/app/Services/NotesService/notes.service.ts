@@ -52,7 +52,15 @@ export class NotesService {
   }
   addImage(noteId,formData)
   {
-    return this.httpService.post('api/Note/'+noteId+'/Image',formData)
+    return this.httpService.post('api/Note/'+noteId+'/Image',formData);
+  }
+  addImageOnCreateNote(formData)
+  {
+    return this.httpService.post('api/Note/Image',formData);
+  }
+  deleteImage(noteId)
+  {
+    return this.httpService.delete('api/Note/'+noteId+'/DeleteImage');
   }
   editNote(id,data)
   {
@@ -89,5 +97,13 @@ export class NotesService {
   addLabelOnNote(noteId,labelId)
   {
     return this.httpService.post('api/Note/'+noteId+'/addLabelOnNote/'+labelId,labelId)
+  }
+  deleteLabelOnNote(noteId,labelId)
+  {
+    return this.httpService.delete('api/Note/'+noteId+'/DeleteLabelOnNote/'+labelId)
+  }
+  emptyTrash()
+  {
+    return this.httpService.delete('api/Note/EmptyTrash');
   }
 }

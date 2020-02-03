@@ -16,7 +16,7 @@ export class IconsComponent implements OnInit {
     @Input() isTrash;
     @Output() colorEvent = new EventEmitter<string>();
     @Output() reminderEvent=new EventEmitter<string>();
-    @Output() imageEvent=new EventEmitter<File>();
+    @Output() imageEvent=new EventEmitter<string>();
     
 
    colors=['#fff','#f28b82','#fbbc04','#fff475','#ccff90','#a7ffeb','#cbf0f8','#aecbfa','#d7aefb',
@@ -215,26 +215,40 @@ export class IconsComponent implements OnInit {
 
     AddImage(files:File)
     {
-        this.imageEvent.emit(files);
-        this.noteId=this.noteInfo.id;
+       
         let fileToUpload = <File>files[0];
         const formData: FormData = new FormData();
         formData.append('formFile', fileToUpload); 
-        
-        this.noteService.addImage(this.noteId,formData).subscribe(response=>
+
+      if(this.noteInfo != undefined)
+       {
+        this.noteService.addImage(this.noteInfo.id,formData).subscribe(response=>
         {
             var imageUrl = response['result']
-
             console.log('image url',response);
             this.snackBar.open(response['message'],'',{
                 duration:4000,
                 horizontalPosition:'start'
                 });
+                this.dataService.changeMessage(
+                    {
+                        type : 'getNotes'
+                    })
         },
         error=>
         {
             console.log('error msg', error);
         })
+       }
+       else
+       {
+            this.noteService.addImageOnCreateNote(formData).subscribe(response=>
+                {    
+                    var imageUrl=response['result'];
+                    this.imageEvent.emit(imageUrl);
+                })
+
+       }
        
        
     }

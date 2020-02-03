@@ -251,16 +251,17 @@
                 <div fxLayout ="row" fxLayoutAlign="end center">
                   <button mat-icon-button [matMenuTriggerFor]="menu" class="buttons">    
                         <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
-                        <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" style="border-radius: 20px; width: 32px;height: 32px;margin-top: -18px;margin-left: 10px;">                   </button>
-                 </div>
+                        <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" style="border-radius: 20px; width: 32px;height: 32px;margin-top: -18px;margin-left: 10px;">    
+                  </button>
+                </div>
                                     
-                  <mat-menu #menu = "matMenu">
+                <mat-menu #menu = "matMenu">
                     <button mat-menu-item (click)="ChangeProfile()" (click)="file.click(file)">Change Profile
                       <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
-                    </button >                           
+                    </button>                           
              
                     <button mat-menu-item (click)="logOut()">Sign Out</button >                           
-                  </mat-menu>
+                </mat-menu>
             </div>
             
         </div>

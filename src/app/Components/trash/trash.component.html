@@ -1,1 +1,7 @@
+<div fxLayout="row" fxLayoutAlign="center center"style="text-emphasis-color= rgb(0, 132, 255);margin-top:30px">
+    <span style="font-family: Arial, Helvetica, sans-serif;">Notes in Trash are deleted after 7 days.</span>
+    <button (click)="EmptyTrash()" style="padding-left:5px; font-size: 14px;">
+        Empty Trash
+    </button>
+</div>
 <app-display-notes [getChildMessage]="allTrashedNotes" ></app-display-notes>

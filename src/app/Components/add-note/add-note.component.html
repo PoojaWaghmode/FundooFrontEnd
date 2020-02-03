@@ -12,12 +12,12 @@
         </div>
 
         <div *ngIf="!isOpen" >
-            <div  fxLayout="column">
+            <div fxLayout="column">
                 
-                <div>
-                    <!-- <div fxLayout="row">
-                        <img src="{{image}}">
-                     </div> -->
+                <div >
+                    <img src="{{image}}" fxFlex="100" fxLayout="row">
+                 </div>
+                <div>                  
                     <div fxFlex="500px">
                         <input matInput type="text" [(ngModel)]="title" placeholder="Title" style="font-size: 14px;"> 
                     </div> 

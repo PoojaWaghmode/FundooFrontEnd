@@ -1,22 +1,27 @@
  <mat-card display="flex" style="width: 350px;" fxFlex="600px" fxLayout="row" [style.background-color]='data.color'>
-           <div>
+        <div>
+            <div>
+                <img src= {{data.image}}  fxFlex="100" fxLayout="row" >
                 <div>
-                    <div fxLayout="row">
-                        <img src="data.image">
-                     </div>
+                    <button mat-icon-button  (click)="isPin = !isPin">
+                        <img src="/assets/images/pin.svg" matTooltip="Pin Note" *ngIf="!isPin">
+                        <img src="/assets/images/pin2.png" matTooltip="Unpin Note" *ngIf="isPin">
+                    </button>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-around end" >
+                    <button mat-icon-button (click)="RemoveImage(data)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+             </div>
+                <div>
                     <div fxFlex="500px">
-                        <input matInput type="text" [(ngModel)]="data.title" style="font-size: 14px;"> 
+                        <input matInput type="text" [(ngModel)]="data.title" placeholder="title" style="font-size: 14px;"> 
                     </div> 
-                    <div>
-                        <button mat-icon-button  (click)="isPin = !isPin">
-                            <img src="/assets/images/pin.svg" matTooltip="Pin Note" *ngIf="!isPin">
-                            <img src="/assets/images/pin2.png" matTooltip="Unpin Note" *ngIf="isPin">
-                        </button>
-                    </div>                    
-                </div> 
+               </div> 
 
                 <div>
-                    <input matInput type="text" [(ngModel)]="data.description"  style="font-size: 14px;">
+                    <input matInput type="text" [(ngModel)]="data.description" placeholder="description" style="font-size: 14px;">
                 </div> 
                
                 <div>
@@ -33,5 +38,5 @@
                         </button>
                     </div>
                 </div>       
-            </div>
+        </div>
 </mat-card>

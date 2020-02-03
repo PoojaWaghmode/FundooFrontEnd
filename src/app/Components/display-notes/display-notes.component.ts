@@ -7,7 +7,7 @@ import { EditNoteComponent } from '../edit-note/edit-note.component';
 import { NotesService } from 'src/app/Services/NotesService/notes.service';
 import { MatSnackBar } from '@angular/material';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
-
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-display-notes',
   templateUrl: './display-notes.component.html',
@@ -20,7 +20,7 @@ export class DisplayNotesComponent implements OnInit {
  color:any
  message:string;
  reminder=''
- image:File
+ image=''
  value="1"
  constructor( private router:Router,
                private userService:UserServiceService,
@@ -52,6 +52,10 @@ export class DisplayNotesComponent implements OnInit {
         {
           this.value=response.data;
         }
+        if(response.type=="GetLables")
+        {
+          this.value=response.data
+        }
     })
   }
 
@@ -59,8 +63,9 @@ export class DisplayNotesComponent implements OnInit {
   {
     const dialogRef = this.dialog.open(EditNoteComponent,
     {
-      width: '450px',
-      height:'200px',
+      panelClass: 'myapp-no-padding-dialog',
+      width: '590px',
+      height:'180px',
       data: noteData
     });
  }
@@ -121,5 +126,26 @@ export class DisplayNotesComponent implements OnInit {
   
       data: note
       });
+  }
+  DeleteLabel(note,label)
+  {
+    console.log("Delete label on note");
+    this.noteService.deleteLabelOnNote(note.id,label.id).subscribe(response=>{
+      console.log("Deleted",response['results'])
+      this.snackBar.open(response['message'],'',{
+        duration:2000,
+        verticalPosition: 'top',
+        horizontalPosition:'center'
+
+      });
+      this.dataService.changeMessage(
+        {
+          type : 'getNotes'
+        }
+      )
+    })
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.getChildMessage, event.previousIndex, event.currentIndex);
   }
 }

@@ -22,7 +22,7 @@ export class EditNoteComponent implements OnInit {
     private noteService:NotesService,
     private snackBar:MatSnackBar,
     private dataService:DataServiceService
-    ) { }
+    ) {this.dialogRef.updateSize('25%','50%'); }
 
     
     receiveReminder($event) 
@@ -48,13 +48,8 @@ export class EditNoteComponent implements OnInit {
         }
     })
   }
-
-  
-
   EditNote()
   {
-    // console.log("Data Reminder ",this.data.reminder);
-   
     if(this.data.id != undefined)
     {
       if(this.data.title || this.data.description)
@@ -63,32 +58,26 @@ export class EditNoteComponent implements OnInit {
               {
                   Title:this.data.title,
                   Description: this.data.description,
-                  Image:"",
-                  color:this.data.color,
-                  reminder: this.data.reminder                
+                  Image:this.data.image,
+                  Color:this.data.color,
+                  Reminder: this.data.reminder                
               }
   
-              console.log("Reminder  Edit Note :",this.data.reminder);
-              console.log("d :",this.data.color);
               this.noteService.editNote(this.data.id,note).subscribe(response=>
-                {
+              {
                   
                   console.log('response after Edit Note',response);
-                       
-                 
-                  this.dataService.changeMessage(
-                    {
+                  
+                  this.dataService.changeMessage({
                         type:'changeColor',
                          
-                    }
-                  )
-                    this.dataService.changeMessage(
-                      {
+                  })
+                   this.dataService.changeMessage({
                         type:'getNotes'
-                      }
-                    )
+                      
+                   })
                      
-                  this.snackBar.open(response['message'],'',
+                  this.snackBar.open(response['results'],'',
                   {
                           duration:2000,
                           verticalPosition: 'top',
@@ -99,7 +88,7 @@ export class EditNoteComponent implements OnInit {
                 {
                         console.log('error msg', error);
                       
-                        this.snackBar.open(error['error']['message'] ,'Error Occured',
+                        this.snackBar.open(error['error']['results'] ,'Error Occured',
                         { 
                           duration:50000,
                           verticalPosition: 'top',
@@ -113,15 +102,41 @@ export class EditNoteComponent implements OnInit {
     }
     else
     {
-      //console.log("dfg");
-      this.dataService.changeMessage(
-        {
-          type:'changeColor',
-          data : this.data.color
-        })
+      console.error("Failed");
     }
   
         this.dialogRef.close();
     } 
+
+    RemoveImage(data)
+    {
+      console.log("In Remove Image",data);
+      this.noteService.deleteImage(data.id).subscribe(response=>
+        {
+          
+          this.snackBar.open(response['data'],'',
+          {
+                  duration:2000,
+                  verticalPosition: 'top',
+                  horizontalPosition:'center'
+          });
+          this.dataService.changeMessage(
+            {
+              type:'getNotes'
+            }
+          )
+          
+        },
+        error=>
+        {
+                console.log('error msg', error);
+              
+                this.snackBar.open(error['error']['results'] ,'Error Occured',
+                { 
+                  duration:50000,
+                  verticalPosition: 'top',
+                  horizontalPosition:'center'})
+                })
+        }
   
 }

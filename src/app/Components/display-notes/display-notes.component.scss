@@ -1,11 +1,7 @@
-// .mat-card{
-//     width:367px;
-//     margin-top: 10px;
-   
-// }
+
 .mat-chip
 {
- //font-size: 12px;
+ 
  border-radius: 15px;
  border-style: ridge;
 }
@@ -15,3 +11,28 @@
     width: 30px;
     height: 30px;
 }
+.matcard
+{
+    width:350px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:row wrap;
+    align-items: flex-start;
+    float: left;
+    justify-content: flex-start;
+    border-radius: 15px;
+}
+
+.GridView
+{
+    width:650px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap:row wrap;
+    align-items: flex-start;
+    float: left;
+    justify-content: flex-start;
+    border-radius: 15px; 
+}
+
+

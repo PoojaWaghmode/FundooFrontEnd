@@ -16,12 +16,12 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 export class DisplayNotesComponent implements OnInit {
 
  @Input() getChildMessage;
-
+ 
  color:any
  message:string;
  reminder=''
  image=''
- value="1"
+ value='1'
  constructor( private router:Router,
                private userService:UserServiceService,
                private dataService:DataServiceService,
@@ -50,11 +50,11 @@ export class DisplayNotesComponent implements OnInit {
       {
         if(response.type == "ChangeView")
         {
-          this.value=response.data;
+          this.value = response.data;
         }
-        if(response.type=="GetLables")
+        if(response.type == "GetLables")
         {
-          this.value=response.data
+          this.value = response.data
         }
     })
   }
@@ -64,8 +64,7 @@ export class DisplayNotesComponent implements OnInit {
     const dialogRef = this.dialog.open(EditNoteComponent,
     {
       panelClass: 'myapp-no-padding-dialog',
-      width: '590px',
-      height:'180px',
+      width: '590px', 
       data: noteData
     });
  }
@@ -122,8 +121,7 @@ export class DisplayNotesComponent implements OnInit {
   {
     const dialogRef = this.dialog.open(CollaboratorComponent,
       {
-      width: '600px',
-  
+      width: '600px', 
       data: note
       });
   }

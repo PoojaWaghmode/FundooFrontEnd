@@ -5,7 +5,7 @@
                 <div>
                     <button mat-icon-button  (click)="isPin = !isPin">
                         <img src="/assets/images/pin.svg" matTooltip="Pin Note" *ngIf="!isPin">
-                        <img src="/assets/images/pin2.png" matTooltip="Unpin Note" *ngIf="isPin">
+                        <img src="/assets/images/Unpin.png" matTooltip="Unpin Note" *ngIf="isPin">
                     </button>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-around end" >
@@ -15,15 +15,23 @@
                 </div>
              </div>
                 <div>
-                    <div fxFlex="500px">
+                    <div fxFlex="500px" style="padding-bottom: 10px;">
                         <input matInput type="text" [(ngModel)]="data.title" placeholder="title" style="font-size: 14px;"> 
                     </div> 
                </div> 
 
-                <div>
+                <div style="padding-bottom: 10px;">
                     <input matInput type="text" [(ngModel)]="data.description" placeholder="description" style="font-size: 14px;">
                 </div> 
                
+                <!-- <span *ngIf="data.reminder!=null" >
+                    <mat-chip style = " width: 100%;">
+                        {{ note['reminder']  | date:'short'}}                       
+                        <button mat-icon-button (click)="DeleteReminder(note)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </mat-chip>
+                </span>     -->
                 <div>
                     <input matInput type="text" [(ngModel)]="data.reminder" style="font-size: 14px;">
                 </div> 

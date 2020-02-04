@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef} from '@angular/core';
-import{Router} from '@angular/router'
-import {UserServiceService} from '../../Services/UserService/user-service.service'
+import { MediaMatcher} from '@angular/cdk/layout';
+import { ChangeDetectorRef} from '@angular/core';
+import { Router} from '@angular/router'
+import { UserServiceService} from '../../Services/UserService/user-service.service'
 import { DataServiceService } from 'src/app/Services/DataService/data-service.service';
 import { NotesService } from 'src/app/Services/NotesService/notes.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { LabelService } from 'src/app/Services/LabelService/label.service';
 import { EditNoteComponent } from '../edit-note/edit-note.component';
- import { EditLabelsComponent } from '../edit-labels/edit-labels.component';
-import { ProfilePicComponent } from '../profile-pic/profile-pic.component';
+import { EditLabelsComponent } from '../edit-labels/edit-labels.component';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +18,15 @@ import { ProfilePicComponent } from '../profile-pic/profile-pic.component';
 })
 export class DashboardComponent implements OnInit {
   
+  firstName = '';
+  lastName ='';
+  profilePicture =''
+  ownerName= '';
+  email = '';
   value='';
+
   listView=1;
+
   ProfilePicture=localStorage.getItem('ProfileImage');
   allLabels=[];
 
@@ -51,6 +58,12 @@ export class DashboardComponent implements OnInit {
           this.GetLabels();
         }
       })
+
+    this.firstName = localStorage.getItem('FirstName');
+    this.lastName = localStorage.getItem('LastName');
+    this.profilePicture = localStorage.getItem('Profilepicture');
+    this.email = localStorage.getItem('Email');
+    this.ownerName = this.firstName + " " + this.lastName;  
   }
 
     logOut(){
@@ -142,20 +155,5 @@ export class DashboardComponent implements OnInit {
         
         });
    }
-  //  ChangeProfile()
-  //  {
-  //   const dialogRef = this.dialog.open(ProfilePicComponent, {
-  //     panelClass: 'myapp-no-padding-dialog',
-  //     width: '280px',
-  //     height:'430px',
-      
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-    
-  //   });
-
-  //  }
-
+ 
 }

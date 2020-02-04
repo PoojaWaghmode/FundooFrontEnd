@@ -21,7 +21,6 @@ export class SearchComponent implements OnInit {
         {
           this.searchValue = response.data
           console.log("data for search is",this.searchValue);
-          
           console.log("for search",response.data);
           this.SearchNotes(this.searchValue);
         }

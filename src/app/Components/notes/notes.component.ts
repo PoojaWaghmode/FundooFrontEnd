@@ -38,7 +38,7 @@ export class NotesComponent implements OnInit {
     this.unpinnedNotes=[];
     for (let i = 0; i < this.allNotes.length; i++) 
     {
-      if(this.allNotes[i].isPin == true)
+      if(this.allNotes[i].isPin == true && this.allNotes[i].isTrash ==false && this.allNotes[i].isArchive== false)
       {
         this.pinnedNotes.push(this.allNotes[i]);
       }
@@ -48,9 +48,7 @@ export class NotesComponent implements OnInit {
       }
     }
   }
- 
- 
- getAllNotes()
+  getAllNotes()
   {
    this.notesService.getNotes().subscribe(response=>
    {

@@ -15,7 +15,7 @@ import { EditNoteComponent } from './Components/edit-note/edit-note.component';
 import { SearchComponent } from './Components/search/search.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
 import { EditLabelsComponent } from './Components/edit-labels/edit-labels.component';
-import { ProfilePicComponent } from './Components/profile-pic/profile-pic.component';
+
 const routes: Routes = [
   { path: '',
   redirectTo: '/login',
@@ -40,7 +40,7 @@ children:[
         { path: 'search',component:SearchComponent},
         { path: 'collaborator',component:CollaboratorComponent},
         { path: 'edit-labels',component:EditLabelsComponent},
-        { path: 'profile-pic',component:ProfilePicComponent}
+      
    
     ]
 }

@@ -107,36 +107,7 @@
     left: 0;
     right: 0;
   }
-//   .app-bar{
-//     width:100%
-//   }
-//   .search-bar{
-//     width:80%;
-//     top:10%;
-//     bottom:5%
-//   }
-//   .example-is-mobile .example-toolbar {
-//     position: fixed;
-//     /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-//     z-index: 2;
-//   }
-  
-//   h1.example-app-name {
-//     margin-left: 8px;
-//   }
-  
-//   .example-sidenav-container {
-//     /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-//        causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-//     flex: 1;
-//   }
-  
-//   .example-is-mobile .example-sidenav-container {
-//     /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-//        `<body>` to be our scrolling element for mobile layouts. */
-//     flex: 1 0 auto;
-//   }
-  .container{    
+.container{    
     position: absolute;
     top: 0;
     bottom: 0;
@@ -144,31 +115,10 @@
     right: 0;
   }     
 
-//   .buttons
-//   {
-//     height: 10px;
-//     width: 10px;
-//   }
-// #toolbar{
-//     background-color: transparent;
-//     padding-left: 25px;
-//     display: flex;
-//     flex-direction: row;
-//     position: relative;
-// }
-
-// .bulb{
-//     padding-left: 10px;
-// }
-
 .app-name{
     padding-left: 10px;
     font-family: sans-serif;
 }
-
-// .search{
-//     box-sizing: border-box;
-// }
 
 .searchInput{
     width: 90%;
@@ -193,15 +143,8 @@
 #iconPadding{
     padding: 0px 20px 0px 10px;
 }
-
-// .mat-menu-div{
-//     height: 350px;
-//     width: 280px; 
-//     text-align: center;
-// }
-// .Profilepicture
-// {
-//     border-radius: 12%;
-//     width: 20px;
-//     height: 20px;
-// }
+.mat-menu-content
+{
+  padding-top: 53px;
+  padding-bottom: 106px;
+}

@@ -1,6 +1,7 @@
-<!-- <div class="example-container" >
-    <mat-toolbar  >    
-        <div fxLayout="row" display="flex" fxLayoutAlign="space-between center" >
+ <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar>
+   
+    <div fxLayout="row" display="flex" fxLayoutAlign="space-between center" fxFlex="100%">
 
             <div  fxLayout="row" fxFlex=25 >
                 <button mat-icon-button="" matTooltip="Main Menu" class="mat-icon-button" style="margin-top: 5px" (click)="snav.toggle()">
@@ -17,254 +18,51 @@
               </mat-form-field>
             </div>
 
-            <div fxFlex="25" fxLayout="row">              
-                <button mat-icon-button style="margin-top:7px;margin-left: 20px;">
-                    <mat-icon fontSet = "material-icons-outlined">refresh</mat-icon>
-                </button>
-                
-                <button *ngIf="listView==1" mat-icon-button style="margin-top:7px;margin-left: 20px;"  (click)=ChangeView(2)>
-                  <mat-icon fontSet = "material-icons-outlined">view_agenda</mat-icon>
-                </button>
-                <button *ngIf="listView==2"mat-icon-button style="margin-top:7px;margin-left: 20px;" (click)=ChangeView(1)>
-                  <mat-icon fontSet = "material-icons-outlined">view_module</mat-icon>
-                </button>
-                <button mat-icon-button style="margin-top:7px;margin-left: 20px; ">
-                    <mat-icon fontSet = "material-icons-outlined">settings</mat-icon>
-                </button>
-                <button mat-icon-button style="margin-top:7px;margin-left: 40px; ">
-                    <mat-icon fontSet = "material-icons-outlined">apps</mat-icon>
-                </button>
-               
-                <div fxLayout ="row" fxLayoutAlign="end center">
-                  <button mat-icon-button [matMenuTriggerFor]="menu" class="buttons">    
-                        <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
-                        <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" style="border-radius: 20px; width: 32px;height: 32px;margin-top: -18px;margin-left: 10px;">                   </button>
-                 </div>
-                                    
-                  <mat-menu #menu = "matMenu">
-                    <button mat-menu-item (click)="file.click(file)">Change Profile
-                      <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
-                    </button >                           
-             
-                    <button mat-menu-item (click)="logOut()">Sign Out</button >                           
-                  </mat-menu>
-            </div>
-            
-        </div>
-    </mat-toolbar>
-    <mat-divider></mat-divider>
-
-    <mat-sidenav-container  [style.marginTop.px]="mobileQuery.matches ? 56 : 0" style="height: 100%;">
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" style="width: 18%; border: none;">
-                    
-          <mat-nav-list>
-            <div style="padding: 0px 0px 8px 0px">
-              <div style="border-bottom: 2px inset">
-                <a mat-list-item routerLink="notes" id="over" (click)='name="Fundoo"'>
-                  <mat-icon id="iconPadding" fontSet="material-icons-outlined">emoji_objects</mat-icon>
-                  <div class="notes">Notes</div>
-                </a>
-                  
-                <a mat-list-item routerLink="reminder" id="over" (click)='name="Reminder"'>
-                  <mat-icon id="iconPadding">notifications_none_outline</mat-icon>
-                  <div class="notes">Reminder</div>
-                </a>
-              </div>
-              
-              <div style="border-bottom: 2px inset; margin-top: 10px;">
-                  <label style="padding-left: 20px; font-size: 18px;margin-bottom: 14px;">Labels</label>
-                  <div *ngFor ="let label of allLabels" mat-list-item id="over"style=" margin-top:10px" fxLayout="row">
-                          <mat-icon id="iconPadding" style="margin-left:14px;">label_outline</mat-icon>
-                      <label style="padding-left: 10px;font-size: 18px;margin-left: 11px;"> {{label.labelName}}</label>
-                  </div>  
-                  <div mat-list-item  id="over" (click)="EditLabels()" style="font-size:18px;margin-bottom: 14px;">
-                    <mat-icon  fontSet="material-icons-outlined" id="iconPadding" style="margin-left:14px;margin-right: 10px;margin-top: 10px;">edit</mat-icon>
-                    <label>Edit labels</label>
-                  </div>
-              </div>
-              
-              <a mat-list-item routerLink="archive" id="over" (click)='name="Archive"'>
-                <mat-icon   fontSet="material-icons-outlined" id="iconPadding">archive</mat-icon>
-                <div class="notes">Archive</div>
-              </a>
-              
-              <a mat-list-item routerLink="trash" id="over" (click)='name="Trash"'>
-                <mat-icon   fontSet="material-icons-outlined" id="iconPadding">delete</mat-icon>
-                <div class="notes">Trash</div>
-              </a>                     
-            </div>
-
-          </mat-nav-list>
-        </mat-sidenav>        
-       
-        <mat-sidenav-content style="background-color: white;" >
-          <router-outlet ></router-outlet>
-        </mat-sidenav-content>
-      </mat-sidenav-container>
-</div> -->
-
-
-<!-- <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
-  <mat-toolbar fxLayout="row">  
-      <div  fxLayout="row" fxFlex=20 >
-        <button mat-icon-button matTooltip="Main Menu" class="mat-icon-button" (click)="snav.toggle()">
-            <mat-icon >menu</mat-icon>
-        </button>
-        <img class="bulb" src="/assets/images/FundoBulb.png">
-        <h1 class="app-name">{{name}}</h1>        
-      </div>
-
-      <mat-form-field appearance="outline" fxLayout="row" fxFlex="90" style="width:500px; height: 50px;">                
-          <mat-icon matPrefix>search</mat-icon>
-          <input  matInput type="text" placeholder="search" (keyup)=SearchNotes($event) >
-      </mat-form-field>
-     
-
-  <div class="toolbar-buttons" fxLayout="row" fxFlex=40 fxLayoutGap=20px>
-      <!-- <button mat-icon-button >
-      <mat-icon fontSet = "material-icons-outlined">refresh</mat-icon>
-      </button> -->
-  
-      <!-- <button *ngIf="listView==1" mat-icon-button (click)=ChangeView(2)>
-      <mat-icon fontSet = "material-icons-outlined">view_agenda</mat-icon>
-      </button>
-
-      <button *ngIf="listView==2" mat-icon-button  (click)=ChangeView(1)>
-          <mat-icon fontSet = "material-icons-outlined">view_module</mat-icon>
-      </button>
-
-      <button mat-icon-button >
-            <mat-icon fontSet = "material-icons-outlined">settings</mat-icon>
-      </button>
-
-      <button mat-icon-button >
-            <mat-icon fontSet = "material-icons-outlined">apps</mat-icon>
-      </button>
-      
-      <button mat-icon-button [matMenuTriggerFor]="menu">    
-              <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined" class="profilePicture">account_circle</mat-icon>                             
-              <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class="profilePicture">
-      </button>
-    
-                 
-      <mat-menu #menu = "matMenu">
-          <button mat-menu-item (click)="file.click(file)">
-            Change Profile
-              <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
-          </button >                           
-          <button mat-menu-item (click)="logOut()">
-            Sign Out
-          </button >                           
-      </mat-menu>
-  </div>  
-</mat-toolbar>
-
-<mat-sidenav-container class="example-sidenav-container"
-                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0"> 
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-          <mat-nav-list>
-              <div style="padding: 0px 0px 8px 0px">
-
-                    <div style="border-bottom: 2px inset">
-                          <a mat-list-item routerLink="notes" id="over" (click)='name="Fundoo"'>
-                            <mat-icon id="iconPadding" fontSet="material-icons-outlined">emoji_objects</mat-icon>
-                            <div class="notes">Notes</div>
-                          </a>
-                            
-                          <a mat-list-item routerLink="reminder" id="over" (click)='name="Reminder"'>
-                            <mat-icon id="iconPadding">notifications_none_outline</mat-icon>
-                            <div class="notes">Reminder</div>
-                          </a>
-                    </div>
-                    
-                    <div>
-                        <label>Labels</label>
-                        <div *ngFor ="let label of allLabels" mat-list-item id="over"style=" margin-top:10px" fxLayout="row">
-                                <mat-icon id="iconPadding" style="margin-left:14px;">label_outline</mat-icon>
-                            <label  class="newlabels"> {{label.labelName}}</label>
-                        </div>  
-                        <div mat-list-item  id="over" (click)="EditLabels()" style="font-size:18px;margin-bottom: 14px;">
-                          <mat-icon  fontSet="material-icons-outlined" id="iconPadding" style="margin-left:14px;margin-right: 10px;margin-top: 10px;">edit</mat-icon>
-                          <label>Edit labels</label>
-                        </div>
-                    </div>
-                    
-                    <a mat-list-item routerLink="archive" id="over" (click)='name="Archive"'>
-                      <mat-icon   fontSet="material-icons-outlined" id="iconPadding">archive</mat-icon>
-                      <div class="notes">Archive</div>
-                    </a>
-                    
-                    <a mat-list-item routerLink="trash" id="over" (click)='name="Trash"'>
-                      <mat-icon   fontSet="material-icons-outlined" id="iconPadding">delete</mat-icon>
-                      <div class="notes">Trash</div>
-                    </a>                     
-              </div>
-      
-          </mat-nav-list>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-      <router-outlet ></router-outlet>
-    </mat-sidenav-content>
- </mat-sidenav-container>
-</div> --> 
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar>
-     
-        <div fxLayout="row" display="flex" fxLayoutAlign="space-between center" fxFlex="100%">
-
-            <div  fxLayout="row" fxFlex=25 >
-                <button mat-icon-button="" matTooltip="Main Menu" class="mat-icon-button" style="margin-top: 5px" (click)="snav.toggle()">
-                    <mat-icon >menu</mat-icon>
-                </button>
-                <img class="bulb" src="/assets/images/FundoBulb.png">
-                <h1 class="app-name" style="margin-top: 10px">{{name}}</h1>
-            </div>
-
-            <div class="search-bar" fxLayout="row" fxFlex=50 style="margin-top: 22px;" >
-              <mat-form-field [style.fontSize.px]="16" appearance="outline" class="searchInput">                
-                <mat-icon matPrefix>search</mat-icon>
-                <input matInput type="text" placeholder="search" (keyup)=SearchNotes($event) >
-              </mat-form-field>
-            </div>
-
-            <div fxFlex="25" fxLayout="row" class="toolbar-buttons">              
+          <div fxFlex="25" fxLayout="row" class="toolbar-buttons">              
                 <button mat-icon-button >
                     <mat-icon fontSet = "material-icons-outlined">refresh</mat-icon>
                 </button>
                 
-                <button *ngIf="listView==1" mat-icon-button  (click)=ChangeView(2)>
+                <button *ngIf="listView==1" mat-icon-button matToolTip="ListView" (click)=ChangeView(2)>
                   <mat-icon fontSet = "material-icons-outlined">view_agenda</mat-icon>
                 </button>
-                <button *ngIf="listView==2"mat-icon-button (click)=ChangeView(1)>
+
+                <button *ngIf="listView==2"mat-icon-button  matToolTip="GridView" (click)=ChangeView(1)>
                   <mat-icon fontSet = "material-icons-outlined">view_module</mat-icon>
                 </button>
-                <button mat-icon-button >
+
+                <button mat-icon-button>
                     <mat-icon fontSet = "material-icons-outlined">settings</mat-icon>
                 </button>
-                <button mat-icon-button >
+
+                <button mat-icon-button>
                     <mat-icon fontSet = "material-icons-outlined">apps</mat-icon>
                 </button>
-               
-                <div fxLayout ="row" fxLayoutAlign="end center">
-                  <button mat-icon-button [matMenuTriggerFor]="menu" class="buttons">    
+
+               <button mat-icon-button [matMenuTriggerFor]="menu" class="buttons">    
                         <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
                         <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" style="border-radius: 20px; width: 32px;height: 32px;margin-top: -18px;margin-left: 10px;">    
-                  </button>
-                </div>
-                                    
+                </button>
+                        
+
                 <mat-menu #menu = "matMenu">
-                    <button mat-menu-item (click)="ChangeProfile()" (click)="file.click(file)">Change Profile
-                      <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
-                    </button>                           
-             
-                    <button mat-menu-item (click)="logOut()">Sign Out</button >                           
-                </mat-menu>
+                        <div fxLayout="column" fxLayoutAlign="center center">
+                          <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
+                          <img mat-menu-item (click)="file.click(file)" *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" style="border-radius: 67px;  height: 90px; width: 70px;margin-bottom: 10px;border-bottom:2px;" >    
+                        </div> 
+                        <div fxLayout="column" fxLayoutAlign="center center" style="margin-top:20px;margin-bottom: 30px;border-bottom: inset;">
+                              <label style="font-size: 18px">{{ownerName}}</label>
+                              <label style="font-size: 16px">{{email}}</label>   
+                        </div> 
+                        
+                        <!-- <button mat-menu-item (click)="file.click(file)">Change Profile -->
+                            <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
+                        <!-- </button>                            -->
+                        <button fxLayoutAlign="center center" mat-menu-item (click)="logOut()">Sign Out</button>                     
+                </mat-menu>   
+                
             </div>
-            
-        </div>
+          </div>
     </mat-toolbar>
     <mat-divider></mat-divider>
 

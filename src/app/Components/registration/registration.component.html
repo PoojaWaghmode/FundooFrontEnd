@@ -1,10 +1,8 @@
-
 <div mat-card fxLayout="row" fxLayoutAlign="center center" flexfx="100">       
         <mat-card>
                 <form [formGroup]="registrationform">
                         <mat-card-title>Fundoo</mat-card-title>
-                        
-                
+         
                         <mat-card-subtitle>Create your  Google Account</mat-card-subtitle>
                 
                         <div fxLayoutGap="15px"  [style.fontSize.px]="14" >
@@ -23,7 +21,6 @@
                                         Please enter lastName 
                                 </mat-error>   
                                 </mat-form-field>
-        
                         </div>
 
                         <div fxLayoutGap="15px" [style.fontSize.px]="14">
@@ -35,7 +32,6 @@
                                 </mat-error>
                                 </mat-form-field> 
                                 
-                        
                                 <mat-form-field appearance="outline">
                                 <mat-label>UserName</mat-label>
                                 <input matInput placeholder="Enter UserName Here" formControlName="userName"/>
@@ -46,7 +42,6 @@
                                 
                         </div>
 
-                        
                         <div fxLayoutGap="15px" [style.fontSize.px]="14">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Password</mat-label>
@@ -67,7 +62,6 @@
                                 
                         </div>
                         
-                        
                         <div  fxLayout="row" fxLayoutAlign="space-between center" class="subSubContainer" [style.fontSize.px]="14">
                                 <div fxLayoutAlign="start center" fxFlex= 100 >
                                         <span [style.fontSize.px]="13" routerLink="/login" routerLinkActive="router-link-active" class="color">Sign In Instead ?</span>
@@ -82,8 +76,6 @@
                                   <mat-button-toggle value="Advance" (click)="color=false"[style.backgroundColor]="color==false?'#17ce30':'white'">Advance</mat-button-toggle>
                         </mat-button-toggle-group>
 
-                     
-  
                 </form>     
                          
         </mat-card>

@@ -26,7 +26,7 @@
                {{note['description']}}
             </div>
            
-            <div *ngIf="note.collaborator > 0" fxLayout="row">
+            <div *ngIf="note.collaborator > 0" fxLayout="row" fxFlex="100">
                 <div *ngFor="let collaborator of note['collaborators']">
                     <button *ngIf="collaborator['profilePicure'] == null" fxLayoutAlign = "start center" matTooltip="{{collaborator.email}}">
                        <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
@@ -46,7 +46,7 @@
                     </mat-chip>
                 </span>       
              </div>            
-             <div fxLayout ="row" fxLayoutAlign= "start center" style="width:100%;">
+             <div fxLayout ="row" fxLayoutAlign= "start center" fxFlex="100">
                 <div *ngFor="let label of note['labels']">
                     <mat-chip style = " width: 100%;">
                         {{ label.labelName}}                        
@@ -56,7 +56,7 @@
                     </mat-chip>                                      
                 </div>
               </div>
-            <div  fxFlex="100"style="padding-bottom: 10px;"  >
+            <div  fxFlex="100">
                <app-icons [noteInfo]='note' [isTrash]='note.isTrash' (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>
             </div>
         </div>       

@@ -84,9 +84,9 @@
 
               <div style="border-bottom: 2px inset">
                 <span>LABLES</span>
-                <a  mat-list-item id="over" *ngFor ="let label of allLabels">
+                <a  mat-list-item id="over" *ngFor ="let label of allLabels" >
                         <mat-icon id="iconPadding" >label_outline</mat-icon>
-                    <div class="newlabels"> {{label.labelName}}</div>
+                    <div class="newlabels" (keyup)=SearchNotes($event)> {{label.labelName}}</div>
                 </a>
 
                 <a mat-list-item  id="over" (click)="EditLabels()" >

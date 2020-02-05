@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
   providedIn: 'root'
 })
 export class HttpServiceService {
+  
   baseUrl=environment.baseUrl
 
   constructor(private httpClient:HttpClient) { }

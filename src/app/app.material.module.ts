@@ -17,7 +17,6 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { MatChipsModule} from '@angular/material/chips';
 import { DragDropModule} from '@angular/cdk/drag-drop';
 
-
 @NgModule({
   imports: [
     MatCardModule,

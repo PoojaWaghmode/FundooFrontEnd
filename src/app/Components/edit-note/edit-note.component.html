@@ -2,25 +2,25 @@
         <div>
             <div>
                 <img src= {{data.image}}  fxFlex="100" fxLayout="row" >
+                <div *ngIf="data.image != null "fxLayout="row" fxLayoutAlign="space-around end" >
+                    <button mat-icon-button (click)="RemoveImage(data)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
                 <div>
                     <button mat-icon-button  (click)="isPin = !isPin">
                         <img src="/assets/images/pin.svg" matTooltip="Pin Note" *ngIf="!isPin">
                         <img src="/assets/images/Unpin.png" matTooltip="Unpin Note" *ngIf="isPin">
                     </button>
                 </div>
-                <div fxLayout="row" fxLayoutAlign="space-around end" >
-                    <button mat-icon-button (click)="RemoveImage(data)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </div>
              </div>
                 <div>
-                    <div fxFlex="500px" style="padding-bottom: 10px;">
+                    <div fxFlex="500px" style="padding-bottom: 30px;">
                         <input matInput type="text" [(ngModel)]="data.title" placeholder="title" style="font-size: 14px;"> 
                     </div> 
                </div> 
 
-                <div style="padding-bottom: 10px;">
+                <div style="padding-bottom: 30px;">
                     <input matInput type="text" [(ngModel)]="data.description" placeholder="description" style="font-size: 14px;">
                 </div> 
                
@@ -32,8 +32,13 @@
                         </button>
                     </mat-chip>
                 </span>     -->
-                <div>
-                    <input matInput type="text" [(ngModel)]="data.reminder" style="font-size: 14px;">
+                <div *ngIf="data.reminder!=null">
+                    <mat-chip style = " width: 100%;">
+                     <input  [(ngModel)]="data.reminder" style="font-size: 14px;">
+                     <button mat-icon-button (click)="DeleteReminder(note)">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                    </mat-chip>
                 </div> 
 
                 <div fxLayout="row">

@@ -27,7 +27,6 @@ import { SearchComponent } from './Components/search/search.component';
 import { LabelComponent } from './Components/label/label.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

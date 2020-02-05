@@ -13,7 +13,7 @@
 }
 .matcard
 {
-    width:350px;
+    //width:350px;
     display: flex;
     flex-direction: row;
     flex-wrap:row wrap;
@@ -22,14 +22,12 @@
     justify-content: flex-start;
     border-radius: 15px;
 }
-
 .GridView
 {
     width:650px;
     display: flex;
     flex-direction: column;
-    flex-wrap:row wrap;
-    align-items: flex-start;
+    //flex-wrap:row wrap;
     float: left;
     justify-content: flex-start;
     border-radius: 15px; 

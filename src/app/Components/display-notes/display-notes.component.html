@@ -45,7 +45,8 @@
                         </button>
                     </mat-chip>
                 </span>       
-             </div>            
+             </div>   
+            
              <div fxLayout ="row" fxLayoutAlign= "start center" fxFlex="100">
                 <div *ngFor="let label of note['labels']">
                     <mat-chip style = " width: 100%;">
@@ -56,6 +57,14 @@
                     </mat-chip>                                      
                 </div>
               </div>
+              <!-- <div fxLayout ="row" fxLayoutAlign= "start center" fxFlex="100">
+                <div >
+                    <mat-chip *ngFor="let label of note['labels']" [selectable]="selectable"   [removable]="removable" (removed)="DeleteLabel(note,label)">
+                        {{ label.labelName}}  
+                        <mat-icon matChipRemove *ngIf="removable">clear</mat-icon>                      
+                    </mat-chip>                                      
+                </div>
+              </div> -->
             <div  fxFlex="100">
                <app-icons [noteInfo]='note' [isTrash]='note.isTrash' (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>
             </div>

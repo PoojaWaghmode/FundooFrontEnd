@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import{FormGroup,FormBuilder,Validators} from '@angular/forms';
 import{Router} from '@angular/router';
 import{UserServiceService} from '../../Services/UserService/user-service.service';
+import { AuthService } from 'src/app/auth.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit
               private formBuilder:FormBuilder,
               private router:Router,
               private userService:UserServiceService
-              ,private snackBar:MatSnackBar) { }
+              ,private snackBar:MatSnackBar,
+              private auth: AuthService) { }
 
               hide=true
               ngOnInit() {
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit
                   {
                     
                       console.log('response after login',response);
-                      
+                      this.auth.sendToken(response['token'])
                       localStorage.setItem('token', response['token']);
                       localStorage.setItem('FirstName',response['data']['firstName']);
                       localStorage.setItem('LastName',response['data']['lastName']);

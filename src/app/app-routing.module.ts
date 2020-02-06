@@ -15,6 +15,7 @@ import { EditNoteComponent } from './Components/edit-note/edit-note.component';
 import { SearchComponent } from './Components/search/search.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
 import { EditLabelsComponent } from './Components/edit-labels/edit-labels.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '',
@@ -25,7 +26,7 @@ const routes: Routes = [
 {path:'register',component :RegistrationComponent},
 {path:'forgetpassword',component:ForgetPasswordComponent},
 {path:'resetpassword/:token',component:ResetPasswordComponent},
-{path:'dashboard',component:DashboardComponent ,
+{path:'dashboard',component:DashboardComponent ,canActivate: [AuthGuard],
 children:[
 
         { path: '',redirectTo: 'notes', pathMatch: 'full'},

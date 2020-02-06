@@ -26,6 +26,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { SearchComponent } from './Components/search/search.component';
 import { LabelComponent } from './Components/label/label.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,7 @@ import { CollaboratorComponent } from './Components/collaborator/collaborator.co
     OwlNativeDateTimeModule,
 
   ],
-  providers: [],
+  providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent],
   // entryComponents: [
   //  SampleComponent

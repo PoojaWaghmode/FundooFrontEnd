@@ -9,6 +9,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { LabelService } from 'src/app/Services/LabelService/label.service';
 import { EditNoteComponent } from '../edit-note/edit-note.component';
 import { EditLabelsComponent } from '../edit-labels/edit-labels.component';
+import { AuthService } from 'src/app/auth.service';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class DashboardComponent implements OnInit {
      private noteService:NotesService,
      private snackBar:MatSnackBar ,
      private labelService:LabelService,
-     public dialog: MatDialog
+     public dialog: MatDialog,
+     public auth: AuthService
      )
      {
           this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -66,10 +68,10 @@ export class DashboardComponent implements OnInit {
     this.ownerName = this.firstName + " " + this.lastName;  
   }
 
-    logOut(){
-    localStorage.clear();
-    this.router.navigate(['/login'])
-    }
+    // logOut(){
+    // localStorage.clear();
+    // this.router.navigate(['/login'])
+    // }
     
     GetArchiveNotes()
     {

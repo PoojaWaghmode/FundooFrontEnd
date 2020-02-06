@@ -39,7 +39,8 @@ export class IconsComponent implements OnInit {
     labels=[];
     noteId : any;
     date:any
-
+    labelIconChecked=false
+    labelsMenu=false
     TrashNote()
     {
         this.noteId = this.noteInfo.id
@@ -268,6 +269,7 @@ export class IconsComponent implements OnInit {
 
     GetLabel()
     {
+        this.labelsMenu=true
         this.labelService.getLabels().subscribe( response =>
             {
                 console.log("ads",response['results'])
@@ -276,6 +278,7 @@ export class IconsComponent implements OnInit {
                 
             })
     }
+
 
     AddLabels(label)
     {

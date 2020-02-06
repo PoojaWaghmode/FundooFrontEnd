@@ -16,6 +16,7 @@ import { MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatChipsModule} from '@angular/material/chips';
 import { DragDropModule} from '@angular/cdk/drag-drop';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { DragDropModule} from '@angular/cdk/drag-drop';
     MatTooltipModule,
     MatDialogModule,
     MatChipsModule,
-    DragDropModule
+    DragDropModule,
+    MatCheckboxModule
 
     
   ],
@@ -57,7 +59,7 @@ import { DragDropModule} from '@angular/cdk/drag-drop';
     MatTooltipModule,
     MatDialogModule,
     MatChipsModule,
-    DragDropModule
+    DragDropModule,MatCheckboxModule
 
   ],
 

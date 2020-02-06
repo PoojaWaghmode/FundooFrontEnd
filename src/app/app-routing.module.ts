@@ -4,7 +4,6 @@ import { LoginComponent} from './Components/login/login.component'
 import { RegistrationComponent} from './Components/registration/registration.component'
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 
-
 const routes: Routes = [
   { path: '',
   redirectTo: '/login',
@@ -13,7 +12,10 @@ const routes: Routes = [
 { path: 'login', component: LoginComponent },
 { path: 'register',component :RegistrationComponent},
 { path: 'dashboard',component:DashboardComponent ,
-  
+//  children:[
+
+//    {path: 'userInfo',component:UserInfoComponent}
+//  ] 
 
 }
 ];

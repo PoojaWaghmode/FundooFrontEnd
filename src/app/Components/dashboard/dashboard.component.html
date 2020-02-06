@@ -1,36 +1,24 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar>
-     
-      <div fxLayout="row" display="flex" fxLayoutAlign="space-between center" fxFlex="100%">
-  
-              <!-- <div  fxLayout="row" fxFlex=25 >
-                  <button mat-icon-button="" matTooltip="Main Menu" class="mat-icon-button" style="margin-top: 5px" (click)="snav.toggle()">
-                      <mat-icon >menu</mat-icon>
-                  </button>
-                  <img class="bulb" src="/assets/images/FundoBulb.png">
-                  <h1 class="app-name" style="margin-top: 10px">{{name}}</h1>
-              </div>
-   -->
-              <div class="search-bar" fxLayout="row" fxFlex=50 style="margin-top: 22px;" >
+    <mat-toolbar class ="toolbar"  >
+              <!-- <div class="search-bar" fxLayout="row" fxFlex=50 style="margin-top: 22px;" >
                 <mat-form-field [style.fontSize.px]="16" appearance="outline" class="searchInput">                
                   <mat-icon matPrefix>search</mat-icon>
                   <input matInput type="text" placeholder="search" (keyup)=SearchNotes($event) >
                 </mat-form-field>
               </div>
-  
-            <div fxFlex="25" fxLayout="row" class="toolbar-buttons">              
-                
-  
-                 <button mat-icon-button [matMenuTriggerFor]="menu" class="buttons">    
-                          <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
-                          <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" style="border-radius: 20px; width: 32px;height: 32px;margin-top: -18px;margin-left: 10px;">    
-                  </button>
-                          
-  
-                  <mat-menu #menu = "matMenu">
+   -->
+            <div fxFlex="100" fxLayoutAlign="end center" fxLayout="row" class="toolbar-buttons">              
+               
+                 <!-- <button mat-icon-button class="buttons">     -->
+                          <!-- <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
+                          <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class ="profile" >     -->
+                  <!-- </button> -->
+                  <mat-menu [matMenuTriggerFor]="menu"  #menu = "matMenu">
+                    <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
+                    <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class ="profile" >  
                           <div fxLayout="column" fxLayoutAlign="center center">
                             <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
-                            <img mat-menu-item (click)="file.click(file)" *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" style="border-radius: 67px;  height: 90px; width: 70px;margin-bottom: 10px;border-bottom:2px;" >    
+                            <img mat-menu-item (click)="file.click(file)" *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class="profilePic" >    
                           </div> 
                           <div fxLayout="column" fxLayoutAlign="center center" style="margin-top:20px;margin-bottom: 30px;border-bottom: inset;">
                                 <label style="font-size: 18px">{{ownerName}}</label>
@@ -42,65 +30,64 @@
                           <!-- </button>                            -->
                           <button fxLayoutAlign="center center" mat-menu-item (click)="logOut()">Sign Out</button>                     
                   </mat-menu>   
-                  
-              </div>
             </div>
-      </mat-toolbar>
-     <!-- <div> -->
-      <mat-grid-list  style="height:500px;width: 500px;"cols="2" rowHeight="2:1">
-        <mat-grid-tile>
-          <div fxLayout="column">
-            <span>BASIC</span>
-            <span>{{basic}}</span>
-          </div>   
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <div fxLayout="column">
-            <span>ADVANCE</span>
-            <span>{{advance}}</span>
-          </div>           
-        </mat-grid-tile>
-      </mat-grid-list>
-     <!-- </div> -->
-    <div>
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource">
-      
-          <!-- Position Column -->
-          <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+           
+    </mat-toolbar>
+      <div display="fxFlex" fxLayoutAlign="center center" >
+        <mat-grid-list cols="2" rowHeight="8:1" style="width: 20%;" fxLayoutAlign="center center">
+          <mat-grid-tile>         
+              <span>BASIC Users :{{basic}}</span>       
+          </mat-grid-tile>
+          <mat-grid-tile>        
+              <span>ADVANCE Users :{{advance}}</span>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="SearchUser">
+      </mat-form-field>
+      <div display="fxFlex">
+        <table mat-table [dataSource]="dataSource"   class="table">
+
+          <ng-container matColumnDef="firstName">
+            <th  class="UserData" mat-header-cell *matHeaderCellDef> FirstName </th>
+            <td  mat-cell *matCellDef="let element"> {{element.firstName}} </td>
           </ng-container>
-      
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        
+          
+          <ng-container matColumnDef="lastName">
+            <th   class="UserData" mat-header-cell *matHeaderCellDef> LastName </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
           </ng-container>
-      
-          <!-- Weight Column -->
-          <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef> Weight </th>
-            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        
+          
+          <ng-container matColumnDef="userName">
+            <th  class="UserData" mat-header-cell *matHeaderCellDef> UserName </th>
+            <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
           </ng-container>
-      
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef> Symbol </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+
+          <ng-container matColumnDef="email">
+            <th  class="UserData" mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
           </ng-container>
-      
+
+          <ng-container matColumnDef="mobile">
+            <th   class="UserData" mat-header-cell *matHeaderCellDef> MobileNo </th>
+            <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="serviceType">
+            <th  class="UserData" mat-header-cell *matHeaderCellDef> ServiceType </th>
+            <td mat-cell *matCellDef="let element"> {{element.serviceType}} </td>
+          </ng-container>
+        
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-      
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+       
       </div>
-    </div>
-    
-
-
-
-
+      <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true" [length]="totalSize"
+      [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
+      </mat-paginator> 
     <router-outlet ></router-outlet>
 </div>

@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MediaMatcher} from '@angular/cdk/layout';
 import { ChangeDetectorRef} from '@angular/core';
 import { Router} from '@angular/router'
-import { MatSnackBar, MatPaginator} from '@angular/material';
+import { MatSnackBar} from '@angular/material';
 import { AdminService } from 'src/app/Service/Admin/admin.service';
-
+import { MatPaginator} from '@angular/material/paginator';
+import { MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,14 +23,20 @@ export class DashboardComponent implements OnInit {
   email = '';
   basic ='';
   advance ='';
-  
   ProfilePicture=localStorage.getItem('ProfileImage');
-  
+  displayedColumns: string[] = ['firstName', 'lastName', 'userName','mobile','email','serviceType'];
+  AllUsersData=[];
+  dataSource
+  public pageSize = 10;
+  public currentPage = 0;
+  public totalSize = 0;
+  public array: any;
+  paginator: MatPaginator;
 
   mobileQuery: MediaQueryList;
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
   private _mobileQueryListener: () => void;
-
+  
   constructor(changeDetectorRef: ChangeDetectorRef,
      media: MediaMatcher,
      private router:Router,
@@ -43,25 +50,43 @@ export class DashboardComponent implements OnInit {
           this.mobileQuery.addListener(this._mobileQueryListener);  
     }
     
-
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   ngOnInit() {
     
-    
+   
     this.UserStatstics();
     this.GetUsers();
     this.firstName = localStorage.getItem('FirstName');
     this.lastName = localStorage.getItem('LastName');
     this.profilePicture = localStorage.getItem('Profilepicture');
     this.email = localStorage.getItem('Email');
-    this.ownerName = this.firstName + " " + this.lastName;  
+    this.ownerName = this.firstName + " " + this.lastName; 
+    
+    
   }
 
-    logOut(){
+  public handlePage(e: any) 
+  {
+    this.currentPage = e.pageIndex;
+    this.pageSize = e.pageSize;
+    this.iterator();
+  }
+
+  private iterator() 
+  {
+    const end = (this.currentPage + 1) * this.pageSize;
+    const start = this.currentPage * this.pageSize;
+    const part = this.array.slice(start, end);
+    this.dataSource = part;
+   
+  }
+
+    logOut()
+    {
     localStorage.clear();
     this.router.navigate(['/login'])
     }
     
+
     UploadProfile(files:File)
     {
        let fileToUpload = <File>files[0];
@@ -82,6 +107,7 @@ export class DashboardComponent implements OnInit {
              console.log('error msg', error);
        }
     }
+
     UserStatstics()
     {
       this.adminService.countBasicAndAdvanceUsers().subscribe(response=>{
@@ -93,11 +119,33 @@ export class DashboardComponent implements OnInit {
 
       })
     }
+
     GetUsers()
     {
       this.adminService.getUsers().subscribe(response=>{
-        console.log("All Users:",response['data'])
+        console.log("All Users:",response['data']);
+        this.dataSource=response['data'];     
+        console.log("In Datasource:",this.dataSource);
+       
+          this.dataSource = new MatTableDataSource<Element>(response['data']);
+          this.dataSource.paginator = this.paginator;
+          this.array = response['data'];
+          this.totalSize = this.array.length;
+          this.iterator();
+        
       })
+    }
+
+    applyFilter(filterValue: string)
+    {
+      this.adminService.getUsers().subscribe(response=>{
+        console.log("All Users:",response['data']);
+        this.dataSource=response['data'];     
+        console.log("In Datasource:",this.dataSource);      
+        
+      })
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+      console.log("Filter:",this.dataSource.filter)
     }
 
 }

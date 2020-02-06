@@ -1,56 +1,19 @@
-.bulb{
-    padding-left: 10px;
+
+.toolbar
+{
+  background-color: cornflowerblue;
+  display:flex;
+  width: 100%;
+  height: 20%;
+  
+  border-bottom-width: initial;
 }
-// .mat-icon-button
-// {
-//   margin-top: 5px
-// }
-// .app-name{
-//     padding-left: 10px;
-//     font-family: sans-serif;
-//     margin-top: 10px
-// }
 .toolbar-buttons
 {
   margin-top:7px;
   margin-left: 20px;
 }
 
-// #over:hover{
-//     background-color: rgb(233, 230, 225);
-//     border-radius: 0 25px 25px 0;   
-// }
-
-
-// #over:focus{
-//     background-color: rgb(241, 221, 155);
-//     border-radius: 0 25px 25px 0; 
-     
-// }
-
-// #iconPadding{
-//     padding: 0px 20px 0px 10px;
-// }
-
-// .profilePicture
-// {
-//     border-radius: 20px; 
-//     width: 32px;
-//     height: 32px;
-//     margin-top: -18px;
-//     margin-left: 10px;
-// }
-// .newlabels
-// {
-//   padding-left: 7px;
-//   font-size: 18px;
-//   margin-left: 9px;
-// }
-
-// .example-toolbar
-// {
-//   background-color: transparent;
-// }
 .example-container {
     display: flex;
     flex-direction: column;
@@ -60,47 +23,48 @@
     left: 0;
     right: 0;
   }
-.container{    
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }     
-
-.app-name{
-    padding-left: 10px;
-    font-family: sans-serif;
-}
-
+ 
 .searchInput{
     width: 90%;
     margin-bottom: 30px;
     margin-top: 30px;
 }
 
-
-#over:hover{
-    background-color: rgb(233, 230, 225);
-    border-radius: 0 25px 25px 0;   
-   
-}
-
-
-#over:focus{
-    background-color: rgb(241, 221, 155);
-    border-radius: 0 25px 25px 0; 
-     
-}
-
-#iconPadding{
-    padding: 0px 20px 0px 10px;
-}
-.mat-menu-content
-{
-  padding-top: 53px;
-  padding-bottom: 106px;
-}
 mat-grid-tile {
-  background: lightblue;
+  background: rgb(191, 236, 211);
+}
+
+
+.profile{
+  border-radius: 20px;
+   width: 32px;
+   height: 32px;
+   margin-top: -18px;
+   margin-left: 10px;
+}
+.profilePic{
+  border-radius: 67px; 
+   height: 90px; 
+   width: 70px;
+   margin-bottom: 10px;
+   border-bottom:2px;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+.UserData
+{
+  font-Size:16px;
+  background-color: #add8e6;
+  text-decoration: underline;
+  text-shadow: black; 
+ }
+ .mat-grid-list
+ {
+   padding-bottom: 100px;
+ }
+ .mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }

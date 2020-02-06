@@ -10,7 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MaterialModule } from "./app.material.module";
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,20 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     DashboardComponent,
     RegistrationComponent,
+   
     
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,FormsModule, ReactiveFormsModule,FlexLayoutModule,MaterialModule,HttpClientModule
+     BrowserModule,
+     AppRoutingModule,
+     BrowserAnimationsModule,
+     FormsModule,
+     ReactiveFormsModule,
+     FlexLayoutModule,
+     MaterialModule,
+     HttpClientModule,
+     MatTableModule,
+     MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 <div  *ngIf="value=='1'? 'row-wrap':'column-wrap'" cdkDropList class="example-list" (cdkDropListDropped)="drop($event)"  style="margin:2% 0% 1% 10%;">    
-    <mat-card [ngClass]="value=='1'?'matcard':'GridView'" *ngFor="let note of getChildMessage" style="margin: 5px 5px 5px 5px;"  [ngStyle] ="{'backgroundColor' : note.color}" cdkDrag>
+    <mat-card [ngClass]="value=='1'?'matcard':'GridView'" *ngFor="let note of getChildMessage" (onMouseOver)="isChecked=true "(click)="note.id"style="margin: 5px 5px 5px 5px;"  [ngStyle] ="{'backgroundColor' : note.color}" cdkDrag>
          <div fxLayout="column">
 
             <div fxLayout="column">

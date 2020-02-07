@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
   {
       this.noteService.searchNotes(value).subscribe(response=>
       {
-          console.log('response after Display  Trash Notes', response); 
+          console.log('response after  fire search Notes event', response); 
           this.allSearchedNotes= response['data'] ; 
           console.log("All Search Notes:",this.allSearchedNotes);     
       },

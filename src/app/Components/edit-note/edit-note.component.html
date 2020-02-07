@@ -24,21 +24,12 @@
                     <input matInput type="text" [(ngModel)]="data.description" placeholder="description" style="font-size: 14px;">
                 </div> 
                
-                <!-- <span *ngIf="data.reminder!=null" >
-                    <mat-chip style = " width: 100%;">
-                        {{ note['reminder']  | date:'short'}}                       
-                        <button mat-icon-button (click)="DeleteReminder(note)">
-                            <mat-icon>clear</mat-icon>
-                        </button>
-                    </mat-chip>
-                </span>     -->
                 <div *ngIf="data.reminder!=null">
-                    <mat-chip style = " width: 100%;">
+                  
                      <input  [(ngModel)]="data.reminder" style="font-size: 14px;">
                      <button mat-icon-button (click)="DeleteReminder(note)">
                         <mat-icon>clear</mat-icon>
-                    </button>
-                    </mat-chip>
+                     </button>                  
                 </div> 
 
                 <div fxLayout="row">

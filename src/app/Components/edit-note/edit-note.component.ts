@@ -77,7 +77,7 @@ export class EditNoteComponent implements OnInit {
                       
                    })
                      
-                  this.snackBar.open(response['results'],'',
+                  this.snackBar.open(response['message'],'',
                   {
                           duration:2000,
                           verticalPosition: 'top',

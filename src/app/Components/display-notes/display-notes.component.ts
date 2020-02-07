@@ -22,6 +22,7 @@ export class DisplayNotesComponent implements OnInit {
  reminder=''
  image=''
  value='1'
+ isChecked=false
  constructor( private router:Router,
                private userService:UserServiceService,
                private dataService:DataServiceService,
@@ -50,6 +51,7 @@ export class DisplayNotesComponent implements OnInit {
       {
         if(response.type == "ChangeView")
         {
+
           this.value = response.data;
         }
         if(response.type == "GetLables")

@@ -148,6 +148,7 @@ export class DashboardComponent implements OnInit {
       this.dataSource.filter = filterValue.trim().toLowerCase();
       console.log("Filter:",this.dataSource.filter)
     }
+    
     SearchUser(event:any)
     {
       console.log("DAta:",event);

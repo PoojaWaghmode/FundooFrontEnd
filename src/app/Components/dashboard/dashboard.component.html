@@ -1,44 +1,43 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar class ="toolbar"  >
-             
+             <label >Admin Panel</label>
             <div fxFlex="100" fxLayoutAlign="end center" fxLayout="row" class="toolbar-buttons">              
                
-                   <button mat-icon-button class="buttons">  
-                          <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
-                          <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class ="profile" >    
-                  </button> 
-                  <mat-menu [matMenuTriggerFor]="menu"  #menu = "matMenu">
-                    <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
-                    <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class ="profile" >  
-                          <div fxLayout="column" fxLayoutAlign="center center">
-                            <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
-                            <img mat-menu-item (click)="file.click(file)" *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class="profilePic" >    
-                          </div> 
-                          <div fxLayout="column" fxLayoutAlign="center center" style="margin-top:20px;margin-bottom: 30px;border-bottom: inset;">
-                                <label style="font-size: 18px">{{ownerName}}</label>
-                                <label style="font-size: 16px">{{email}}</label>   
-                          </div> 
-                          
-                          <!-- <button mat-menu-item (click)="file.click(file)">Change Profile -->
-                              <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
-                          <!-- </button>                            -->
-                          <button fxLayoutAlign="center center" mat-menu-item (click)="logOut()">Sign Out</button>                     
-                  </mat-menu>   
-            </div>
+              <div mat-icon-button [matMenuTriggerFor]="menu"  class="buttons">    
+                <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
+                <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class="profile">    
+              </div>
+            
+              <mat-menu #menu = "matMenu">
+                    <div fxLayout="column" fxLayoutAlign="center center">
+                      <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
+                      <img mat-menu-item (click)="file.click(file)" *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class="profilePic" >    
+                    </div> 
+                    <div fxLayout="column" fxLayoutAlign="center center" style="margin-top:20px;margin-bottom: 30px;border-bottom: inset;">
+                          <label style="font-size: 18px">{{ownerName}}</label>
+                          <label style="font-size: 16px">{{email}}</label>   
+                    </div> 
+                   
+                    <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
+                                           
+                    <button fxLayoutAlign="center center" mat-menu-item  (click)="logout()">Sign Out</button>                                           
+              </mat-menu>   
+        
+                </div>
            
     </mat-toolbar>
-      <div display="fxFlex" fxLayoutAlign="center center" >
-        <mat-grid-list cols="2" rowHeight="8:1" style="width: 20%;" fxLayoutAlign="center center">
+      <div display="fxFlex" fxLayoutAlign="center center" fxLayout="row" style="margin-bottom:50px;">
+        <mat-grid-list cols="2" rowHeight="9:1"  style="width: 20%;margin-top: 10px;" fxLayoutAlign="center center">
           <mat-grid-tile>         
               <span>BASIC Users :{{basic}}</span>       
           </mat-grid-tile>
-          <mat-grid-tile>        
+          <mat-grid-tile style="margin-left:50px;margin-top: initial;">        
               <span>ADVANCE Users :{{advance}}</span>
           </mat-grid-tile>
         </mat-grid-list>
       </div>
       <mat-form-field>
-        <input matInput type="text" placeholder="search" (keyup)=SearchUser($event) >
+        <input matInput type="text" placeholder="Enter Name to search user" (keyup)=SearchUser($event) >
       </mat-form-field>
       <div display="fxFlex">
         <table mat-table [dataSource]="dataSource"   class="table">
@@ -50,7 +49,7 @@
         
           
           <ng-container matColumnDef="lastName">
-            <th   class="UserData" mat-header-cell *matHeaderCellDef> LastName </th>
+            <th class="UserData" mat-header-cell *matHeaderCellDef> LastName </th>
             <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
           </ng-container>
         

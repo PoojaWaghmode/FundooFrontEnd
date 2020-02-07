@@ -1,18 +1,12 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar class ="toolbar"  >
-              <!-- <div class="search-bar" fxLayout="row" fxFlex=50 style="margin-top: 22px;" >
-                <mat-form-field [style.fontSize.px]="16" appearance="outline" class="searchInput">                
-                  <mat-icon matPrefix>search</mat-icon>
-                  <input matInput type="text" placeholder="search" (keyup)=SearchNotes($event) >
-                </mat-form-field>
-              </div>
-   -->
+             
             <div fxFlex="100" fxLayoutAlign="end center" fxLayout="row" class="toolbar-buttons">              
                
-                 <!-- <button mat-icon-button class="buttons">     -->
-                          <!-- <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
-                          <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class ="profile" >     -->
-                  <!-- </button> -->
+                   <button mat-icon-button class="buttons">  
+                          <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
+                          <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class ="profile" >    
+                  </button> 
                   <mat-menu [matMenuTriggerFor]="menu"  #menu = "matMenu">
                     <mat-icon *ngIf="ProfilePicture == null" fontSet = "material-icons-outlined">account_circle</mat-icon>                             
                     <img *ngIf="ProfilePicture!=null"  [src]="ProfilePicture" class ="profile" >  
@@ -44,7 +38,7 @@
         </mat-grid-list>
       </div>
       <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="SearchUser">
+        <input matInput type="text" placeholder="search" (keyup)=SearchUser($event) >
       </mat-form-field>
       <div display="fxFlex">
         <table mat-table [dataSource]="dataSource"   class="table">

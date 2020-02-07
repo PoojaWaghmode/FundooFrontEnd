@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../Http/http.service';
+import { DataSource } from '@angular/cdk/table';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +28,9 @@ export class AdminService {
   {
     return this.httpService.get('api/Admin/getUsers')
   }
+  searchUser(searchUser)
+  {
+    return this.httpService.get('api/Admin/SearchUser/'+searchUser)
+  }
+  
 }

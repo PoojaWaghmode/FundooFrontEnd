@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'userName','mobile','email','serviceType'];
   AllUsersData=[];
   dataSource
+  value
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
@@ -147,5 +148,15 @@ export class DashboardComponent implements OnInit {
       this.dataSource.filter = filterValue.trim().toLowerCase();
       console.log("Filter:",this.dataSource.filter)
     }
-
+    SearchUser(event:any)
+    {
+      console.log("DAta:",event);
+      this.value=event.target.value
+      this.adminService.searchUser(this.value).subscribe(response=>{
+      console.log("Search User :",response['data']);
+      this.dataSource=response['data'];
+        
+      })
+    }
+   
 }

@@ -15,6 +15,7 @@ export class EditNoteComponent implements OnInit {
   color=''
   image=''
   reminder=''
+  isArchive=false
  
   constructor( public dialogRef: MatDialogRef<EditNoteComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
@@ -36,6 +37,10 @@ export class EditNoteComponent implements OnInit {
     receiveImage($event)
     {
       this.data.image=$event
+    }
+    receiveArchive($event)
+    {
+      this.data.isArchive=$event
     }
   ngOnInit() 
   {
@@ -60,7 +65,8 @@ export class EditNoteComponent implements OnInit {
                   Description: this.data.description,
                   Image:this.data.image,
                   Color:this.data.color,
-                  Reminder: this.data.reminder                
+                  Reminder: this.data.reminder ,
+                  IsArchive:this.data.isArchive               
               }
   
               this.noteService.editNote(this.data.id,note).subscribe(response=>
@@ -139,4 +145,27 @@ export class EditNoteComponent implements OnInit {
                 })
         }
   
+        DeleteReminder(data)
+      {
+  
+    console.log("Data:",data.id);
+    
+     this.noteService.deleteReminder(data.id).subscribe(response=>
+     {
+         console.log('Note  Reminder Deleted' );
+         this.dataService.changeMessage(
+         {
+             type:"getNotes"
+         })   
+         this.snackBar.open(response['message'],'',{
+         duration:4000,
+         horizontalPosition:'start'
+         });
+     },
+     error=>
+     {
+         console.log('error msg', error);
+     })
+ }
+
 }

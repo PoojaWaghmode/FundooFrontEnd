@@ -18,9 +18,8 @@ export class AddNoteComponent implements OnInit {
       color=''
       image=''
       reminder=''
-      // isTrash=''
-      // isArchive=''
-      // isPin=''
+      isArchive=false
+      isPin=false
     
 
         isOpen=true;
@@ -66,13 +65,14 @@ export class AddNoteComponent implements OnInit {
     console.log("Image:"+$event);
     this.image=$event
   }
+  receiveArchieve($event)
+  {
+    this.isArchive=$event
+  }
   createNote()
   {
     this.isOpen=true;
 
-   
-
-    
     if(this.title || this .description)
     {
             let note={
@@ -82,9 +82,8 @@ export class AddNoteComponent implements OnInit {
                 Image: this.image,
                 Color:this.color,               
                 Reminder:this.reminder,
-                // isArchive:this.isArchive,
-                // isTrash:this.isTrash,
-                // isPin:this.isPin
+                isArchive:this.isArchive,
+                isPin:this.isPin
                      
             }
             this.noteService.createNote(note).subscribe(response=>

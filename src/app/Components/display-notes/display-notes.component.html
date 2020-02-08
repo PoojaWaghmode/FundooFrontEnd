@@ -5,7 +5,7 @@
             <div fxLayout="column">
                 <img src="{{note.image}}">
              </div>
-            <div fxLayout="row" style="padding-bottom: 10px;"fxFlex="100" >
+            <div fxLayout="row" style="padding-bottom: 10px;"fxFlex="100" style="margin-bottom:10px" >
                     <div fxFlex="85" aria-multiline="true" (click)="openDialog(note)">
                         {{note['title']}}
                     </div>  
@@ -17,16 +17,16 @@
                     </div>
                     <div *ngIf="note['isPin']" fxFlex="5" (click)="PinNote(note)">
                         <button mat-icon-button >
-                            <img src="/assets/images/Unpin.png" >
+                            <img src="/assets/images/Unpin.png">
                         </button>
                     </div>    
             </div>
 
-            <div  fxFlex="100" aria-multiline="true" (click)="openDialog(note)">
+            <div  fxFlex="100" aria-multiline="true" (click)="openDialog(note)"style="margin-bottom:10px">
                {{note['description']}}
             </div>
            
-            <div *ngIf="note.collaborator > 0" fxLayout="row" fxFlex="100">
+            <div *ngIf="note.collaborator > 0" fxLayout="row" fxFlex="100"style="margin-bottom:10px">
                 <div *ngFor="let collaborator of note['collaborators']">
                     <button *ngIf="collaborator['profilePicure'] == null" fxLayoutAlign = "start center" matTooltip="{{collaborator.email}}">
                        <mat-icon fontSet = "material-icons-outlined">account_circle</mat-icon>
@@ -36,36 +36,23 @@
                    </div>                   
                 </div>
             </div>
-            <div  fxFlex="100" (click)="openDialog(note)">
+            <div  fxFlex="100" (click)="openDialog(note)" style="margin-bottom:10px">
                 <span *ngIf="note.reminder!=null" >
-                    <mat-chip style = " width: 100%;">
-                        {{ note['reminder']  | date:'short'}}                       
-                        <button mat-icon-button (click)="DeleteReminder(note)">
-                            <mat-icon>clear</mat-icon>
-                        </button>
-                    </mat-chip>
+                    <mat-chip  [selectable]="selectable" [removable]="removable" (removed)="remove(note)">
+                        {{ note['reminder']  | date:'short'}}  
+                        <mat-icon matChipRemove *ngIf="removable" (click)="DeleteReminder(note)">cancel</mat-icon>
+               </mat-chip>
                 </span>       
              </div>   
-            
-             <div fxLayout ="row" fxLayoutAlign= "start center" fxFlex="100">
-                <div *ngFor="let label of note['labels']">
-                    <mat-chip style = " width: 100%;">
-                        {{ label.labelName}}                        
-                        <button mat-icon-button (click)="DeleteLabel(note,label)">
-                            <mat-icon>clear</mat-icon>
-                        </button>
-                    </mat-chip>                                      
-                </div>
-              </div>
-              <!-- <div fxLayout ="row" fxLayoutAlign= "start center" fxFlex="100">
-                <div >
-                    <mat-chip *ngFor="let label of note['labels']" [selectable]="selectable"   [removable]="removable" (removed)="DeleteLabel(note,label)">
-                        {{ label.labelName}}  
-                        <mat-icon matChipRemove *ngIf="removable">clear</mat-icon>                      
-                    </mat-chip>                                      
-                </div>
-              </div> -->
-            <div  fxFlex="100">
+             
+              <mat-chip-list >
+                <mat-chip *ngFor="let label of note['labels']" [selectable]="selectable"
+                         [removable]="removable" (removed)="remove(labels)">
+                         {{ label.labelName}}   
+                  <mat-icon matChipRemove *ngIf="removable" (click)="DeleteLabel(note,label)">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>             
+            <div fxFlex="100">
                <app-icons [noteInfo]='note' [isTrash]='note.isTrash' (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)"></app-icons>
             </div>
         </div>       

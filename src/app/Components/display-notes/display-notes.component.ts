@@ -23,6 +23,9 @@ export class DisplayNotesComponent implements OnInit {
  image=''
  value='1'
  isChecked=false
+ visible = true;
+ selectable = true;
+ removable = true;
  constructor( private router:Router,
                private userService:UserServiceService,
                private dataService:DataServiceService,

@@ -17,6 +17,7 @@ export class IconsComponent implements OnInit {
     @Output() colorEvent = new EventEmitter<string>();
     @Output() reminderEvent=new EventEmitter<string>();
     @Output() imageEvent=new EventEmitter<string>();
+    @Output() archiveEvent=new EventEmitter<string>();
     
 
    colors=['#fff','#f28b82','#fbbc04','#fff475','#ccff90','#a7ffeb','#cbf0f8','#aecbfa','#d7aefb',
@@ -143,22 +144,35 @@ export class IconsComponent implements OnInit {
 
     NoteArchive()
     {
-        this.noteId = this.noteInfo.id
-        this.noteService.archiveNote(this.noteId).subscribe(response=>{
-        console.log('Note Archived' );
-        this.dataService.changeMessage(
+        if(this.noteInfo!=undefined)
         {
-            type:"getNotes"
-        })  
-        this.snackBar.open(response['message'],'',{
-        duration:4000,
-        horizontalPosition:'start'
-        }); 
-        },
-        error=>
+
+            this.noteId = this.noteInfo.id
+            this.noteService.archiveNote(this.noteId).subscribe(response=>{
+            console.log('Note Archived' );
+            this.dataService.changeMessage(
+            {
+                type:"getNotes"
+            })  
+            this.snackBar.open(response['message'],'',{
+            duration:4000,
+            horizontalPosition:'start'
+            }); 
+            },
+            error=>
+            {
+                console.log('error msg', error);
+            })
+        }
+        else
         {
-            console.log('error msg', error);
-        })
+            this.archiveEvent.emit('true');
+            this.snackBar.open(Response['message'],'',{
+                duration:4000,horizontalPosition:'start'
+                
+            })
+        }
+       
     }
 
     AddReminder(reminder)

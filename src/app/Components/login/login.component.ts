@@ -4,7 +4,7 @@ import{FormGroup,FormBuilder,Validators} from '@angular/forms';
 import{Router} from '@angular/router';
 import{UserServiceService} from '../../Services/UserService/user-service.service';
 import { AuthService } from 'src/app/auth.service';
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-login',
@@ -21,11 +21,19 @@ export class LoginComponent implements OnInit
               private router:Router,
               private userService:UserServiceService
               ,private snackBar:MatSnackBar,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private spinner: NgxSpinnerService) { }
 
               hide=true
-              ngOnInit() {
-                          this.loginform=this.formBuilder.group ({
+              ngOnInit()
+               {
+                this.spinner.show();
+                setTimeout(() => {
+                  /** spinner ends after 5 seconds */
+                  this.spinner.hide();
+                }, 5000);
+              
+                  this.loginform=this.formBuilder.group ({
                
                   email:['',[Validators.required,Validators.email]],
 

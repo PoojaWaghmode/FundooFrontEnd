@@ -29,6 +29,8 @@ import { CollaboratorComponent } from './Components/collaborator/collaborator.co
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,7 @@ import { AuthGuard } from './auth.guard';
     LabelComponent,
     CollaboratorComponent,
     
+    
   
     
   ],
@@ -64,6 +67,7 @@ import { AuthGuard } from './auth.guard';
     FlexLayoutModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
+    
 
   ],
   providers: [AuthService,AuthGuard],

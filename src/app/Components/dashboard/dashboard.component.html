@@ -20,16 +20,16 @@
                    
                     <input type="file" style="visibility: hidden;" #file (change)="UploadProfile(file.files)">
                                            
-                    <button fxLayoutAlign="center center" mat-menu-item  (click)="logout()">Sign Out</button>                                           
+                    <button fxLayoutAlign="center center" mat-menu-item  (click)= "logOut()">Sign Out</button>                                           
               </mat-menu>   
         
                 </div>
            
     </mat-toolbar>
       <div display="fxFlex" fxLayoutAlign="center center" fxLayout="row" style="margin-bottom:50px;">
-        <mat-grid-list cols="2" rowHeight="9:1"  style="width: 20%;margin-top: 10px;" fxLayoutAlign="center center">
+        <mat-grid-list cols="2" rowHeight="9:1"  style="width: 30%;margin-top: 10px;" fxLayoutAlign="center center">
           <mat-grid-tile>         
-              <span>BASIC Users :{{basic}}</span>       
+              <span style="padding: 0.5em;">BASIC Users :{{basic}}</span>       
           </mat-grid-tile>
           <mat-grid-tile style="margin-left:50px;margin-top: initial;">        
               <span>ADVANCE Users :{{advance}}</span>

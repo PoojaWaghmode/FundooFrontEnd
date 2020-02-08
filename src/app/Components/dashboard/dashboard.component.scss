@@ -32,14 +32,17 @@
 
 mat-grid-tile {
   background:pink;
+  margin-left:50px;
+  margin-top: initial;
+  border-radius: 1.5;
 }
 
 .profile{
   border-radius: 20px;
    width: 32px;
    height: 32px;
-   padding-top: 20px;
-   margin-top: -18px;
+   //padding-top: 20px;
+   //margin-top: -18px;
    margin-left: 10px;
 }
 .profilePic{

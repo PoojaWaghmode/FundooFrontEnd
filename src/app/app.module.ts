@@ -28,7 +28,13 @@ import { LabelComponent } from './Components/label/label.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
-
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AsyncPipe } from '../../node_modules/@angular/common';
+import { MessagingService } from './Services/messaging.service';
 
 
 @NgModule({
@@ -67,10 +73,14 @@ import { AuthGuard } from './auth.guard';
     FlexLayoutModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase)
     
 
   ],
-  providers: [AuthService,AuthGuard],
+  providers: [AuthService,AuthGuard,MessagingService, AsyncPipe],
   bootstrap: [AppComponent],
   // entryComponents: [
   //  SampleComponent

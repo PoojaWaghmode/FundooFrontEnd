@@ -106,4 +106,8 @@ export class NotesService {
   {
     return this.httpService.delete('api/Note/EmptyTrash');
   }
+  currentTimeReminderNotesData()
+  {
+    return this.httpService.get('api/Note/CurrentTimeReminderNotes')
+  }
 }

@@ -143,10 +143,10 @@ export class EditNoteComponent implements OnInit {
                   verticalPosition: 'top',
                   horizontalPosition:'center'})
                 })
-        }
+    }
   
-        DeleteReminder(data)
-      {
+  DeleteReminder(data)
+  {
   
     console.log("Data:",data.id);
     

@@ -31,11 +31,18 @@
                 <div>
                     <input matInput type="text" [(ngModel)]="description" placeholder="Take a note...." style="font-size: 14px;">
                 </div> 
-                <div fxFlex="100" (click)="openDialog(note)">
-                    <mat-chip style:width:23px>
+                <div *ngIf="reminder!=null" fxFlex="100" (click)="openDialog(note)">
+                    <!-- <mat-chip  style:width:23px> -->
                     {{reminder | date:'short'}}
-                    </mat-chip>
+                    <!-- </mat-chip> -->
                  </div>
+                 <!-- <mat-chip-list >
+                    <mat-chip *ngFor="let label of note['labels']" [selectable]="selectable"
+                             [removable]="removable" (removed)="remove(labels)">
+                             {{ label.labelName}}   
+                      <mat-icon matChipRemove *ngIf="removable" (click)="DeleteLabel(note,label)">cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-list>    -->
                 <div fxLayout="row">
                     <div fxFlex="80%">
                         <app-icons (colorEvent)="receiveColor($event)" (reminderEvent)="receiveReminder($event)" (imageEvent)="receiveImage($event)" (archiveEvent)="receiveArchieve($event)"></app-icons>

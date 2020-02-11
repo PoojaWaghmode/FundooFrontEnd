@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  Router, NavigationStart, NavigationEnd,
-  NavigationCancel, NavigationError, Event
-} from '@angular/router';
+import { MessagingService } from './Services/messaging.service';
+
 
 @Component({
   selector: 'app-root',
@@ -11,27 +9,13 @@ import {
 })
 export class AppComponent {
   title = 'FundooNotes';
-   // We will use this property to show or hide
-  // the loading indicator
-  showLoadingIndicator = true;
-  // Inject the Angular Router
-  constructor(private _router: Router) {
-    // Subscribe to the router events observable
-    this._router.events.subscribe((routerEvent: Event) => {
-
-      // On NavigationStart, set showLoadingIndicator to ture
-      if (routerEvent instanceof NavigationStart) {
-        this.showLoadingIndicator = true;
-      }
-
-      // On NavigationEnd or NavigationError or NavigationCancel
-      // set showLoadingIndicator to false
-      if (routerEvent instanceof NavigationEnd ||
-        routerEvent instanceof NavigationError ||
-        routerEvent instanceof NavigationCancel) {
-        this.showLoadingIndicator = false;
-      }
-
-    });
+ 
+  constructor(private messagingService: MessagingService) { }
+  message;
+  ngOnInit() {
+    const userId = 'user001';
+    this.messagingService.requestPermission(userId);
+    this.messagingService.receiveMessage();
+    this.message = this.messagingService.currentMessage;
   }
 }

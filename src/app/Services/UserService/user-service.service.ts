@@ -28,7 +28,11 @@ export class UserServiceService {
   }
   uploadProfile(data)
   {
-    return this.httpService.post('api/UserAccount/UploadProfileImage',data)
+    return this.httpService.post('api/UserAccount/UploadProfileImage',data);
+  }
+  storeFCMToken(data)
+  {
+    return this.httpService.put('api/UserAccount/FCMToken',data);
   }
  
 }

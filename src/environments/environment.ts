@@ -6,14 +6,7 @@ export const environment = {
   production: false,
   baseUrl:'https://localhost:44318/',
   firebase: {
-    apiKey: "AIzaSyBqcLZ0AgP2beG9NUFTWpR5fJNrtJfVeZI",
-    authDomain: "fundoo-2b3c6.firebaseapp.com",
-    databaseURL: "https://fundoo-2b3c6.firebaseio.com",
-    projectId: "fundoo-2b3c6",
-    storageBucket: "fundoo-2b3c6.appspot.com",
-    messagingSenderId: "178418899459",
-    appId: "1:178418899459:web:0bebfba48288709f00cc36",
-    measurementId: "G-GVK61N271T"
+   
   }
 };
 
